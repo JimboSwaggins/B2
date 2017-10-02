@@ -5,7 +5,9 @@ public class VRR {
 	public static double[] pastFrames;
 	public double currentTime;
 	public static void ping() {
-		for(int i = 1; i <= pastFrames.length; i++)
+		for(int i = 1; i <= pastFrames.length; i++) {
+			
+		}
 		frameCount ++;
 	}
 }
