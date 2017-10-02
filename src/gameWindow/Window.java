@@ -14,6 +14,9 @@ public class Window {
 		
 		drawBoard = new Canvas();
 		
+		mainWindow.add(drawBoard);
+		
+		
 	}
 	
 	public Window() {
