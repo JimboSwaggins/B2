@@ -4,9 +4,9 @@ import java.awt.Canvas;
 
 import javax.swing.JFrame;
 
-public class Window {
-	JFrame mainWindow;
-	Canvas drawBoard;
+public class GameWindow {
+	public JFrame mainWindow;
+	public Canvas drawBoard;
 	public void createAndShowGUI() {
 		mainWindow = new JFrame();
 		mainWindow.setSize(1280, 720);
@@ -19,7 +19,11 @@ public class Window {
 		
 	}
 	
-	public Window() {
+	public void run() {
+		
+	}
+	
+	public GameWindow() {
 		createAndShowGUI();
 	}
 }
