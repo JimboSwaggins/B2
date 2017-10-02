@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import gameWindow.GameWindow;
 
 public class gameUpdate extends GameWindow{
+<<<<<<< HEAD
 	
 	private static BufferedImage image;
 	public static void update() {	
@@ -18,5 +19,10 @@ public class gameUpdate extends GameWindow{
 		drawBoard.paint(g);
 		
 		
+=======
+	public void update() {
+		drawBoard.setBackground(Color.BLACK);
+		VRR.ping();
+>>>>>>> origin/master
 	}
 }
