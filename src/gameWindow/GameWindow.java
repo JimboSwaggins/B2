@@ -1,6 +1,8 @@
 package gameWindow;
 
 import java.awt.Canvas;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -11,6 +13,10 @@ import render.gameRender;
 public class GameWindow implements Runnable{
 	public JFrame mainWindow;
 	public static Canvas drawBoard;
+	
+	boolean running; 
+	public static BufferedImage image;
+	public static Graphics2D g;
 	
 	public void createAndShowGUI() {
 		mainWindow = new JFrame();
@@ -31,15 +37,18 @@ public class GameWindow implements Runnable{
 	}
 	
 	public void run() {
-		boolean running = true;
+		running = true;
+		image  = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_RGB);
+		g = (Graphics2D) image.getGraphics();
 		while(running) {
-			gameRender.update();
+			gameRender.update(g);
+			gameRender.gameDraw();
 			gameCalculate.update();
 		}
 	}
 	
 	public GameWindow() {
 		createAndShowGUI();
-		gameRender.update();
+		this.run();
 	}
 }
