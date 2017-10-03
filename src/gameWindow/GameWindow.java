@@ -1,14 +1,14 @@
 package gameWindow;
 
 import java.awt.Canvas;
-import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import render.gameUpdate;
+import mech.gameCalculate;
+import render.gameRender;
 
-public class GameWindow {
+public class GameWindow implements Runnable{
 	public JFrame mainWindow;
 	public static Canvas drawBoard;
 	
@@ -31,10 +31,15 @@ public class GameWindow {
 	}
 	
 	public void run() {
+		boolean running = true;
+		while(running) {
+			gameRender.update();
+			gameCalculate.update();
+		}
 	}
 	
 	public GameWindow() {
 		createAndShowGUI();
-		gameUpdate.update();
+		gameRender.update();
 	}
 }

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 import gameWindow.GameWindow;
 
-public class gameUpdate extends GameWindow{
+public class gameRender extends GameWindow{
 	private static Graphics2D g;	
 	private static BufferedImage image;
 	public static void update() {	
