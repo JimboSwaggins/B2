@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import gameWindow.GameWindow;
 
 public class gameUpdate extends GameWindow{
-	private static Graphics2D g;
+	private static Graphics2D g;	
 	private static BufferedImage image;
 	public static void update() {	
 		image  = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_RGB);
@@ -17,5 +17,6 @@ public class gameUpdate extends GameWindow{
 		g.drawRect(0, 0, 1280, 720);
 		drawBoard.paint(g);
 		VRR.ping();
+
 	}
 }
