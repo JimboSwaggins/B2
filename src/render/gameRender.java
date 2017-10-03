@@ -1,6 +1,7 @@
 package render;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -18,5 +19,10 @@ public class gameRender extends GameWindow{
 		drawBoard.paint(g);
 		VRR.ping();
 
+	}
+	
+	public static void draw() {
+		Graphics g2  = drawBoard.getGraphics();
+		g2.drawImage(image, 0, 0, null);
 	}
 }

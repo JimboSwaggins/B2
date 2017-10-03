@@ -22,8 +22,8 @@ public class GameWindow implements Runnable{
 		
 		
 		mainWindow.add(drawBoard);
-		drawBoard.setVisible(true);
 		
+		mainWindow.pack();
 		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
 		
@@ -33,13 +33,15 @@ public class GameWindow implements Runnable{
 	public void run() {
 		boolean running = true;
 		while(running) {
-			gameRender.update();
 			gameCalculate.update();
+			gameRender.update();
+			gameRender.draw();
 		}
 	}
 	
 	public GameWindow() {
 		createAndShowGUI();
 		gameRender.update();
+		this.run();
 	}
 }
