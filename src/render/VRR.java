@@ -16,6 +16,9 @@ public class VRR {
 		currentTime = (long) System.currentTimeMillis();
 		listOfTimes.push(currentTime);
 		System.out.println(listOfTimes);
+		if(listOfTimes.size() > 5) {
+			listOfTimes.removeLast();
+		}
 		
 
 	}
