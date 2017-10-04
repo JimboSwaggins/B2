@@ -4,11 +4,11 @@ public class VRR {
 	public static long lastFPS;
 	public static long FPSCounter;
 	public static long currSchedule;
-	public static int ping() {
+	public static long ping() {
 		FPSCounter = System.currentTimeMillis();
 		currSchedule = FPSCounter - lastFPS;
 		//DO YOUR DUMB CALCULUS MEME HERE
-		int waitTime = 000;
+		long waitTime = 000;
 		return waitTime;
 	}
 }
