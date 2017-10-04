@@ -8,15 +8,22 @@ import java.awt.image.BufferedImage;
 import gameWindow.GameWindow;
 
 public class gameRender extends GameWindow{
-
-	public static void update(Graphics2D g1) {	
-		g1.setColor(Color.BLACK);
-		g1.fillRect(0, 0, 1280, 720);
+	private static Graphics2D g;	
+	private static BufferedImage image;
+	public static void update() {	
+		image  = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_RGB);
+		
+		g = (Graphics2D) image.getGraphics();
+		g.setColor(Color.BLACK);
+		g.drawRect(0, 0, 1280, 720);
+		drawBoard.paint(g);
 		VRR.ping();
 
 	}
-	public static void gameDraw(){
-		Graphics g2  = image.getGraphics();
+	
+	public static void draw() {
+		Graphics g2  = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
-	}
 }
+}
+

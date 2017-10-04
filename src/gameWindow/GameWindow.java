@@ -37,13 +37,11 @@ public class GameWindow implements Runnable{
 	}
 	
 	public void run() {
-		running = true;
-		image  = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_RGB);
-		g = (Graphics2D) image.getGraphics();
+		boolean running = true;
 		while(running) {
-			gameRender.update(g);
-			gameRender.gameDraw();
 			gameCalculate.update();
+			gameRender.update();
+			gameRender.draw();
 		}
 	}
 	
