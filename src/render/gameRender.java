@@ -24,6 +24,6 @@ public class gameRender extends GameWindow{
 	public static void draw() {
 		Graphics g2  = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
-}
+	}
 }
 
