@@ -17,7 +17,12 @@ public class gameRender extends GameWindow{
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, 1280, 720);
 		drawBoard.paint(g);
-		VRR.ping();
+		try {
+			Thread.sleep(VRR.ping());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERROR @VRR PING IN GAMERENDER CLASS VOID UPDATE, INTERRUPTED EXCEPTION");
+		}
 
 	}
 	
