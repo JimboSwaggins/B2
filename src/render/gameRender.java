@@ -16,14 +16,11 @@ public class gameRender extends GameWindow{
 		g = (Graphics2D) image.getGraphics();
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, 1280, 720);
+		g.setColor(Color.GREEN);
+		g.drawString(VRR.listOfTimes.toString(), 50, 50);
 		drawBoard.paint(g);
-		try {
-			Thread.sleep(VRR.ping());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			System.out.println("ERROR @VRR PING IN GAMERENDER CLASS VOID UPDATE, INTERRUPTED EXCEPTION");
-		}
-
+		//DRAW IMAGES OF STUFF HERE
+		VRR.ping();
 	}
 	
 	public static void draw() {
