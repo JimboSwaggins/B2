@@ -1,23 +1,16 @@
 package render;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 // Variable Refresh rate
 public class VRR {
 	public static long lastFPS;
 	public static long FPSCounter;
 	public static long currSchedule;
-<<<<<<< HEAD
-	public static long[] listOfTimes;
-
-	
+	public static Deque<Long> h;
 	public static void ping() {
-		System.out.println(listOfTimes);
+		h.addFirst((long) 12312);
 		
-=======
-	public static long ping() {
-		FPSCounter = System.currentTimeMillis();
-		currSchedule = FPSCounter - lastFPS;
-		//DO YOUR DUMB CALCULUS MEME HERE
-		long waitTime = 000;
-		return waitTime;
->>>>>>> c58adbd4c7de90ef99c46425a60f637446391012
 	}
 }

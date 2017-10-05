@@ -12,6 +12,9 @@ public class Player {
 	private int yLocation;
 	private int yDelta;
 	
+	private double speed;
+	//GOTTA GO FAST
+	
 	private int score;
 	//score messing things
 	public void scoreArithmetic(int deltaValue) {this.score += deltaValue;
