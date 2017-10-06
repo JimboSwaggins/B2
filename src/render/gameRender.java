@@ -16,9 +16,11 @@ public class gameRender extends GameWindow{
 		g = (Graphics2D) image.getGraphics();
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, 1280, 720);
+		g.setColor(Color.GREEN);
+		g.drawString(VRR.listOfTimes.toString(), 50, 50);
 		drawBoard.paint(g);
+		//DRAW IMAGES OF STUFF HERE
 		VRR.ping();
-
 	}
 	
 	public static void draw() {

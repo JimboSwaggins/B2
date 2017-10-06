@@ -2,11 +2,14 @@ package render;
 
 public class powerLaw {
 	long[] listOfTimes;
+	int x;
 	//Sets up array within class to be possibly used anywhere.
 	public void function(long[] array)
 	{
 		listOfTimes = array;
 		//In order to use array within function.
+		
+		
 		
 		/* Power Law Formula
 		 * [                                                      ]
