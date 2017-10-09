@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 // Variable Refresh rate
 public class VRR {
-	public static long currentTime;
-	public static ArrayList<Long> listOfTimes = new ArrayList<Long>();
-	public static ArrayList<Long> deltaX = new ArrayList<Long>();
+	protected static long currentTime;
+	protected static ArrayList<Long> listOfTimes = new ArrayList<Long>();
+	protected static ArrayList<Long> deltaX = new ArrayList<Long>();
 	
 	public static void ping() {
 		currentTime = (long) System.currentTimeMillis();

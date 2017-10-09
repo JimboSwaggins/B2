@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import gameWindow.GameWindow;
+import mech.gameCalculate;
 
 public class gameRender extends GameWindow{
 	private static Graphics2D g;	
@@ -17,7 +18,8 @@ public class gameRender extends GameWindow{
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, 1280, 720);
 		g.setColor(Color.GREEN);
-		g.drawString(VRR.listOfTimes.toString(), 50, 50);
+		
+	
 		drawBoard.paint(g);
 		//DRAW IMAGES OF STUFF HERE
 		VRR.ping();
@@ -26,6 +28,17 @@ public class gameRender extends GameWindow{
 	public static void draw() {
 		Graphics g2  = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
+		switch(gameCalculate.status) {
+		case MENU:
+			g2.setColor(Color.RED);
+			g2.drawString("EHLS", 50, 400);
+			g2.drawString(VRR.listOfTimes.toString(), 50, 50);
+			break;
+		default:
+		System.out.println("HAHA DISREGARD THAT I SUCK COCKS");
+			break;
+		}
+		
 	}
 }
 

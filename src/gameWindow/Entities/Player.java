@@ -29,7 +29,29 @@ public class Player {
 	public void livesArithmetic(int deltaValue) {this.lives += deltaValue;}
 	public int getLives() {return this.lives;}
 	
+	private boolean isRight;
+	public void setRight(boolean input) {this.isRight = input;}
 	
+	private boolean isLeft;
+	public void setLeft(boolean input) {this.isLeft = input;}
+	
+	private boolean isUp;
+	public void setUp(boolean input) {this.isUp = input;}
+	
+	private boolean isDown;
+	public void setDown(boolean input) {this.isDown = input;}
+	
+	private boolean isFiring;
+	public void setFiring(boolean input) {this.isFiring = input;}
+	
+	private boolean isFocus;
+	public void setFocus(boolean input) {this.isFocus = input;}
+	
+	
+	
+	public void update() {
+		
+	}
 	
 	
 }
