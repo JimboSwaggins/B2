@@ -50,7 +50,9 @@ public class Player {
 	
 	
 	public void update() {
-		
+		if(isUp) {
+			this.xLocation++;
+		}
 	}
 	
 	

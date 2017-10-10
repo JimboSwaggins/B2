@@ -10,7 +10,38 @@ public class powerLaw extends VRR{
 		//There is no sigma function in java, so you will have to create one. Here is a link that I think might help you.
 		//https://stackoverflow.com/questions/24286713/summation-equation-in-java
 		
-		
+
+		/* Power Law Formula
+		 * [                                                      ]
+		 * |           [                 [(SUM(ln x))(SUM(ln s))]]|
+		 * |           |(SUM(ln x)(ln s)-|----------------------|||
+		 * |           |                 [          N           ]||
+		 * |(SUM(ln x))|-----------------------------------------||   +
+		 * |           |                    [(SUM(ln x))^2]      ||
+		 * |           |    (SUM((ln x)^2))-|-------------|      ||
+		 * |           [                    [      N      ]      ]|
+		 * [                                                      ]
+		 * 
+		 * 
+		 * 
+		 * [                                                                     ]
+		 * |                         [                  [(SUM(ln x))(SUM(ln s))]]|
+		 * |                         |(SUM(ln x))(ln s)-|----------------------|||
+		 * |                         |                  [          N           ]||
+		 * |(SUM(ln y)) - (SUM(ln x))|------------------------------------------||
+		 * |                         |                     [(SUM(ln x))^2]      ||
+		 * |                         |     (SUM((ln x)^2))-|-------------|      ||
+		 * |                         [                     [      N      ]      ]|
+		 * |---------------------------------------------------------------------|
+		 * |                                   N                                 |
+		 * [                                                                     ]
+		 * 
+		 * 
+		 * s = time interval
+		 * x = index of time "s"
+		 * N = total number of frames to be calculated or total number of time intervals
+		 * y = 
+		 */
 		
 		@SuppressWarnings("unused")
 		double sumLnX = 0;

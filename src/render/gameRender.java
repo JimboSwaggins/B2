@@ -32,10 +32,10 @@ public class gameRender extends GameWindow{
 		case MENU:
 			g2.setColor(Color.RED);
 			g2.drawString("EHLS", 50, 400);
-			g2.drawString(VRR.listOfTimes.toString(), 50, 50);
+		
 			break;
 		default:
-		System.out.println("HAHA DISREGARD THAT I SUCK COCKS");
+		System.out.println("HA");
 			break;
 		}
 		
