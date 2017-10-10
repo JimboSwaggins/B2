@@ -13,7 +13,11 @@ import gameWindow.Entities.Player;
 import mech.gameCalculate;
 import render.gameRender;
 
-public class GameWindow implements Runnable, KeyListener{
+public class GameWindow extends JFrame implements Runnable, KeyListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JFrame mainWindow;
 	public static Canvas drawBoard;
 	
@@ -92,7 +96,7 @@ public class GameWindow implements Runnable, KeyListener{
 		while(running) {
 			gameCalculate.update();
 			gameRender.update();
-			gameRender.draw();
+	
 		}
 	}
 	
