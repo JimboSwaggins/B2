@@ -1,8 +1,26 @@
 package render;
 
+import java.util.Arrays;
+
 public class powerLaw extends VRR{
-	//Sets up array within class to be possibly used anywhere.
-	public void function(double[] array)
+	//Sets up array within class to be possibly used anywhere.\
+	public static void main(String[] args) {
+		double[] a = {1, 2, 3, 4};
+		function(a);
+	}
+	public static double recursive()
+	{
+		double b = (sumLnX * sumLnS)/n;
+		double c = (sumLnX * sumLnX / n);
+		double d = sumXTimesS - b;
+		double e = sumLnXSquared - c;
+		double f = d / e;
+		double firstSection = sumLnX * f;
+		double secondSection = firstSection / n;
+		double y = firstSection - secondSection;
+		return y;
+	}
+	public static void function(double[] array)
 	{
 		
 		//You can directly get the list of times from VRR because this extends it.
@@ -52,7 +70,7 @@ public class powerLaw extends VRR{
 		@SuppressWarnings("unused")
 		double sumLnY = 0;
 			//I have yet to determine what y is
-		int n = array.length;
+		double n = array.length;
 			//number of frames being calculated
 		@SuppressWarnings("unused")
 		double sumXTimesS  = 0;
@@ -60,16 +78,22 @@ public class powerLaw extends VRR{
 		@SuppressWarnings("unused")
 		double sumLnXSquared = 0;
 			//stores SUM(ln x)^2
+		
 		for(int i = 0; i < n; i++)
 		{
 			double lnS = Math.log(array[i]);
-			double lnX = Math.log(i);
+			double lnX = Math.log(i+1);
 			double lnXS = lnX * lnS;
+			double lnX2 = lnX * lnX;
 			sumLnX += lnX;
 			sumLnS += lnS;
 			sumXTimesS += lnXS;
+			sumLnXSquared += lnX2;
 			
 		}
-		
+		double y = recursive();
+		System.out.println(y);
+		System.out.println(Arrays.toString(array));
+		//System.out.println(sumLnX + " " + sumLnS +  " " + sumXTimesS);
 	}
 }
