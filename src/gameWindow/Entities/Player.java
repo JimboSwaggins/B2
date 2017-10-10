@@ -50,9 +50,10 @@ public class Player {
 	
 	
 	public void update() {
-		if(isUp) {
-			this.xLocation++;
-		}
+		if(isUp) {this.yLocation--;}
+		if(isDown) {this.yLocation++;}
+		if(isRight) {this.xLocation++;}
+		if(isLeft) {this.yLocation--;}
 	}
 	
 	
