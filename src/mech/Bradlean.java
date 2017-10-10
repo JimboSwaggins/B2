@@ -1,8 +1,8 @@
 package mech;
 
-public class tBool{
+public class Bradlean{
 	private boolean valueOf;
-	public tBool(boolean value) {
+	public Bradlean(boolean value) {
 		this.valueOf = value;
 	}
 	
