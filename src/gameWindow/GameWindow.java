@@ -36,7 +36,7 @@ public class GameWindow implements Runnable, KeyListener{
 		
 		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
-		
+		mainWindow.setIgnoreRepaint(true);
 		character = new Player();
 
 		
