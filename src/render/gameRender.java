@@ -17,21 +17,29 @@ public class gameRender extends GameWindow{
 		g = (Graphics2D) image.getGraphics();
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, 1280, 720);
-		g.setColor(Color.GREEN);
+	
 		
 	
 		drawBoard.paint(g);
 		//DRAW IMAGES OF STUFF HERE
 		VRR.ping();
+		draw();
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+		
 	
 	public static void draw() {
 		Graphics g2  = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
 		switch(gameCalculate.status) {
 		case MENU:
-			g2.setColor(Color.RED);
-			g2.drawString("EHLS", 50, 400);
+			g2.setColor(Color.GREEN);
+			g2.drawString("Test text", 50, 50);
 		
 			break;
 		default:
