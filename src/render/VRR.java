@@ -9,6 +9,7 @@ public class VRR {
 	protected static ArrayList<Long> deltaX = new ArrayList<Long>();
 	
 	public static void ping() {
+		
 		currentTime = (long) System.currentTimeMillis();
 		listOfTimes.add(0, currentTime);
 		if(listOfTimes.size() > 6) {

@@ -22,8 +22,8 @@ public class gameRender extends GameWindow{
 	
 		drawBoard.paint(g);
 		//DRAW IMAGES OF STUFF HERE
-		VRR.ping();
 		draw();
+
 		try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
