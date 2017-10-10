@@ -40,7 +40,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		
 		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
-		
+		mainWindow.setIgnoreRepaint(true);
 		character = new Player();
 
 		

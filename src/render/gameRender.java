@@ -39,6 +39,7 @@ public class gameRender extends GameWindow{
 	
 	public static void draw() {
 
+		//g2 Draws the stuff in the game
 		
 		image = new BufferedImage(1280, 900, BufferedImage.TYPE_INT_RGB);
 		Graphics g2  = image.getGraphics();
