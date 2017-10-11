@@ -19,11 +19,11 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	private static final long serialVersionUID = 1L;
 	public JFrame mainWindow;
 	public static JPanel drawBoard;
-	
+	private Thread thread;
 	boolean running; 
 	public static BufferedImage image;
 	public static Graphics2D g;
-	public Player character;
+	public static Player character;
 	
 	public void createAndShowGUI() {
 		mainWindow = new JFrame();
@@ -33,16 +33,29 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		drawBoard = new JPanel();
 		drawBoard.setSize(1280, 720);
 		
-		
+		character = new Player();
 		mainWindow.add(drawBoard);
 		drawBoard.setVisible(true);
 		
+		mainWindow.addKeyListener(this);
 		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		mainWindow.setFocusable(true);
+		mainWindow.requestFocus();
 		mainWindow.setVisible(true);
-		character = new Player();
+		
 
 		
 	}
+	public void addNotify(){
+		super.addNotify();
+		if(thread == null){
+			thread = new Thread(this);
+			thread.start();
+		}
+		
+		addKeyListener(this);
+	}
+	
 	public void keyPressed(KeyEvent Key) {
 		int keyCode = Key.getKeyCode();
 			if(keyCode == KeyEvent.VK_LEFT){
@@ -66,6 +79,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	}
 
 	@Override
+	
 	public void keyReleased(KeyEvent Key) {
 		int keyCode = Key.getKeyCode();
 		if(keyCode == KeyEvent.VK_LEFT){
@@ -93,7 +107,9 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		boolean running = true;
 		while(running) {
 			gameCalculate.update();
+			character.update();
 			gameRender.update();
+
 	
 		}
 	}

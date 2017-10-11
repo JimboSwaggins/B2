@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import gameWindow.GameWindow;
+import gameWindow.Entities.Player;
 import mech.gameCalculate;
 
 public class gameRender extends GameWindow{
@@ -21,22 +22,11 @@ public class gameRender extends GameWindow{
 		g2.drawString("EHLS", 50, 400);
 		g2.drawString(VRR.listOfTimes.toString(), 50, 50);
 		
+		g2.drawString(Integer.toString(GameWindow.character.getX()), 5, 60);
+		g2.drawString(Integer.toString(GameWindow.character.getY()), 5, 70);
 		g2 = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
-
 		//DRAW IMAGES OF STUFF HERE
 		VRR.ping();
-	}
-	
-	public static void draw(BufferedImage image) {
-		Graphics g2  = drawBoard.getGraphics();
-		g2.drawImage(image, 0, 0, null);
-		g2.setColor(Color.BLACK);
-		g2.fillRect(0, 0, 1280, 720);
-		g2.setColor(Color.RED);
-		g2.drawString("EHLS", 50, 400);
-		g2.drawString(VRR.listOfTimes.toString(), 50, 50);
-		drawBoard.paint(g2);
-		
 	}
 }

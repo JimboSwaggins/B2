@@ -33,7 +33,7 @@ public class VRR {
 			long delta = x2 - x1;
 			deltaX.add(delta);
 		}
-		System.out.println(listOfTimes);
-		System.out.println(deltaX);
+		//System.out.println(listOfTimes);
+		//System.out.println(deltaX);
 	}
 }
