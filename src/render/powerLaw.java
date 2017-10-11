@@ -34,7 +34,7 @@ public class powerLaw extends VRR{
 	 * 
 	 */
 	
-	public static void main(String[] args) {
+	public static void main() {
 		new powerLaw();
 	}
 	

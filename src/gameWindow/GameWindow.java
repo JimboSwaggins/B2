@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import gameWindow.Entities.Player;
@@ -14,12 +15,10 @@ import mech.gameCalculate;
 import render.gameRender;
 
 public class GameWindow extends JFrame implements Runnable, KeyListener {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	public JFrame mainWindow;
-	public static Canvas drawBoard;
+	public static JPanel drawBoard;
 	
 	boolean running; 
 	public static BufferedImage image;
@@ -31,7 +30,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		mainWindow.setSize(1280, 720);
 		mainWindow.setVisible(true);
 		
-		drawBoard = new Canvas();
+		drawBoard = new JPanel();
 		drawBoard.setSize(1280, 720);
 		
 		
@@ -40,7 +39,6 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		
 		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainWindow.setVisible(true);
-		mainWindow.setIgnoreRepaint(true);
 		character = new Player();
 
 		
@@ -108,7 +106,6 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 }
