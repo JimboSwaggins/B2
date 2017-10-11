@@ -8,6 +8,16 @@ public class powerLaw extends VRR{
 		new powerLaw();
 	}
 	
+	/**
+	 * 
+	 * Maik - I know it seems really petty of me to rag on you having the brackets be under the thing, but PLEASE do not do that. It makes it really hard for me to read your code and 
+	 * debug it. It's okay if you don't, but it would make it a lot easier on me when I bug check. 
+	 * Thanks,
+	 * Ethan
+	 * 
+	 */
+	
+	
 	public powerLaw() {
 		double[] a = {1, 2, 3, 4};
 		function(a);
@@ -91,8 +101,7 @@ public class powerLaw extends VRR{
 		sumLnXSquared = 0;
 			//stores SUM(ln x)^2
 		
-		for(int i = 0; i < n; i++)
-		{
+		for(int i = 0; i < n; i++){
 			double lnS = Math.log(array[i]);
 			double lnX = Math.log(i+1);
 			double lnXS = lnX * lnS;
