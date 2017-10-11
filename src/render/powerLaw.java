@@ -3,10 +3,27 @@ package render;
 import java.util.Arrays;
 
 public class powerLaw extends VRR{
-	//Sets up array within class to be possibly used anywhere.\
-	public static void main(String[] args) {
-		new powerLaw();
-	}
+	private double sumLnX;
+	//will store summation of natural log of x
+
+	private double sumLnS;
+	//will store summation of natural log of s
+	
+	@SuppressWarnings("unused")
+	private double sumLnY;
+	//Will store summation of natural log of y
+	
+	private double n;
+	//number of frames being calculated
+	
+	private double sumLnXSquared;
+	//stores SUM(ln x)^2
+	
+	private double sumXTimesS;
+	//stores (SUM(ln x)(ln s))
+	
+	
+	//Sets up array within class to be possibly used anywhere.
 	
 	/**
 	 * 
@@ -17,18 +34,14 @@ public class powerLaw extends VRR{
 	 * 
 	 */
 	
+	public static void main(String[] args) {
+		new powerLaw();
+	}
 	
 	public powerLaw() {
 		double[] a = {1, 2, 3, 4};
 		function(a);
 	}
-	
-	private double sumLnX;
-	private double sumLnS;
-	private double sumLnY;
-	private double n;
-	private double sumLnXSquared;
-	private double sumXTimesS;
 	
 	public double recursive(){
 		double b = (sumLnX * sumLnS)/n;
@@ -41,16 +54,15 @@ public class powerLaw extends VRR{
 		double y = firstSection - secondSection;
 		return y;
 	}
-	
+	/**
+	 *You can directly get the list of times from VRR because this extends it in order to use the array within function.
+	 *Also, there is no sigma function in java, so you will have to create one. Here is a link that I think might help you.
+	 *https://stackoverflow.com/questions/24286713/summation-equation-in-java
+	 *
+	 */
 	
 	public void function(double[] array){
 		
-		//You can directly get the list of times from VRR because this extends it.
-		//In order to use array within function.
-		//There is no sigma function in java, so you will have to create one. Here is a link that I think might help you.
-		//https://stackoverflow.com/questions/24286713/summation-equation-in-java
-		
-
 		/* Power Law Formula
 		 * [                                                      ]
 		 * |           [                 [(SUM(ln x))(SUM(ln s))]]|
@@ -83,23 +95,13 @@ public class powerLaw extends VRR{
 		 * y = 
 		 */
 		
-		
+		//will store summation of natural log of x
 		sumLnX = 0;
-			//will store summation of natural log of x
-
 		sumLnS = 0;
-		//will store summation of natural log of s
-		
 		sumLnY = 0;
-			//I have yet to determine what y is
 		n = array.length;
-			//number of frames being calculated
-		
-		sumXTimesS  = 0;
-			//stores (SUM(ln x)(ln s))
-		
-		sumLnXSquared = 0;
-			//stores SUM(ln x)^2
+		sumXTimesS  = 0;	
+		sumLnXSquared = 0;	
 		
 		for(int i = 0; i < n; i++){
 			double lnS = Math.log(array[i]);
@@ -110,9 +112,10 @@ public class powerLaw extends VRR{
 			sumLnS += lnS;
 			sumXTimesS += lnXS;
 			sumLnXSquared += lnX2;
-			
 		}
+		
 		double y = recursive();
+		
 		System.out.println(y);
 		System.out.println(Arrays.toString(array));
 		//System.out.println(sumLnX + " " + sumLnS +  " " + sumXTimesS);

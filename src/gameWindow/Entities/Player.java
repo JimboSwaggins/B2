@@ -5,12 +5,17 @@ public class Player {
 	public int getHealth() {return this.Health;}
 	public void setHealth(int toChange) {this.Health = toChange;}
 	
+	@SuppressWarnings("unused")
 	private int xLocation;
+	@SuppressWarnings("unused")
 	private int xDelta;
 	
+	@SuppressWarnings("unused")
 	private int yLocation;
+	@SuppressWarnings("unused")
 	private int yDelta;
 	
+	@SuppressWarnings("unused")
 	private double speed;
 	//GOTTA GO FAST
 	
@@ -41,16 +46,24 @@ public class Player {
 	private boolean isDown;
 	public void setDown(boolean input) {this.isDown = input;}
 	
+	@SuppressWarnings("unused")
 	private boolean isFiring;
 	public void setFiring(boolean input) {this.isFiring = input;}
 	
+	@SuppressWarnings("unused")
 	private boolean isFocus;
 	public void setFocus(boolean input) {this.isFocus = input;}
 	
 	
-	
+	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
 		if(isUp) {
+			this.yLocation--;
+		}if(isDown) {
+			this.yLocation++;
+		}if(isLeft) {
+			this.xLocation--;
+		}if(isRight) {
 			this.xLocation++;
 		}
 	}
