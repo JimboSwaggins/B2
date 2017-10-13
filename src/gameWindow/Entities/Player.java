@@ -1,22 +1,7 @@
 package gameWindow.Entities;
 
-public class Player {
-	private int Health;
-	public int getHealth() {return this.Health;}
-	public void setHealth(int toChange) {this.Health = toChange;}
+public class Player extends Entity{
 	
-	@SuppressWarnings("unused")
-	private int xLocation;
-	public int getX() {return this.xLocation;}
-	public void setX(int i) {this.xLocation = i;}
-	@SuppressWarnings("unused")
-	private int xDelta;
-	
-	@SuppressWarnings("unused")
-	private int yLocation;
-	public int getY() {return this.yLocation;}
-	@SuppressWarnings("unused")
-	private int yDelta;
 	
 	@SuppressWarnings("unused")
 	private double speed;
@@ -69,22 +54,15 @@ public class Player {
 	
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
-<<<<<<< HEAD
+
 		if(isUp) {this.yLocation--;}
 		if(isDown) {this.yLocation++;}
 		if(isRight) {this.xLocation++;}
-		if(isLeft) {this.yLocation--;}
-=======
-		if(isUp) {
-			this.yLocation--;
-		}if(isDown) {
-			this.yLocation++;
-		}if(isLeft) {
-			this.xLocation--;
-		}if(isRight) {
-			this.xLocation++;
-		}
->>>>>>> 1a4c107c6843765b1e2189f49ca725bbe10c1057
+		if(isLeft) {this.xLocation--;}
+		this.draw();
+	}
+	
+	public void draw() {
 	}
 	
 	

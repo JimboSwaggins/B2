@@ -1,6 +1,5 @@
 package gameWindow;
 
-import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -108,6 +107,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		while(running) {
 			gameCalculate.update();
 			character.update();
+			character.draw();
 			gameRender.update();
 
 	

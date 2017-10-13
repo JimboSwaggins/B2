@@ -2,15 +2,12 @@ package render;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import gameWindow.GameWindow;
-import gameWindow.Entities.Player;
-import mech.gameCalculate;
 
+@SuppressWarnings("serial")
 public class gameRender extends GameWindow{
-	private static Graphics2D g;	
 	private static BufferedImage image;
 	public static void update() {	
 		image  = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_RGB);
@@ -24,6 +21,7 @@ public class gameRender extends GameWindow{
 		
 		g2.drawString(Integer.toString(GameWindow.character.getX()), 5, 60);
 		g2.drawString(Integer.toString(GameWindow.character.getY()), 5, 70);
+		g2.fillOval(GameWindow.character.getX(), GameWindow.character.getY(), 3, 3);
 		g2 = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
 		//DRAW IMAGES OF STUFF HERE

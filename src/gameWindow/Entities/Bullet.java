@@ -1,5 +1,5 @@
 package gameWindow.Entities;
 
-public class Bullet {
+public class Bullet extends Entity{
 
 }
