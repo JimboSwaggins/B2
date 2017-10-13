@@ -21,7 +21,15 @@ public class gameRender extends GameWindow{
 		
 		g2.drawString(Integer.toString(GameWindow.character.getX()), 5, 60);
 		g2.drawString(Integer.toString(GameWindow.character.getY()), 5, 70);
-		g2.fillOval(GameWindow.character.getX(), GameWindow.character.getY(), 3, 3);
+		
+		
+		//TODO ADD ARRAYLIST PARSER
+
+		for(int i = 0; i < objList.size(); i++) {
+			objList.get(i).draw(g2);
+		}
+		
+		
 		g2 = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
 		//DRAW IMAGES OF STUFF HERE
