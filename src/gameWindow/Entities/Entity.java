@@ -10,6 +10,16 @@ public abstract class Entity {
 			return true;
 		}return false;	
 	}
+	protected int direction;
+	public void setDirection(int i) {
+		if(i < 4&&i >= 0) {
+			this.direction = i;
+		}
+		else {
+			this.direction = 1;
+		}
+		
+	}
 	
 	protected int Score;
 	public int getScore() {return this.Score;}
@@ -85,6 +95,9 @@ public abstract class Entity {
 	
 	public void draw(Graphics g) {
 		//This shouldn't do anything, it's just to make this accessible by subclasses.
+	
+	
 	}
+	
 	
 }

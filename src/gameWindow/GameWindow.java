@@ -46,7 +46,6 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	
 	private void ini_Systems() {
 		objList = new ArrayList<Entity>();
-		objList.add(new Player(200, 200));
 	}
 	
 	public void keyPressed(KeyEvent Key) {
@@ -55,6 +54,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 				for(int i = 0; i < objList.size(); i++) {
 					if(objList.get(i).CtrlCheck()) {
 						objList.get(i).setLeft(true);
+						objList.get(i).setDirection(4);
 					}
 				}
 			}
@@ -62,6 +62,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 				for(int i = 0; i < objList.size(); i++) {
 					if(objList.get(i).CtrlCheck()) {
 						objList.get(i).setRight(true);
+						objList.get(i).setDirection(2);
 					}
 				}
 			}
@@ -69,6 +70,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 				for(int i = 0; i < objList.size(); i++) {
 					if(objList.get(i).CtrlCheck()) {
 						objList.get(i).setUp(true);
+						objList.get(i).setDirection(1);
 					}
 				}
 			}
@@ -76,6 +78,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 				for(int i = 0; i < objList.size(); i++) {
 					if(objList.get(i).CtrlCheck()) {
 						objList.get(i).setDown(true);
+						objList.get(i).setDirection(3);
 					}
 				}
 			}
@@ -141,14 +144,19 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 				}
 			}
 		}
+		for(int i = 0; i < objList.size();i++) {
+			if(objList.get(i).CtrlCheck()) {
+				objList.get(i).setDirection(0);
+			}
+		}
 		
 	}
 	
 	public void run() {
 		boolean running = true;
-		
+		                                                                                                            
 		ini_Systems();
-		
+		new Player(0,0);
 		while(running) {
 			gameCalculate.update();
 			gameRender.update();
