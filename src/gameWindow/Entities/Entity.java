@@ -12,7 +12,7 @@ public abstract class Entity {
 	}
 	protected int direction;
 	public void setDirection(int i) {
-		if(i < 4&&i >= 0) {
+		if(i <= 4&&i >= 0) {
 			this.direction = i;
 		}
 		else {

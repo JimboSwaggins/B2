@@ -42,10 +42,14 @@ public class Player extends Entity{
 		try {
 			switch(direction){
 			case 1:
+				img = ImageIO.read(new File("../B2/img/p_up.png"));
+				break;
 			case 2:
 				img = ImageIO.read(new File("../B2/img/p_right.png"));
 				break;
 			case 3:
+				img = ImageIO.read(new File("../B2/img/p_down.png"));
+				break;
 			case 4:
 				img = ImageIO.read(new File("../B2/img/p_left.png"));
 				break;
