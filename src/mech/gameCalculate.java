@@ -1,6 +1,7 @@
 package mech;
 
 import gameWindow.GameWindow;
+import render.gameRender;
 
 public class gameCalculate extends GameWindow{
 	/**
@@ -16,6 +17,15 @@ public class gameCalculate extends GameWindow{
 		for(int i = 0; i < objList.size(); i++) {
 			try {
 				objList.get(i).update();
+				try {
+					if(objList.get(i).CtrlCheck()) {
+						gameRender.setLifeNum(objList.get(i).getLives());
+						gameRender.setScore(objList.get(i).getScore());
+					}
+				}catch(NullPointerException e) {
+					e.printStackTrace();
+				}
+				
 			}catch(NullPointerException e) {
 				e.printStackTrace();
 			}

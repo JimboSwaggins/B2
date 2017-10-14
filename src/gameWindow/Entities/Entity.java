@@ -11,6 +11,10 @@ public abstract class Entity {
 		}return false;	
 	}
 	
+	protected int Score;
+	public int getScore() {return this.Score;}
+	public void setScore(int i) { this.Score += i;}
+	
 	protected int Health;
 	public int getHealth() {return this.Health;}
 	public void setHealth(int toChange) {this.Health = toChange;}
@@ -36,6 +40,7 @@ public abstract class Entity {
 	public int getBombs() {return this.bombs;}
 	
 	private int lives;
+	public void setLives(int i) {this.lives = i;}
 	public void livesArithmetic(int deltaValue) {this.lives += deltaValue;}
 	public int getLives() {return this.lives;}
 	

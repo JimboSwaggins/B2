@@ -33,20 +33,19 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		
 		drawBoard = new JPanel();
 		drawBoard.setSize(1280, 720);
-		character = new Player(200,200,0,0,0);
 		mainWindow.add(drawBoard);
 		drawBoard.setVisible(true);
 		
 		mainWindow.addKeyListener(this);
 		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainWindow.setFocusable(true);
+		mainWindow.setResizable(false);
 		mainWindow.requestFocus();
 		mainWindow.setVisible(true);
 	}
 	
 	private void ini_Systems() {
 		objList = new ArrayList<Entity>();
-		objList.add(new Player(100, 100));
 		objList.add(new Player(200, 200));
 	}
 	
@@ -81,10 +80,18 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 				}
 			}
 			if(keyCode == KeyEvent.VK_SHIFT){
-				character.setFocus(true);
+				for(int i = 0; i < objList.size(); i++) {
+					if(objList.get(i).CtrlCheck()) {
+						objList.get(i).setFocus(true);
+					}
+				}
 			}
 			if(keyCode == KeyEvent.VK_Z){
-				character.setFiring(true);
+				for(int i = 0; i < objList.size(); i++) {
+					if(objList.get(i).CtrlCheck()) {
+						objList.get(i).setFiring(true);
+					}
+				}
 			}
 	}
 
@@ -121,10 +128,18 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 			}
 		}
 		if(keyCode == KeyEvent.VK_SHIFT){
-			character.setFocus(false);
+			for(int i = 0; i < objList.size(); i++) {
+				if(objList.get(i).CtrlCheck()) {
+					objList.get(i).setFocus(false);
+				}
+			}
 		}
 		if(keyCode == KeyEvent.VK_Z){
-			character.setFiring(false);
+			for(int i = 0; i < objList.size(); i++) {
+				if(objList.get(i).CtrlCheck()) {
+					objList.get(i).setFiring(false);
+				}
+			}
 		}
 		
 	}
