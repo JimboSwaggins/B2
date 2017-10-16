@@ -34,6 +34,16 @@ public class Player extends Entity{
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
 		super.update();
+		if(this.xLocation > 1280) {
+			this.xLocation = 1280;
+		}if(this.yLocation > 720) {
+			this.yLocation = 720;
+		}if(this.xLocation < 0) {
+			this.xLocation = 0;
+		}if(this.yLocation < 0
+				) {
+			this.yLocation = 0;
+		}
 	}
 	
 	public void draw(Graphics g) {
