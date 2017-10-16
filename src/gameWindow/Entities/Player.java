@@ -18,12 +18,15 @@ public class Player extends Entity{
 	public Player(int x, int y, int health, int dx, int dy) {
 		super(x, y, health, dx, dy);
 		this.isControllable = true;
+		this.speed = 10;
 		this.direction = 0;
 	}
 	
 	public Player(int x, int y) {
 		super(x, y, 100, 0, 0);
 		GameWindow.objList.add(this);
+		this.speed = 1;
+		
 		this.isControllable = true;
 		this.setFocus(false);
 		this.setFiring(false);
@@ -34,6 +37,10 @@ public class Player extends Entity{
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
 		super.update();
+		if(isUp) {this.yLocation -= speed;}
+		if(isDown) {this.yLocation += speed;}
+		if(isRight) {this.xLocation += speed;}
+		if(isLeft) {this.xLocation -= speed;}
 		if(this.xLocation > 1280) {
 			this.xLocation = 1280;
 		}if(this.yLocation > 720) {
@@ -45,7 +52,11 @@ public class Player extends Entity{
 		}
 		
 		if(this.isFiring()) {
+<<<<<<< HEAD
 			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 3, 3, Math.toRadians(90)));
+=======
+			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 3, 3, Math.toRadians(0)));
+>>>>>>> 5927bd9ef205525da42390e18ef9888bf3f79c7d
 		}
 	}
 	

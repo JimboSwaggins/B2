@@ -87,7 +87,8 @@ public class powerLaw extends VRR{
 		sumLnY = 0;
 		n = array.length;
 		sumXTimesS  = 0;	
-		sumLnXSquared = 0;	
+		sumLnXSquared = 0;
+		double y = array[1];;
 		
 		for(int i = 0; i < n; i++){
 			double lnS = Math.log(array[i]);
@@ -98,14 +99,14 @@ public class powerLaw extends VRR{
 			sumLnS += lnS;
 			sumXTimesS += lnXS;
 			sumLnXSquared += lnX2;
-			double y = recursive(sumLnX, sumLnS, n, sumXTimesS, sumLnXSquared);
+			y += recursive(sumLnX, sumLnS, n, sumXTimesS, sumLnXSquared, y);
 			System.out.println(y);
 		}
 		//System.out.println(y);
 		//System.out.println(Arrays.toString(array));
 		//System.out.println(sumLnX + " " + sumLnS +  " " + sumXTimesS);
 	}
-	public double recursive(double sumLnX, double sumLnS, double n, double sumXTimesS, double sumLnXSquared){
+	public double recursive(double sumLnX, double sumLnS, double n, double sumXTimesS, double sumLnXSquared, double sumY){
 		double b = (sumLnX * sumLnS)/n;
 		double c = (sumLnX * sumLnX / n);
 		double d = sumXTimesS - b;
@@ -113,7 +114,7 @@ public class powerLaw extends VRR{
 		double f = d / e;
 		double firstSection = sumLnX * f;
 		double secondSection = firstSection / n;
-		double y = firstSection - secondSection;
+		double y = firstSection - secondSection + (sumY/n);
 		return y;
 	}
 }
