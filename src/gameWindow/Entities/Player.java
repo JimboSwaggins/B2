@@ -15,6 +15,7 @@ public class Player {
 	@SuppressWarnings("unused")
 	private int yLocation;
 	public int getY() {return this.yLocation;}
+	public void setY(int i) {this.yLocation = i;}
 	@SuppressWarnings("unused")
 	private int yDelta;
 	
@@ -69,12 +70,7 @@ public class Player {
 	
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
-<<<<<<< HEAD
-		if(isUp) {this.yLocation--;}
-		if(isDown) {this.yLocation++;}
-		if(isRight) {this.xLocation++;}
-		if(isLeft) {this.yLocation--;}
-=======
+
 		if(isUp) {
 			this.yLocation--;
 		}if(isDown) {
@@ -84,7 +80,6 @@ public class Player {
 		}if(isRight) {
 			this.xLocation++;
 		}
->>>>>>> 1a4c107c6843765b1e2189f49ca725bbe10c1057
 	}
 	
 	

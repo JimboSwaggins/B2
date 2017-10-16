@@ -75,6 +75,9 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 			}
 			if(keyCode == KeyEvent.VK_Z){
 				character.setFiring(true);
+			}if(keyCode == KeyEvent.VK_P) {
+				character.setX(0);
+				character.setY(0);
 			}
 	}
 
