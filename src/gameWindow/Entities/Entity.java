@@ -76,16 +76,16 @@ public abstract class Entity {
 	public void livesArithmetic(int deltaValue) {this.lives += deltaValue;}
 	public int getLives() {return this.lives;}
 	
-	private boolean isRight;
+	protected boolean isRight;
 	public void setRight(boolean input) {this.isRight = input;}
 	
-	private boolean isLeft;
+	protected boolean isLeft;
 	public void setLeft(boolean input) {this.isLeft = input;}
 	
-	private boolean isUp;
+	protected boolean isUp;
 	public void setUp(boolean input) {this.isUp = input;}
 	
-	private boolean isDown;
+	protected boolean isDown;
 	public void setDown(boolean input) {this.isDown = input;}
 	
 	private boolean isFiring;
@@ -106,12 +106,6 @@ public abstract class Entity {
 	}
 	
 	public void update() {
-		if(isControllable) {
-			if(isUp) {this.yLocation--;}
-			if(isDown) {this.yLocation++;}
-			if(isRight) {this.xLocation++;}
-			if(isLeft) {this.xLocation--;}
-		}
 	}
 	
 	public void draw(Graphics g) {
