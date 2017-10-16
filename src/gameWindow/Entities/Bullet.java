@@ -13,7 +13,6 @@ public class Bullet extends Entity{
 	}
 	
 	public void draw(Graphics g) {
-		
 		g.fillOval(xLocation, yLocation, 4, 4);
 	}
 	

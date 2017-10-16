@@ -22,9 +22,12 @@ public class gameRender extends GameWindow{
 		g2.drawImage(image, 0, 0, null);
 		g2.setColor(Color.BLACK);
 		g2.fillRect(0, 0, 1280, 720);
+<<<<<<< HEAD
 		g2.setColor(Color.GREEN);
 		g2.drawString("DEBUG STRING", 50, 400);
+=======
 		g2.setColor(Color.RED);
+>>>>>>> 5ee6be09932da952da1227bbbe0dcc3bc3c61334
 		g2.drawString(VRR.deltaX.toString(), 50, 50);
 		g2.drawString("Lives :" + LifeNum, 60, 60);
 		g2.drawString("Score : " + Score, 60, 70);
