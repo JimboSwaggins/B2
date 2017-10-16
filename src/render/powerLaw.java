@@ -1,7 +1,5 @@
 package render;
 
-import java.util.Arrays;
-
 public class powerLaw extends VRR{
 	private double sumLnX;
 	//will store summation of natural log of x
@@ -34,25 +32,13 @@ public class powerLaw extends VRR{
 	 * 
 	 */
 	
-	public static void main() {
+	public static void main(String[] args) {
 		new powerLaw();
 	}
 	
 	public powerLaw() {
 		double[] a = {1, 2, 3, 4};
 		function(a);
-	}
-	
-	public double recursive(){
-		double b = (sumLnX * sumLnS)/n;
-		double c = (sumLnX * sumLnX / n);
-		double d = sumXTimesS - b;
-		double e = sumLnXSquared - c;
-		double f = d / e;
-		double firstSection = sumLnX * f;
-		double secondSection = firstSection / n;
-		double y = firstSection - secondSection;
-		return y;
 	}
 	/**
 	 *You can directly get the list of times from VRR because this extends it in order to use the array within function.
@@ -112,12 +98,22 @@ public class powerLaw extends VRR{
 			sumLnS += lnS;
 			sumXTimesS += lnXS;
 			sumLnXSquared += lnX2;
+			double y = recursive(sumLnX, sumLnS, n, sumXTimesS, sumLnXSquared);
+			System.out.println(y);
 		}
-		
-		double y = recursive();
-		
-		System.out.println(y);
-		System.out.println(Arrays.toString(array));
+		//System.out.println(y);
+		//System.out.println(Arrays.toString(array));
 		//System.out.println(sumLnX + " " + sumLnS +  " " + sumXTimesS);
+	}
+	public double recursive(double sumLnX, double sumLnS, double n, double sumXTimesS, double sumLnXSquared){
+		double b = (sumLnX * sumLnS)/n;
+		double c = (sumLnX * sumLnX / n);
+		double d = sumXTimesS - b;
+		double e = sumLnXSquared - c;
+		double f = d / e;
+		double firstSection = sumLnX * f;
+		double secondSection = firstSection / n;
+		double y = firstSection - secondSection;
+		return y;
 	}
 }
