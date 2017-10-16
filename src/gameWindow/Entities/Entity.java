@@ -56,15 +56,13 @@ public abstract class Entity {
 	
 
 	public double toXVelocity(double theta, double vi) {
-		theta = (double) theta % (2.0 * Math.PI);
-		theta = Math.cos(theta + Math.PI);
+		theta = Math.cos(theta);
 		return(theta * vi);
 	}
 	
 	public double toYVelocity(double theta, double vi) {
-		theta = (double) theta % (2.0 * Math.PI);
-		theta = Math.sin(theta + Math.PI);
-		return(theta * vi);
+		theta = Math.sin(theta);
+		return(-1 * theta * vi);
 	}
 	
 	private int bombs;
