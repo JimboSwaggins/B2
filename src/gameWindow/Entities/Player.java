@@ -40,9 +40,12 @@ public class Player extends Entity{
 			this.yLocation = 720;
 		}if(this.xLocation < 0) {
 			this.xLocation = 0;
-		}if(this.yLocation < 0
-				) {
+		}if(this.yLocation < 0) {
 			this.yLocation = 0;
+		}
+		
+		if(this.isFiring()) {
+			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 3, 3, Math.toRadians(39)));
 		}
 	}
 	

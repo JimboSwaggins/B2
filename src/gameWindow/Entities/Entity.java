@@ -10,6 +10,16 @@ public abstract class Entity {
 			return true;
 		}return false;	
 	}
+	
+	protected double angle;
+	public void setAngle(double toAngle) { this.angle = toAngle;}
+	public double getAngle() {return this.angle;}
+	
+	protected double speed;
+	public void setSpeed(double newSpeed) {this.speed = newSpeed;}
+	public double getSpeed() {return this.speed;}
+	
+	
 	protected int direction;
 	public void setDirection(int i) {
 		if(i <= 4&&i >= 0) {
@@ -18,7 +28,6 @@ public abstract class Entity {
 		else {
 			this.direction = 1;
 		}
-		
 	}
 	
 	protected int Score;
@@ -48,13 +57,13 @@ public abstract class Entity {
 
 	public double toXVelocity(double theta, double vi) {
 		theta = (double) theta % (2.0 * Math.PI);
-		theta = Math.cos(theta);
+		theta = Math.cos(theta + Math.PI);
 		return(theta * vi);
 	}
 	
 	public double toYVelocity(double theta, double vi) {
 		theta = (double) theta % (2.0 * Math.PI);
-		theta = Math.sin(theta);
+		theta = Math.sin(theta + Math.PI);
 		return(theta * vi);
 	}
 	
@@ -79,14 +88,13 @@ public abstract class Entity {
 	private boolean isDown;
 	public void setDown(boolean input) {this.isDown = input;}
 	
-	@SuppressWarnings("unused")
 	private boolean isFiring;
 	public void setFiring(boolean input) {this.isFiring = input;}
+	public boolean isFiring() {return this.isFiring;}
 	
-	@SuppressWarnings("unused")
 	private boolean isFocus;
 	public void setFocus(boolean input) {this.isFocus = input;}
-
+	public boolean isFocused() {return this.isFocus;}
 	
 	
 	public Entity(int xLocation, int yLocation, int Health, double yDelta, double xDelta) {
@@ -108,10 +116,5 @@ public abstract class Entity {
 	
 	public void draw(Graphics g) {
 		//This shouldn't do anything, it's just to make this accessible by subclasses.
-	
-	
 	}
-
-	
-	
 }
