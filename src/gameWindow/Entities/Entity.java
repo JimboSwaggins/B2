@@ -45,6 +45,19 @@ public abstract class Entity {
 	public double getYD() {return this.yDelta;}
 	public void setYD(double toChange) {this.yDelta = toChange;}
 	
+
+	public double toXVelocity(double theta, double vi) {
+		theta = (double) theta % (2.0 * Math.PI);
+		theta = Math.cos(theta);
+		return(theta * vi);
+	}
+	
+	public double toYVelocity(double theta, double vi) {
+		theta = (double) theta % (2.0 * Math.PI);
+		theta = Math.sin(theta);
+		return(theta * vi);
+	}
+	
 	private int bombs;
 	public void bombsArithmetic(int deltaValue) {this.bombs += deltaValue;}
 	public int getBombs() {return this.bombs;}
