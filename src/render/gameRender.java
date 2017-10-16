@@ -24,7 +24,7 @@ public class gameRender extends GameWindow{
 		g2.fillRect(0, 0, 1280, 720);
 		g2.setColor(Color.RED);
 		g2.drawString("EHLS", 50, 400);
-		g2.drawString(VRR.listOfTimes.toString(), 50, 50);
+		g2.drawString(VRR.deltaX.toString(), 50, 50);
 		g2.drawString("Lives :" + LifeNum, 60, 60);
 		g2.drawString("Score : " + Score, 60, 70);
 

@@ -10,17 +10,7 @@ import javax.imageio.ImageIO;
 import gameWindow.GameWindow;
 
 public class Player extends Entity{
-	
-<<<<<<< HEAD
-	@SuppressWarnings("unused")
-	private int yLocation;
-	public int getY() {return this.yLocation;}
-	public void setY(int i) {this.yLocation = i;}
-	@SuppressWarnings("unused")
-	private int yDelta;
-=======
->>>>>>> f2fbd8ff000057a49aa0c9c349624654ad4a2af2
-	
+
 	@SuppressWarnings("unused")
 	private double speed;
 	//GOTTA GO FAST
@@ -43,18 +33,6 @@ public class Player extends Entity{
 	
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
-<<<<<<< HEAD
-
-		if(isUp) {
-			this.yLocation--;
-		}if(isDown) {
-			this.yLocation++;
-		}if(isLeft) {
-			this.xLocation--;
-		}if(isRight) {
-			this.xLocation++;
-		}
-=======
 		super.update();
 	}
 	
@@ -82,7 +60,6 @@ public class Player extends Entity{
 			e.printStackTrace();
 		}
 		g.drawImage(img, this.xLocation, this.yLocation, null);
->>>>>>> f2fbd8ff000057a49aa0c9c349624654ad4a2af2
 	}
 	
 	
