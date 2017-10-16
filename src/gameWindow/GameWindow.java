@@ -1,15 +1,16 @@
 package gameWindow;
 
-import java.awt.Canvas;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
 import mech.gameCalculate;
 import render.gameRender;
@@ -19,65 +20,82 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	private static final long serialVersionUID = 1L;
 	public JFrame mainWindow;
 	public static JPanel drawBoard;
-	private Thread thread;
 	boolean running; 
 	public static BufferedImage image;
 	public static Graphics2D g;
 	public static Player character;
+	public static ArrayList<Entity> objList;
 	
-	public void createAndShowGUI() {
+	private void createAndShowGUI() {
 		mainWindow = new JFrame();
 		mainWindow.setSize(1280, 720);
 		mainWindow.setVisible(true);
 		
 		drawBoard = new JPanel();
 		drawBoard.setSize(1280, 720);
-		
-		character = new Player();
 		mainWindow.add(drawBoard);
 		drawBoard.setVisible(true);
 		
 		mainWindow.addKeyListener(this);
 		mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		mainWindow.setFocusable(true);
+		mainWindow.setResizable(false);
 		mainWindow.requestFocus();
 		mainWindow.setVisible(true);
-		
-
-		
 	}
-	public void addNotify(){
-		super.addNotify();
-		if(thread == null){
-			thread = new Thread(this);
-			thread.start();
-		}
-		
-		addKeyListener(this);
+	
+	private void ini_Systems() {
+		objList = new ArrayList<Entity>();
 	}
 	
 	public void keyPressed(KeyEvent Key) {
 		int keyCode = Key.getKeyCode();
 			if(keyCode == KeyEvent.VK_LEFT){
-				character.setLeft(true);
+				for(int i = 0; i < objList.size(); i++) {
+					if(objList.get(i).CtrlCheck()) {
+						objList.get(i).setLeft(true);
+						objList.get(i).setDirection(4);
+					}
+				}
 			}
-			if(keyCode == KeyEvent.VK_RIGHT){
-				character.setRight(true);
+			if(keyCode == KeyEvent.VK_RIGHT) {
+				for(int i = 0; i < objList.size(); i++) {
+					if(objList.get(i).CtrlCheck()) {
+						objList.get(i).setRight(true);
+						objList.get(i).setDirection(2);
+					}
+				}
 			}
 			if(keyCode == KeyEvent.VK_UP){
-				character.setUp(true);
+				for(int i = 0; i < objList.size(); i++) {
+					if(objList.get(i).CtrlCheck()) {
+						objList.get(i).setUp(true);
+						objList.get(i).setDirection(1);
+					}
+				}
 			}
 			if(keyCode == KeyEvent.VK_DOWN){
-				character.setDown(true);
+				for(int i = 0; i < objList.size(); i++) {
+					if(objList.get(i).CtrlCheck()) {
+						objList.get(i).setDown(true);
+						objList.get(i).setDirection(3);
+					}
+				}
 			}
 			if(keyCode == KeyEvent.VK_SHIFT){
-				character.setFocus(true);
+				for(int i = 0; i < objList.size(); i++) {
+					if(objList.get(i).CtrlCheck()) {
+						objList.get(i).setFocus(true);
+					}
+				}
 			}
 			if(keyCode == KeyEvent.VK_Z){
-				character.setFiring(true);
-			}if(keyCode == KeyEvent.VK_P) {
-				character.setX(0);
-				character.setY(0);
+
+				for(int i = 0; i < objList.size(); i++) {
+					if(objList.get(i).CtrlCheck()) {
+						objList.get(i).setFiring(true);
+					}
+				}
 			}
 	}
 
@@ -86,34 +104,63 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	public void keyReleased(KeyEvent Key) {
 		int keyCode = Key.getKeyCode();
 		if(keyCode == KeyEvent.VK_LEFT){
-			character.setLeft(false);
+			for(int i = 0; i < objList.size(); i++) {
+				if(objList.get(i).CtrlCheck()) {
+					objList.get(i).setLeft(false);
+				}
+			}
 		}
 		if(keyCode == KeyEvent.VK_RIGHT){
-			character.setRight(false);
+			for(int i = 0; i < objList.size(); i++) {
+				if(objList.get(i).CtrlCheck()) {
+					objList.get(i).setRight(false);
+				}
+			}
 		}
 		if(keyCode == KeyEvent.VK_UP){
-			character.setUp(false);
+			for(int i = 0; i < objList.size(); i++) {
+				if(objList.get(i).CtrlCheck()) {
+					objList.get(i).setUp(false);
+				}
+			}
 		}
 		if(keyCode == KeyEvent.VK_DOWN){
-			character.setDown(false);
+			for(int i = 0; i < objList.size(); i++) {
+				if(objList.get(i).CtrlCheck()) {
+					objList.get(i).setDown(false);
+				}
+			}
 		}
 		if(keyCode == KeyEvent.VK_SHIFT){
-			character.setFocus(false);
+			for(int i = 0; i < objList.size(); i++) {
+				if(objList.get(i).CtrlCheck()) {
+					objList.get(i).setFocus(false);
+				}
+			}
 		}
 		if(keyCode == KeyEvent.VK_Z){
-			character.setFiring(false);
+			for(int i = 0; i < objList.size(); i++) {
+				if(objList.get(i).CtrlCheck()) {
+					objList.get(i).setFiring(false);
+				}
+			}
+		}
+		for(int i = 0; i < objList.size();i++) {
+			if(objList.get(i).CtrlCheck()) {
+				objList.get(i).setDirection(0);
+			}
 		}
 		
 	}
 	
 	public void run() {
 		boolean running = true;
+		                                                                                                            
+		ini_Systems();
+		new Player(0,0);
 		while(running) {
 			gameCalculate.update();
-			character.update();
 			gameRender.update();
-
-	
 		}
 	}
 	
