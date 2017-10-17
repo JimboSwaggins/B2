@@ -25,4 +25,17 @@ public class gameCalculate extends GameWindow{
 				}
 		}
 	}
+	
+	public static double convToZero(double i, double delta) {
+		if(i > 0) {
+			i -= delta;
+		}if(i < 0) {
+			i += delta;
+		}
+		if(Math.abs(i) < 0.05) {
+			i = 0;
+		}
+		
+		return i;
+	}
 }

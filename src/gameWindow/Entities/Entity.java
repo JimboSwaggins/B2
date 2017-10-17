@@ -19,6 +19,8 @@ public abstract class Entity {
 	protected double hitY;
 	protected double hitR;
 	
+	protected int size;
+	
 	protected double angle;
 	public double getAngle() {return this.angle;}
 	

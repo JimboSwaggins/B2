@@ -6,17 +6,18 @@ import gameWindow.GameWindow;
 
 public class Bullet extends Entity{
 
-	public Bullet(double xLocation, double yLocation, int Health, double yDelta, double xDelta, double speed, double angle) {
-		super(xLocation, yLocation, Health, yDelta, xDelta);
+	public Bullet(double xLocation, double yLocation, double yDelta, double xDelta, double speed, double angle, int size) {
+		super(xLocation, yLocation, 1, yDelta, xDelta);
 		this.isControllable = false;
 		this.speed = speed;
 		this.angle = angle;
+		this.size = size;
 		GameWindow.objList.add(this);
 
 	}
 	
 	public void draw(Graphics g) {
-		g.fillOval((int)xLocation, (int)yLocation, 4, 4);
+		g.fillOval((int)xLocation, (int)yLocation, this.size, this.size);
 	}
 	
 	public void update() {

@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import gameWindow.GameWindow;
+import mech.gameCalculate;
 
 public class Player extends Entity{
 
@@ -39,7 +40,7 @@ public class Player extends Entity{
 		this.setFocus(false);
 		this.setFiring(false);
 		
-		this.rSpeed = 300;
+		this.rSpeed = 30;
 		
 		this.setLives(3);
 		this.setScore(0);
@@ -48,10 +49,10 @@ public class Player extends Entity{
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
 		super.update();
-		if(isUp) {this.yLocation -= speed;}
-		if(isDown) {this.yLocation += speed;}
-		if(isRight) {this.xLocation += speed;}
-		if(isLeft) {this.xLocation -= speed;}
+		if(isUp) {this.yDelta -= .01;}
+		if(isDown) {this.yDelta += .01;}
+		if(isRight) {this.xDelta += .01;}
+		if(isLeft) {this.xDelta -= .01;}
 		if(this.xLocation > 1280) {
 			this.xLocation = 1280;
 		}if(this.yLocation > 720) {
@@ -62,8 +63,20 @@ public class Player extends Entity{
 			this.yLocation = 0;
 		}
 		
+		//if(Math.sqrt(Math.pow(this.xDelta, 2) + Math.pow(this.yDelta, 2)) > 1) {
+			//make it so that the sum is evened out IDK
+		//}
+		if(!isRight&&!isLeft) {
+			this.xDelta = gameCalculate.convToZero(this.xDelta, 0.01);
+		}
+		if(!isUp&&!isDown) {
+			this.yDelta = gameCalculate.convToZero(this.yDelta, 0.01);
+		}
+		
+		this.xLocation += this.xDelta;
+		this.yLocation += this.yDelta;
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 6, 1, Math.toRadians(90)));
+			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0,0.1 + (-1 * this.yDelta), Math.toRadians(90), 8));
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
@@ -95,6 +108,4 @@ public class Player extends Entity{
 		g.setColor(Color.BLUE);
 		g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
 	}
-	
-	
 }
