@@ -52,11 +52,8 @@ public class Player extends Entity{
 		}
 		
 		if(this.isFiring()) {
-<<<<<<< HEAD
+
 			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 3, 3, Math.toRadians(90)));
-=======
-			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 3, 3, Math.toRadians(0)));
->>>>>>> 5927bd9ef205525da42390e18ef9888bf3f79c7d
 		}
 	}
 	
