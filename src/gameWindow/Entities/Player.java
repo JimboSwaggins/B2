@@ -1,5 +1,6 @@
 package gameWindow.Entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,6 +14,9 @@ public class Player extends Entity{
 
 	@SuppressWarnings("unused")
 	private double speed;
+	private long lastFiring;
+	private long rSpeed;
+	
 	//GOTTA GO FAST
 	
 	public Player(int x, int y, int health, int dx, int dy) {
@@ -20,16 +24,23 @@ public class Player extends Entity{
 		this.isControllable = true;
 		this.speed = 10;
 		this.direction = 0;
+		this.height = 16.0;
+		this.width = 16.0;
 	}
 	
 	public Player(int x, int y) {
 		super(x, y, 100, 0, 0);
 		GameWindow.objList.add(this);
 		this.speed = 1;
+		this.height = 29.0;
+		this.width = 29.0;
 		
 		this.isControllable = true;
 		this.setFocus(false);
 		this.setFiring(false);
+		
+		this.rSpeed = 300;
+		
 		this.setLives(3);
 		this.setScore(0);
 	}
@@ -51,9 +62,9 @@ public class Player extends Entity{
 			this.yLocation = 0;
 		}
 		
-		if(this.isFiring()) {
-
-			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 3, 3, Math.toRadians(90)));
+		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
+			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 6, 1, Math.toRadians(90)));
+			this.lastFiring = System.currentTimeMillis();
 		}
 	}
 	
@@ -80,7 +91,9 @@ public class Player extends Entity{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		g.drawImage(img, this.xLocation, this.yLocation, null);
+		g.drawImage(img, (int)(this.xLocation - (this.width/2)), (int)(this.yLocation - (this.height/2)), null);
+		g.setColor(Color.BLUE);
+		g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
 	}
 	
 	

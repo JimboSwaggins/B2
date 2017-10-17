@@ -6,7 +6,7 @@ import gameWindow.GameWindow;
 
 public class Bullet extends Entity{
 
-	public Bullet(int xLocation, int yLocation, int Health, double yDelta, double xDelta, double speed, double angle) {
+	public Bullet(double xLocation, double yLocation, int Health, double yDelta, double xDelta, double speed, double angle) {
 		super(xLocation, yLocation, Health, yDelta, xDelta);
 		this.isControllable = false;
 		this.speed = speed;
@@ -16,7 +16,7 @@ public class Bullet extends Entity{
 	}
 	
 	public void draw(Graphics g) {
-		g.fillOval(xLocation, yLocation, 4, 4);
+		g.fillOval((int)xLocation, (int)yLocation, 4, 4);
 	}
 	
 	public void update() {
