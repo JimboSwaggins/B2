@@ -145,11 +145,6 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 				}
 			}
 		}
-		for(int i = 0; i < objList.size();i++) {
-			if(objList.get(i).CtrlCheck()) {
-				objList.get(i).setDirection(0);
-			}
-		}
 		
 	}
 	

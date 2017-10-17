@@ -91,7 +91,7 @@ public class Player extends Entity{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		g.drawImage(img, (int)(this.xLocation - (this.width/2)), (int)(this.yLocation - (this.height/2)), null);
+		g.drawImage(img, (int)(this.xLocation - (this.width/2) + 1), (int)(this.yLocation - (this.height/2) + 1), null);
 		g.setColor(Color.BLUE);
 		g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
 	}

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import gameWindow.GameWindow;
 import gameWindow.Entities.Entity;
-import render.gameRender;
 
 public class gameCalculate extends GameWindow{
 	/**
