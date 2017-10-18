@@ -38,6 +38,7 @@ public class powerLaw extends VRR{
 	
 	public powerLaw() {
 		double[] a = {1, 2, 3, 4};
+		double[] a = {4, 3, 2, 1};
 		function(a);
 	}
 	/**
@@ -90,6 +91,7 @@ public class powerLaw extends VRR{
 		sumLnXSquared = 0;
 		double y = array[1];;
 		
+		double y = array[0];
 		for(int i = 0; i < n; i++){
 			double lnS = Math.log(array[i]);
 			double lnX = Math.log(i+1);
@@ -100,6 +102,10 @@ public class powerLaw extends VRR{
 			sumXTimesS += lnXS;
 			sumLnXSquared += lnX2;
 			y += recursive(sumLnX, sumLnS, n, sumXTimesS, sumLnXSquared, y);
+			y = recursive(sumLnX, sumLnS, n, sumXTimesS, sumLnXSquared, y);
+			if (lnX == 0) {
+				y = array[0];
+			}
 			System.out.println(y);
 		}
 		//System.out.println(y);
