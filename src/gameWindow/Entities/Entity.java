@@ -24,9 +24,9 @@ public abstract class Entity {
 	protected double angle;
 	public double getAngle() {return this.angle;}
 	
-	protected double speed;
-	public void setSpeed(double newSpeed) {this.speed = newSpeed;}
-	public double getSpeed() {return this.speed;}
+	protected double acceleration;
+	public void setSpeed(double newSpeed) {this.acceleration = newSpeed;}
+	public double getSpeed() {return this.acceleration;}
 	
 	
 	protected int direction;
@@ -51,18 +51,17 @@ public abstract class Entity {
 	public double getX() {return this.xLocation;}
 	public void setX(int i) {this.xLocation = i;}
 	
-	protected double xDelta;
-	public double getXD() {return this.xDelta;}
-	public void setXD(double toChange) {this.xDelta = toChange;}
+	protected double xVelocity;
+	public double getXV() { return (this.xVelocity);}
+	public void setXV(int i) {this.xVelocity = i;}
 	
 	protected double yLocation;
 	public double getY() {return this.yLocation;}
 	public void setY(int i) {this.yLocation = i;}
 	
-	protected double yDelta;
-	public double getYD() {return this.yDelta;}
-	public void setYD(double toChange) {this.yDelta = toChange;}
-	
+	protected double yVelocity;
+	public double getYV() { return (this.yVelocity);}
+	public void setYV(int i) {this.yVelocity = i;}
 
 	public double toXVelocity(double theta, double vi) {
 		theta = Math.cos(theta);
@@ -104,13 +103,13 @@ public abstract class Entity {
 	public boolean isFocused() {return this.isFocus;}
 	
 	
-	public Entity(double xLocation, double yLocation, int Health, double yDelta, double xDelta) {
+	public Entity(double xLocation, double yLocation, int Health, double yVelocity, double xVelocity) {
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
 		this.Health = Health;
-		this.xDelta = xDelta;
-		this.yDelta = yDelta;
+
 	}
+	
 	
 	public void update() {
 	}
