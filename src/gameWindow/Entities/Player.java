@@ -33,8 +33,8 @@ public class Player extends Entity{
 		super(x, y, 100, 0, 0);
 		GameWindow.objList.add(this);
 		this.speed = 1;
-		this.height = 29.0;
-		this.width = 29.0;
+		this.height = 30.0;
+		this.width = 30.0;
 		
 		this.isControllable = true;
 		this.setFocus(false);
@@ -49,10 +49,10 @@ public class Player extends Entity{
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
 		super.update();
-		if(isUp) {this.yDelta -= .01;}
-		if(isDown) {this.yDelta += .01;}
-		if(isRight) {this.xDelta += .01;}
-		if(isLeft) {this.xDelta -= .01;}
+		if(isUp) {this.yLocation--;}
+		if(isDown) {this.yLocation++;}
+		if(isRight) {this.xLocation++;}
+		if(isLeft) {this.xLocation--;}
 		if(this.xLocation > 1280) {
 			this.xLocation = 1280;
 		}if(this.yLocation > 720) {
@@ -66,17 +66,17 @@ public class Player extends Entity{
 		//if(Math.sqrt(Math.pow(this.xDelta, 2) + Math.pow(this.yDelta, 2)) > 1) {
 			//make it so that the sum is evened out IDK
 		//}
-		if(!isRight&&!isLeft) {
-			this.xDelta = gameCalculate.convToZero(this.xDelta, 0.01);
-		}
-		if(!isUp&&!isDown) {
-			this.yDelta = gameCalculate.convToZero(this.yDelta, 0.01);
-		}
+		//if(!isRight&&!isLeft) {
+		//	this.xDelta = gameCalculate.convToZero(this.xDelta, 0.01);
+		//}
+		//angleif(!isUp&&!isDown) {
+		//	this.yDelta = gameCalculate.convToZero(this.yDelta, 0.01);
+		//}
 		
-		this.xLocation += this.xDelta;
-		this.yLocation += this.yDelta;
+		//this.xLocation += this.xDelta;
+		//this.yLocation += this.yDelta;
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0,0.1 + (-1 * this.yDelta), Math.toRadians(90), 8));
+			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, 0, 1, 1, Math.toRadians(90), 8));
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
