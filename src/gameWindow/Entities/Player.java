@@ -1,5 +1,6 @@
 package gameWindow.Entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -8,10 +9,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import gameWindow.GameWindow;
+import mech.gameCalculate;
 
 public class Player extends Entity{
-
-	@SuppressWarnings("unused")
+	private long rSpeed;
 	//GOTTA GO FAST
 	
 	public Player(int x, int y, int health, int dx, int dy) {
@@ -19,16 +20,23 @@ public class Player extends Entity{
 		this.isControllable = true;
 		this.speed = 10;
 		this.direction = 0;
+		this.height = 16.0;
+		this.width = 16.0;
 	}
 	
 	public Player(int x, int y) {
 		super(x, y, 100, 0, 0);
 		GameWindow.objList.add(this);
 		this.speed = 1;
+		this.height = 30.0;
+		this.width = 30.0;
 		
 		this.isControllable = true;
 		this.setFocus(false);
 		this.setFiring(false);
+		
+		this.rSpeed = 30;
+		
 		this.setLives(3);
 		this.setScore(0);
 	}
@@ -49,12 +57,20 @@ public class Player extends Entity{
 			this.yLocation = 0;
 		}
 		
-		if(this.isFiring()) {
-<<<<<<< HEAD
-			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 3, 3, Math.toRadians(90)));
-=======
-			GameWindow.objList.add(new Bullet(this.xLocation, this.yLocation, 0, 0, 3, 3, Math.toRadians(0)));
->>>>>>> 5927bd9ef205525da42390e18ef9888bf3f79c7d
+		//if(Math.sqrt(Math.pow(this.xDelta, 2) + Math.pow(this.yDelta, 2)) > 1) {
+			//make it so that the sum is evened out IDK
+		//if(!isRight&&!isLeft) {
+		//	this.xDelta = gameCalculate.convToZero(this.xDelta, 0.01);
+		//}
+		//angleif(!isUp&&!isDown) {
+		//	this.yDelta = gameCalculate.convToZero(this.yDelta, 0.01);
+		//}
+		
+		//this.xLocation += this.xDelta;
+		//this.yLocation += this.yDelta;
+		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
+			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, 0, 1, 1, Math.toRadians(90), 8));
+			this.lastFiring = System.currentTimeMillis();
 		}
 	}
 	
@@ -81,8 +97,8 @@ public class Player extends Entity{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		g.drawImage(img, this.xLocation, this.yLocation, null);
+		g.drawImage(img, (int)(this.xLocation - (this.width/2) + 1), (int)(this.yLocation - (this.height/2) + 1), null);
+		g.setColor(Color.BLUE);
+		g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
 	}
-	
-	
 }

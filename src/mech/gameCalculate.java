@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import gameWindow.GameWindow;
 import gameWindow.Entities.Entity;
-import render.gameRender;
 
 public class gameCalculate extends GameWindow{
 	/**
@@ -25,5 +24,18 @@ public class gameCalculate extends GameWindow{
 					e.printStackTrace();
 				}
 		}
+	}
+	
+	public static double convToZero(double i, double delta) {
+		if(i > 0) {
+			i -= delta;
+		}if(i < 0) {
+			i += delta;
+		}
+		if(Math.abs(i) < 0.05) {
+			i = 0;
+		}
+		
+		return i;
 	}
 }

@@ -11,8 +11,17 @@ public abstract class Entity {
 		}return false;	
 	}
 	
+	protected double height;
+	
+	protected double width;
+	
+	protected double hitX;
+	protected double hitY;
+	protected double hitR;
+	
+	protected int size;
+	
 	protected double angle;
-	public void setAngle(double toAngle) { this.angle = toAngle;}
 	public double getAngle() {return this.angle;}
 	
 	protected double speed;
@@ -38,16 +47,16 @@ public abstract class Entity {
 	public int getHealth() {return this.Health;}
 	public void setHealth(int toChange) {this.Health = toChange;}
 	
-	protected int xLocation;
-	public int getX() {return this.xLocation;}
+	protected double xLocation;
+	public double getX() {return this.xLocation;}
 	public void setX(int i) {this.xLocation = i;}
 	
 	protected double xDelta;
 	public double getXD() {return this.xDelta;}
 	public void setXD(double toChange) {this.xDelta = toChange;}
 	
-	protected int yLocation;
-	public int getY() {return this.yLocation;}
+	protected double yLocation;
+	public double getY() {return this.yLocation;}
 	public void setY(int i) {this.yLocation = i;}
 	
 	protected double yDelta;
@@ -95,7 +104,7 @@ public abstract class Entity {
 	public boolean isFocused() {return this.isFocus;}
 	
 	
-	public Entity(int xLocation, int yLocation, int Health, double yDelta, double xDelta) {
+	public Entity(double xLocation, double yLocation, int Health, double yDelta, double xDelta) {
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
 		this.Health = Health;
