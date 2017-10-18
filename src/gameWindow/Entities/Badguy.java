@@ -1,5 +1,10 @@
 package gameWindow.Entities;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+import gameWindow.GameWindow;
+
 public class Badguy extends Entity{
 
 	private int rSpeed;
@@ -18,10 +23,20 @@ public class Badguy extends Entity{
 		this.entityType = eTYPE.HOSTILE;
 		this.rSpeed = 300;
 		this.lastShot = System.currentTimeMillis();
+		
+		GameWindow.objList.add(this);
+	}
+	
+	public void draw(Graphics g) {
+		g.setColor(Color.ORANGE);
+		g.fillOval((int)this.xLocation, (int)this.yLocation, 30, 30);
 	}
 	
 	public void update() {
+		this.xLocation++;
+		this.yLocation++;
 		
+		sudoku();
 	}
 
 }

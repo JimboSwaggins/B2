@@ -2,6 +2,8 @@ package gameWindow.Entities;
 
 import java.awt.Graphics;
 
+import gameWindow.GameWindow;
+
 public abstract class Entity {
 	
 	
@@ -69,7 +71,13 @@ public abstract class Entity {
 	public double getYD() {return this.yDelta;}
 	public void setYD(double toChange) {this.yDelta = toChange;}
 	
-
+	public void sudoku() {
+		if(this.xLocation > 1500||this.xLocation < -220||this.yLocation > 940||this.yLocation < -220) {
+			GameWindow.objList.remove(this);
+		}
+	}
+	
+	
 	public double toXVelocity(double theta, double vi) {
 		theta = Math.cos(theta);
 		return(theta * vi);

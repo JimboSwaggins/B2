@@ -30,11 +30,7 @@ public class Bullet extends Entity{
 		this.xLocation += toXVelocity(this.angle, this.speed);
 		this.yLocation += toYVelocity(this.angle, this.speed);
 		
-		if(this.xLocation > 1280||this.xLocation < 0) {
-			GameWindow.objList.remove(this);
-		}if(this.yLocation > 720||this.yLocation < 0){
-			GameWindow.objList.remove(this);
-		}
+		sudoku();
 	}
 
 }
