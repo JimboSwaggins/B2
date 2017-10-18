@@ -4,9 +4,15 @@ import java.awt.Graphics;
 
 public abstract class Entity {
 	
-	protected boolean isControllable;
+	
+	//HARMLESS is only for the player
+	protected enum eTYPE{
+		CRTL, HOSTILE, HARMLESS
+	}
+	
+	protected eTYPE entityType;
 	public boolean CtrlCheck(){
-		if(this.isControllable) {
+		if(this.entityType.equals(eTYPE.CRTL)) {
 			return true;
 		}return false;	
 	}

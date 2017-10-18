@@ -15,12 +15,13 @@ public class Badguy extends Entity{
 	
 	public Badguy(double xLocation, double yLocation, int Health) {
 		super(xLocation, yLocation, Health, 0, 0);
-		this.isControllable = false;
+		this.entityType = eTYPE.HOSTILE;
 		this.rSpeed = 300;
 		this.lastShot = System.currentTimeMillis();
 	}
 	
 	public void update() {
+		
 	}
 
 }
