@@ -1,3 +1,11 @@
+/*
+ * Due to my inability to find proper documentation on how this formula is
+ * actually supposed to work I am no longer using it but leaving the code
+ * in case I ever discover a fix.
+ */
+
+
+
 package render;
 
 public class powerLaw extends VRR{
@@ -37,7 +45,6 @@ public class powerLaw extends VRR{
 	}
 	
 	public powerLaw() {
-		double[] a = {1, 2, 3, 4};
 		double[] a = {4, 3, 2, 1};
 		function(a);
 	}
@@ -89,8 +96,6 @@ public class powerLaw extends VRR{
 		n = array.length;
 		sumXTimesS  = 0;	
 		sumLnXSquared = 0;
-		double y = array[1];;
-		
 		double y = array[0];
 		for(int i = 0; i < n; i++){
 			double lnS = Math.log(array[i]);
@@ -101,7 +106,6 @@ public class powerLaw extends VRR{
 			sumLnS += lnS;
 			sumXTimesS += lnXS;
 			sumLnXSquared += lnX2;
-			y += recursive(sumLnX, sumLnS, n, sumXTimesS, sumLnXSquared, y);
 			y = recursive(sumLnX, sumLnS, n, sumXTimesS, sumLnXSquared, y);
 			if (lnX == 0) {
 				y = array[0];
