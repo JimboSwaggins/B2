@@ -6,11 +6,12 @@ import gameWindow.GameWindow;
 
 public class Bullet extends Entity{
 
-	public Bullet(double xLocation, double yLocation, double yDelta, double xDelta, double speed, double angle, int size) {
-		super(xLocation, yLocation, 1, yDelta, xDelta);
+	public Bullet(double xLocation, double yLocation, double deltaX, double deltaY, double speed, int size) {
+		super(xLocation, yLocation, 1, deltaX, deltaY);
 		this.isControllable = false;
+		this.xVelocity = 0.75 * deltaX;
+		this.yVelocity = 0.75 * deltaY;
 		this.acceleration = speed;
-		this.angle = angle;
 		this.size = size;
 		GameWindow.objList.add(this);
 
@@ -21,8 +22,8 @@ public class Bullet extends Entity{
 	}
 	
 	public void update() {
-		this.xLocation += toXVelocity(this.angle, this.acceleration);
-		this.yLocation += toYVelocity(this.angle, this.acceleration);
+		this.xLocation += this.xVelocity;
+		this.yLocation += this.yVelocity - this.acceleration;
 		
 		if(this.xLocation > 1280||this.xLocation < 0) {
 			GameWindow.objList.remove(this);

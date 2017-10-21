@@ -74,12 +74,19 @@ public class Player extends Entity{
 		
 		if(this.xLocation > 1280) {
 			this.xLocation = 1280;
-		}if(this.yLocation > 720) {
+			this.xVelocity = 0;
+		}
+		if(this.yLocation > 720) {
 			this.yLocation = 720;
-		}if(this.xLocation < 0) {
+			this.yVelocity = 0;
+		}
+		if(this.xLocation < 0) {
 			this.xLocation = 0;
-		}if(this.yLocation < 0) {
+			this.xVelocity = 0;
+		}
+		if(this.yLocation < 0) {
 			this.yLocation = 0;
+			this.yVelocity = 0;
 		}
 		
 		
@@ -90,8 +97,9 @@ public class Player extends Entity{
 		this.yLocation += this.yVelocity;
 		
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, 0, 1, 1, Math.toRadians(90), 8));
+			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, this.xVelocity, this.yVelocity, 1,10));
 			this.lastFiring = System.currentTimeMillis();
+			System.out.println("fire");
 		}
 	}
 	
@@ -126,7 +134,7 @@ public class Player extends Entity{
 		g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
 
 		
-		System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
+		//System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
 	}
 
 }
