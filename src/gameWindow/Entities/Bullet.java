@@ -8,13 +8,16 @@ public class Bullet extends Entity{
 
 	public Bullet(double xLocation, double yLocation, double yDelta, double xDelta, double speed, double angle, int size, boolean hostile) {
 		super(xLocation, yLocation, 1, yDelta, xDelta);
+
+		this.isControllable = false;
+		this.acceleration = speed;
 		
 		if(hostile) {
 			this.entityType = eTYPE.HOSTILE;
 		}else {
 			this.entityType = eTYPE.HARMLESS;
 		}
-		
+	
 		this.speed = speed;
 		this.angle = angle;
 		this.size = size;
@@ -27,8 +30,8 @@ public class Bullet extends Entity{
 	}
 	
 	public void update() {
-		this.xLocation += toXVelocity(this.angle, this.speed);
-		this.yLocation += toYVelocity(this.angle, this.speed);
+		this.xLocation += toXVelocity(this.angle, this.acceleration);
+		this.yLocation += toYVelocity(this.angle, this.acceleration);
 		
 		sudoku();
 	}
