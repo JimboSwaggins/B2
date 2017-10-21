@@ -80,19 +80,19 @@ public class Player extends Entity{
 		
 		if(this.xLocation > 1280) {
 			this.xLocation = 1280;
-			this.xVelocity = 0;
+			this.xVelocity *=  -.75;
 		}
 		if(this.yLocation > 720) {
 			this.yLocation = 720;
-			this.yVelocity = 0;
+			this.yVelocity *= -.75;
 		}
 		if(this.xLocation < 0) {
 			this.xLocation = 0;
-			this.xVelocity = 0;
+			this.xVelocity *=  -.75;
 		}
 		if(this.yLocation < 0) {
 			this.yLocation = 0;
-			this.yVelocity = 0;
+			this.yVelocity *= -.75;
 		}
 		
 		
