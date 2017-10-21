@@ -39,30 +39,36 @@ public class Player extends Entity{
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
 		if(isUp) {
-			if(yVelocity > 0) {
-				this.yVelocity -= 2 * acceleration;
+			if(yVelocity > 0.1) {
+				this.yVelocity *= .98;
 			}
-			else {
+			else{
 				this.yVelocity -= acceleration;
 			}
 			}
 		if(isDown) {
-			if(yVelocity < 0) {
-				this.yVelocity *= 0.99;
+			if(yVelocity < -0.1) {
+				this.yVelocity *= 0.98;
 			}
+			else{
 				this.yVelocity += acceleration;
+			}	
 			}
 		if(isRight) {
-			if(xVelocity < 0) {
-				this.xVelocity *= 0.99;
+			if(xVelocity < -0.1) {
+				this.xVelocity *= 0.98;
 			}
+			else{
 				this.xVelocity += acceleration;
+			}	
 			}
 		if(isLeft) {
-			if(xVelocity > 0) {
-				this.xVelocity *= 0.99;
+			if(xVelocity > 0.1) {
+				this.xVelocity *= 0.98;
 			}
+			else{
 				this.xVelocity -= acceleration;
+			}	
 			}
 		
 		if(! isLeft && ! isRight) {
@@ -99,7 +105,6 @@ public class Player extends Entity{
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
 			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, this.xVelocity, this.yVelocity, 1,10));
 			this.lastFiring = System.currentTimeMillis();
-			System.out.println("fire");
 		}
 	}
 	
@@ -134,7 +139,7 @@ public class Player extends Entity{
 		g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
 
 		
-		//System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
+		System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
 	}
 
 }
