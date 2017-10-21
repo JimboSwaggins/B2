@@ -90,7 +90,7 @@ public class Player extends Entity{
 		this.yLocation += this.yVelocity;
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, 0, 0, 0.1 - (this.yDelta), Math.toRadians(90), 8, false));
+			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, 0, 0, 1, Math.toRadians(90), 8, false));
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

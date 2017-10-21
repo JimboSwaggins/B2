@@ -9,7 +9,6 @@ public class Bullet extends Entity{
 	public Bullet(double xLocation, double yLocation, double yDelta, double xDelta, double speed, double angle, int size, boolean hostile) {
 		super(xLocation, yLocation, 1, yDelta, xDelta);
 
-		this.isControllable = false;
 		this.acceleration = speed;
 		
 		if(hostile) {
@@ -18,7 +17,6 @@ public class Bullet extends Entity{
 			this.entityType = eTYPE.HARMLESS;
 		}
 	
-		this.speed = speed;
 		this.angle = angle;
 		this.size = size;
 		GameWindow.objList.add(this);
