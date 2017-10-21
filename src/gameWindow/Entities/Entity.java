@@ -123,7 +123,8 @@ public abstract class Entity {
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
 		this.Health = Health;
-
+		this.yVelocity = yVelocity;
+		this.xVelocity = xVelocity;
 	}
 	
 	

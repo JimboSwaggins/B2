@@ -9,7 +9,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import gameWindow.GameWindow;
-import mech.gameCalculate;
 
 public class Player extends Entity{
 
@@ -34,7 +33,7 @@ public class Player extends Entity{
 		this.setFocus(false);
 		this.setFiring(false);
 		
-		this.rSpeed = 30;
+		this.rSpeed = 100;
 		
 		this.setLives(3);
 		this.setScore(0);
@@ -90,7 +89,7 @@ public class Player extends Entity{
 		this.yLocation += this.yVelocity;
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, 0, 0, 1, Math.toRadians(90), 8, false));
+			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, this.yVelocity , this.xVelocity , 0, Math.toRadians(90), 8, false, Color.BLUE));
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

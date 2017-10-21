@@ -7,7 +7,11 @@ import gameWindow.GameWindow;
 
 public class Badguy extends Entity{
 
+	
+
+	@SuppressWarnings("unused")
 	private int rSpeed;
+	@SuppressWarnings("unused")
 	private long lastShot;
 	
 	
