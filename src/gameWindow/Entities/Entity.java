@@ -51,7 +51,7 @@ public abstract class Entity {
 	public double getX() {return this.xLocation;}
 	public void setX(int i) {this.xLocation = i;}
 	
-	protected double xVelocity;
+	public double xVelocity;
 	public double getXV() { return (this.xVelocity);}
 	public void setXV(int i) {this.xVelocity = i;}
 	
@@ -71,6 +71,15 @@ public abstract class Entity {
 	public double toYVelocity(double theta, double vi) {
 		theta = Math.sin(theta);
 		return(-1 * theta * vi);
+	}
+	
+	protected double slow(double velocity,double factor){
+		if(velocity < .05 && velocity > -.05){
+			return(0);
+		}
+		else{
+			return(velocity * factor);
+		}
 	}
 	
 	private int bombs;
@@ -109,6 +118,8 @@ public abstract class Entity {
 		this.Health = Health;
 
 	}
+	
+	
 	
 	
 	public void update() {

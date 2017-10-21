@@ -30,6 +30,8 @@ public class gameRender extends GameWindow{
 		g2.drawString(VRR.deltaX.toString(), 50, 50);
 		g2.drawString("Lives :" + LifeNum, 60, 60);
 		g2.drawString("Score : " + Score, 60, 70);
+		
+		
 
 		for(int i = 0; i < objList.size(); i++) {
 			objList.get(i).draw(g2);

@@ -65,8 +65,12 @@ public class Player extends Entity{
 				this.xVelocity -= acceleration;
 			}
 		
-		if(! isLeft && ! isRight) {this.xVelocity *= 0.99;}
-		if(! isUp && ! isDown) {this.yVelocity *= 0.99;}
+		if(! isLeft && ! isRight) {
+			this.xVelocity = this.slow(this.xVelocity, 0.99);
+			}
+		if(! isUp && ! isDown) {
+			this.yVelocity = this.slow(this.yVelocity, 0.99);
+			}
 		
 		if(this.xLocation > 1280) {
 			this.xLocation = 1280;
@@ -78,15 +82,21 @@ public class Player extends Entity{
 			this.yLocation = 0;
 		}
 		
+		
+		
 	
 
 		this.xLocation += this.xVelocity;
 		this.yLocation += this.yVelocity;
+		
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
 			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, 0, 1, 1, Math.toRadians(90), 8));
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
+	
+	
+	
 	
 	public void draw(Graphics g) {
 		BufferedImage img = null;
@@ -114,5 +124,9 @@ public class Player extends Entity{
 		g.drawImage(img, (int)(this.xLocation - (this.width/2) + 1), (int)(this.yLocation - (this.height/2) + 1), null);
 		g.setColor(Color.BLUE);
 		g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
+
+		
+		System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
 	}
+
 }
