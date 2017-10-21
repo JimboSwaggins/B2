@@ -6,14 +6,23 @@ import gameWindow.GameWindow;
 
 public class Bullet extends Entity{
 
-	public Bullet(double xLocation, double yLocation, double yDelta, double xDelta, double speed, double angle, int size) {
+	public Bullet(double xLocation, double yLocation, double yDelta, double xDelta, double speed, double angle, int size, boolean hostile) {
 		super(xLocation, yLocation, 1, yDelta, xDelta);
+
 		this.isControllable = false;
 		this.acceleration = speed;
+		
+		if(hostile) {
+			this.entityType = eTYPE.HOSTILE;
+		}else {
+			this.entityType = eTYPE.HARMLESS;
+		}
+	
+		this.speed = speed;
 		this.angle = angle;
 		this.size = size;
 		GameWindow.objList.add(this);
-
+			
 	}
 	
 	public void draw(Graphics g) {
@@ -24,11 +33,7 @@ public class Bullet extends Entity{
 		this.xLocation += toXVelocity(this.angle, this.acceleration);
 		this.yLocation += toYVelocity(this.angle, this.acceleration);
 		
-		if(this.xLocation > 1280||this.xLocation < 0) {
-			GameWindow.objList.remove(this);
-		}if(this.yLocation > 720||this.yLocation < 0){
-			GameWindow.objList.remove(this);
-		}
+		sudoku();
 	}
 
 }

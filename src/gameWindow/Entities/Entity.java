@@ -2,11 +2,19 @@ package gameWindow.Entities;
 
 import java.awt.Graphics;
 
+import gameWindow.GameWindow;
+
 public abstract class Entity {
 	
-	protected boolean isControllable;
+	
+	//HARMLESS is only for the player
+	protected enum eTYPE{
+		CRTL, HOSTILE, HARMLESS
+	}
+	
+	protected eTYPE entityType;
 	public boolean CtrlCheck(){
-		if(this.isControllable) {
+		if(this.entityType.equals(eTYPE.CRTL)) {
 			return true;
 		}return false;	
 	}
@@ -59,10 +67,18 @@ public abstract class Entity {
 	public double getY() {return this.yLocation;}
 	public void setY(int i) {this.yLocation = i;}
 	
+
 	protected double yVelocity;
 	public double getYV() { return (this.yVelocity);}
 	public void setYV(int i) {this.yVelocity = i;}
-
+  
+	public void sudoku() {
+		if(this.xLocation > 1500||this.xLocation < -220||this.yLocation > 940||this.yLocation < -220) {
+			GameWindow.objList.remove(this);
+		}
+	}
+	
+	
 	public double toXVelocity(double theta, double vi) {
 		theta = Math.cos(theta);
 		return(theta * vi);

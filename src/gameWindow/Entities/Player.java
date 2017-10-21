@@ -12,12 +12,14 @@ import gameWindow.GameWindow;
 import mech.gameCalculate;
 
 public class Player extends Entity{
+
 	private double acceleration;
 	private long lastFiring;
+
 	private long rSpeed;
+	
 	//GOTTA GO FAST
-	
-	
+
 	
 	public Player(int x, int y) {
 		super(x, y, 100, 0, 0);
@@ -26,7 +28,9 @@ public class Player extends Entity{
 		this.height = 30.0;
 		this.width = 30.0;
 		
-		this.isControllable = true;
+		this.hitR = 3;
+		
+		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
 		this.setFiring(false);
 		
@@ -68,6 +72,8 @@ public class Player extends Entity{
 		if(! isLeft && ! isRight) {this.xVelocity *= 0.99;}
 		if(! isUp && ! isDown) {this.yVelocity *= 0.99;}
 		
+
+
 		if(this.xLocation > 1280) {
 			this.xLocation = 1280;
 		}if(this.yLocation > 720) {
@@ -82,8 +88,9 @@ public class Player extends Entity{
 
 		this.xLocation += this.xVelocity;
 		this.yLocation += this.yVelocity;
+
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, 0, 1, 1, Math.toRadians(90), 8));
+			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, 0, 0, 0.1 - (this.yDelta), Math.toRadians(90), 8, false));
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

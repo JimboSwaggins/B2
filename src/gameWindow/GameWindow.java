@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import gameWindow.Entities.Badguy;
 import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
 import mech.gameCalculate;
@@ -153,6 +154,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		                                                                                                            
 		ini_Systems();
 		new Player(0,0);
+		new Badguy(93, 39, 1);
 		while(running) {
 			gameCalculate.update();
 			gameRender.update();
