@@ -99,7 +99,7 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, -4, this.xVelocity , 0, Math.toRadians(90), 8, false, Color.BLUE));
+			TargetedBullet(GameWindow.memer);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

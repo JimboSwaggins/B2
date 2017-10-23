@@ -9,7 +9,8 @@ public class Bullet extends Entity{
 
 	
 	private Color color;
-	public Bullet(double xLocation, double yLocation, double yDelta, double xDelta, double speed, double angle, int size, boolean hostile, Color color) {
+	
+	public Bullet(double xLocation, double yLocation, double yDelta, double xDelta, double speed, int size, boolean hostile, Color color) {
 		super(xLocation, yLocation, 1, yDelta, xDelta);
 
 		this.acceleration = speed;
@@ -21,7 +22,6 @@ public class Bullet extends Entity{
 			this.entityType = eTYPE.HARMLESS;
 		}
 	
-		this.angle = angle;
 		this.size = size;
 		GameWindow.objList.add(this);
 			
@@ -33,12 +33,25 @@ public class Bullet extends Entity{
 	}
 	
 	public void update() {
-		this.xLocation += toXVelocity(this.angle, this.acceleration);
-		this.yLocation += toYVelocity(this.angle, this.acceleration);
-		
 		this.xLocation += this.xVelocity;
 		this.yLocation += this.yVelocity;
+		
 		sudoku();
 	}
 
+}
+
+class targetedBullet extends Bullet{
+	public targetedBullet(double xLocation, double yLocation, double angle, double speed, int size,
+			boolean hostile, Color color) {
+		super(xLocation, yLocation, 0, 0, speed, size, hostile, color);
+		this.angle = angle;
+	}
+	@Override 
+	public void update() {
+		double rad = Math.toRadians(this.angle);
+		this.xLocation -= Math.cos(rad) * this.getSpeed();
+		this.yLocation -= Math.sin(rad)  * this.getSpeed();
+	}
+	
 }

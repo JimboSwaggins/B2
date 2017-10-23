@@ -33,12 +33,14 @@ public class Badguy extends Entity{
 	
 	public void draw(Graphics g) {
 		g.setColor(Color.ORANGE);
-		g.fillOval((int)this.xLocation, (int)this.yLocation, 30, 30);
+		g.fillOval((int)this.xLocation - 15, (int)this.yLocation -15, 30, 30);
+		
+		//TODO add a size constructor
 	}
 	
 	public void update() {
-		this.xLocation++;
-		this.yLocation++;
+		this.xLocation += 0.1;
+		this.yLocation += 0.1;
 		
 		sudoku();
 	}

@@ -1,5 +1,6 @@
 package gameWindow.Entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import gameWindow.GameWindow;
@@ -16,7 +17,7 @@ public abstract class Entity {
 	public boolean CtrlCheck(){
 		if(this.entityType.equals(eTYPE.CRTL)) {
 			return true;
-		}return false;	
+			}return false;	
 	}
 	
 	protected double height;
@@ -61,14 +62,19 @@ public abstract class Entity {
 	}
 	
 	
-	public double toXVelocity(double theta, double vi) {
+	public double toXVelocity(double theta, double acceleration) {
 		theta = Math.cos(theta);
-		return(theta * vi);
+		return(theta * acceleration);
 	}
 	
-	public double toYVelocity(double theta, double vi) {
+	public double toYVelocity(double theta, double acceleration) {
 		theta = Math.sin(theta);
-		return(-1 * theta * vi);
+		return(-1 * theta * acceleration);
+	}
+	
+	public void updateOnAngle(double angle, double acceleration) {
+		this.xLocation += this.toXVelocity(angle, acceleration);
+		this.yLocation += this.toYVelocity(angle, acceleration);
 	}
 	
 	private int bombs;
@@ -109,6 +115,13 @@ public abstract class Entity {
 		this.xVelocity = xVelocity;
 	}
 	
+	public void TargetedBullet(Entity target) {
+		double tempX = this.xLocation - target.xLocation;
+		double tempY = this.yLocation - target.yLocation;
+		
+		float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
+		new targetedBullet(this.xLocation, this.yLocation, angleTo, 1, 5, false, Color.RED);
+	}
 	
 	public abstract void update();
 	

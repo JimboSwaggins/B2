@@ -148,13 +148,13 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		}
 		
 	}
-	
+	public static Badguy memer;
 	public void run() {
 		boolean running = true;
 		                                                                                                            
 		ini_Systems();
 		new Player(0,0);
-		new Badguy(93, 39, 1);
+		memer = new Badguy(93, 39, 1);
 		while(running) {
 			gameCalculate.update();
 			gameRender.update();
