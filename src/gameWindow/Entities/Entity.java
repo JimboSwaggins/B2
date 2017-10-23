@@ -48,29 +48,11 @@ public abstract class Entity {
 	}
 	
 	protected int Score;
-	public int getScore() {return this.Score;}
-	public void setScore(int i) { this.Score += i;}
-	
 	protected int Health;
-	public int getHealth() {return this.Health;}
-	public void setHealth(int toChange) {this.Health = toChange;}
-	
 	protected double xLocation;
-	public double getX() {return this.xLocation;}
-	public void setX(int i) {this.xLocation = i;}
-	
 	protected double xVelocity;
-	public double getXV() { return (this.xVelocity);}
-	public void setXV(int i) {this.xVelocity = i;}
-	
 	protected double yLocation;
-	public double getY() {return this.yLocation;}
-	public void setY(int i) {this.yLocation = i;}
-	
-
 	protected double yVelocity;
-	public double getYV() { return (this.yVelocity);}
-	public void setYV(int i) {this.yVelocity = i;}
   
 	public void sudoku() {
 		if(this.xLocation > 1500||this.xLocation < -220||this.yLocation > 940||this.yLocation < -220) {
@@ -114,7 +96,7 @@ public abstract class Entity {
 	public void setFiring(boolean input) {this.isFiring = input;}
 	public boolean isFiring() {return this.isFiring;}
 	
-	private boolean isFocus;
+	protected boolean isFocus;
 	public void setFocus(boolean input) {this.isFocus = input;}
 	public boolean isFocused() {return this.isFocus;}
 	

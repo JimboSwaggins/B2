@@ -36,7 +36,7 @@ public class Player extends Entity{
 		this.rSpeed = 100;
 		
 		this.setLives(3);
-		this.setScore(0);
+		this.Score = 0;;
 	}
 	
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
