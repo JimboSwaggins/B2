@@ -128,10 +128,7 @@ public abstract class Entity {
 	}
 	
 	
-	public void update() {
-	}
+	public abstract void update();
 	
-	public void draw(Graphics g) {
-		//This shouldn't do anything, it's just to make this accessible by subclasses.
-	}
+	public abstract void draw(Graphics g);
 }
