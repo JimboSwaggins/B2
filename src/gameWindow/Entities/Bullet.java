@@ -10,7 +10,7 @@ public class Bullet extends Entity{
 	
 	private Color color;
 	
-	public Bullet(double xLocation, double yLocation, double yDelta, double xDelta, double speed, int size, boolean hostile, Color color) {
+	public Bullet(double xLocation, double yLocation, double xDelta, double yDelta, double speed, int size, boolean hostile, Color color) {
 		super(xLocation, yLocation, 1, yDelta, xDelta);
 
 		this.acceleration = speed;
@@ -52,6 +52,8 @@ class targetedBullet extends Bullet{
 		double rad = Math.toRadians(this.angle);
 		this.xLocation -= Math.cos(rad) * this.getSpeed();
 		this.yLocation -= Math.sin(rad)  * this.getSpeed();
+		
+		sudoku();
 	}
 	
 }

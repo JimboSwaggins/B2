@@ -126,4 +126,15 @@ public abstract class Entity {
 	public abstract void update();
 	
 	public abstract void draw(Graphics g);
+
+	public double getDistance(Entity e) {
+		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
+		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
+		return Math.sqrt(xTest + yTest);
+	}
+	
+	public void hitCheck() {
+	}
+	
+	
 }
