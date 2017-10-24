@@ -141,7 +141,7 @@ public class Player extends Entity{
 
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new bouncingBullet(this.xLocation - 1, this.yLocation - 1, 90, 5, 5, false, Color.BLUE));
+			GameWindow.objList.add(new bouncingBullet(this.xLocation - 1, this.yLocation - 1, 90, 1, 10, false, Color.BLUE));
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
