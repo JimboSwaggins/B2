@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import gameWindow.Entities.Badguy;
 import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
 import mech.gameCalculate;
@@ -147,12 +148,13 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		}
 		
 	}
-	
+	public static Badguy memer;
 	public void run() {
 		boolean running = true;
 		                                                                                                            
 		ini_Systems();
 		new Player(0,0);
+		memer = new Badguy(93, 39, 1);
 		while(running) {
 			gameCalculate.update();
 			gameRender.update();

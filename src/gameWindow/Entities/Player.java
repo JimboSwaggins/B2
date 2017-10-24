@@ -9,33 +9,36 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import gameWindow.GameWindow;
-import mech.gameCalculate;
 
 public class Player extends Entity{
+
 	private double acceleration;
 	private long lastFiring;
+
 	private long rSpeed;
+
 	//GOTTA GO FAST
-	
-	
-	
+
+
 	public Player(int x, int y) {
 		super(x, y, 100, 0, 0);
 		GameWindow.objList.add(this);
 		this.acceleration = .01;
 		this.height = 30.0;
 		this.width = 30.0;
-		
-		this.isControllable = true;
+
+		this.hitR = 3;
+
+		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
 		this.setFiring(false);
-		
-		this.rSpeed = 30;
-		
+
+		this.rSpeed = 100;
+
 		this.setLives(3);
-		this.setScore(0);
+		this.Score = 0;;
 	}
-	
+
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
 		if(isUp) {
@@ -44,7 +47,20 @@ public class Player extends Entity{
 			}
 			else{
 				this.yVelocity -= acceleration;
+		if(!isFocus) {
+			if(isUp) {
+				if(yVelocity > 0) {
+					this.yVelocity -= 2 * acceleration;
+				}
+				else {
+					this.yVelocity -= acceleration;
+				}
 			}
+			if(isDown) {
+				if(yVelocity < 0) {
+					this.yVelocity *= 0.99;
+				}
+				this.yVelocity += acceleration;
 			}
 		if(isDown) {
 			if(yVelocity < -0.1) {
@@ -78,6 +94,20 @@ public class Player extends Entity{
 			this.yVelocity = this.slow(this.yVelocity, 0.99);
 			}
 		
+		}if(isFocus) {
+			if(isUp) {
+				this.yLocation -= 0.5;
+			}
+			if(isDown) {
+				this.yLocation += 0.5;
+			}
+			if(isRight) {
+				this.xLocation += 0.5;
+			}
+			if(isLeft) {
+				this.xLocation -= 0.5;
+			}
+		}
 		if(this.xLocation > 1280) {
 			this.xLocation = 1280;
 			this.xVelocity *=  -.75;
@@ -94,7 +124,7 @@ public class Player extends Entity{
 			this.yLocation = 0;
 			this.yVelocity *= -.75;
 		}
-		
+	
 		
 		
 	
@@ -111,6 +141,15 @@ public class Player extends Entity{
 	
 	
 	
+
+
+		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
+			new Bullet(this.xLocation, this.yLocation, 0, -3, 4, 9, false, Color.BLUE);
+			this.lastFiring = System.currentTimeMillis();
+		}
+	}
+
+
 	public void draw(Graphics g) {
 		BufferedImage img = null;
 		try {

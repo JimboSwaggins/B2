@@ -1,35 +1,60 @@
 package gameWindow.Entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import gameWindow.GameWindow;
 
 public class Bullet extends Entity{
-
-	public Bullet(double xLocation, double yLocation, double deltaX, double deltaY, double speed, int size) {
+private Color color;
+	public Bullet(double xLocation, double yLocation, double xDelta, double yDelta, double speed, int size, boolean hostile, Color color) {
 		super(xLocation, yLocation, 1, deltaX, deltaY);
 		this.isControllable = false;
 		this.xVelocity = .7 * deltaX;
 		this.yVelocity = .7 * deltaY;
 		this.acceleration = speed;
+	  
+		this.color = color;
+		
+		if(hostile) {
+			this.entityType = eTYPE.HOSTILE;
+		}else {
+			this.entityType = eTYPE.HARMLESS;
+		}
+	
 		this.size = size;
 		GameWindow.objList.add(this);
-
+			
 	}
 	
 	public void draw(Graphics g) {
+		g.setColor(color);
 		g.fillOval((int)xLocation, (int)yLocation, this.size, this.size);
 	}
 	
 	public void update() {
 		this.xLocation += this.xVelocity;
+
 		this.yLocation += this.yVelocity - this.acceleration;
 		
-		if(this.xLocation > 1280||this.xLocation < 0) {
-			GameWindow.objList.remove(this);
-		}if(this.yLocation > 720||this.yLocation < 0){
-			GameWindow.objList.remove(this);
-		}
+		sudoku();
 	}
 
+}
+
+class targetedBullet extends Bullet{
+	public targetedBullet(double xLocation, double yLocation, double angle, double speed, int size,
+			boolean hostile, Color color) {
+		super(xLocation, yLocation, 0, 0, speed, size, hostile, color);
+		this.angle = angle;
+	}
+	@Override 
+	public void update() {
+		double rad = Math.toRadians(this.angle);
+		this.xLocation -= Math.cos(rad) * this.getSpeed();
+		this.yLocation -= Math.sin(rad)  * this.getSpeed();
+		
+		sudoku();
+	}
+	
 }

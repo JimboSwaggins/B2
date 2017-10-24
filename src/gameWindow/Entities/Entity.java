@@ -1,14 +1,23 @@
 package gameWindow.Entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
+
+import gameWindow.GameWindow;
 
 public abstract class Entity {
 	
-	protected boolean isControllable;
+	
+	//HARMLESS is only for the player
+	protected enum eTYPE{
+		CRTL, HOSTILE, HARMLESS
+	}
+	
+	protected eTYPE entityType;
 	public boolean CtrlCheck(){
-		if(this.isControllable) {
+		if(this.entityType.equals(eTYPE.CRTL)) {
 			return true;
-		}return false;	
+			}return false;	
 	}
 	
 	protected double height;
@@ -40,14 +49,9 @@ public abstract class Entity {
 	}
 	
 	protected int Score;
-	public int getScore() {return this.Score;}
-	public void setScore(int i) { this.Score += i;}
-	
 	protected int Health;
-	public int getHealth() {return this.Health;}
-	public void setHealth(int toChange) {this.Health = toChange;}
-	
 	protected double xLocation;
+
 	public double getX() {return this.xLocation;}
 	public void setX(int i) {this.xLocation = i;}
 	
@@ -55,22 +59,30 @@ public abstract class Entity {
 	public double getXV() { return (this.xVelocity);}
 	public void setXV(int i) {this.xVelocity = i;}
 	
-	protected double yLocation;
-	public double getY() {return this.yLocation;}
-	public void setY(int i) {this.yLocation = i;}
-	
-	protected double yVelocity;
-	public double getYV() { return (this.yVelocity);}
-	public void setYV(int i) {this.yVelocity = i;}
 
-	public double toXVelocity(double theta, double vi) {
-		theta = Math.cos(theta);
-		return(theta * vi);
+	protected double yLocation;
+	protected double yVelocity;
+  
+	public void sudoku() {
+		if(this.xLocation > 1500||this.xLocation < -220||this.yLocation > 940||this.yLocation < -220) {
+			GameWindow.objList.remove(this);
+		}
 	}
 	
-	public double toYVelocity(double theta, double vi) {
+	
+	public double toXVelocity(double theta, double acceleration) {
+		theta = Math.cos(theta);
+		return(theta * acceleration);
+	}
+	
+	public double toYVelocity(double theta, double acceleration) {
 		theta = Math.sin(theta);
-		return(-1 * theta * vi);
+		return(-1 * theta * acceleration);
+	}
+	
+	public void updateOnAngle(double angle, double acceleration) {
+		this.xLocation += this.toXVelocity(angle, acceleration);
+		this.yLocation += this.toYVelocity(angle, acceleration);
 	}
 	
 	protected double slow(double velocity,double factor){
@@ -107,7 +119,7 @@ public abstract class Entity {
 	public void setFiring(boolean input) {this.isFiring = input;}
 	public boolean isFiring() {return this.isFiring;}
 	
-	private boolean isFocus;
+	protected boolean isFocus;
 	public void setFocus(boolean input) {this.isFocus = input;}
 	public boolean isFocused() {return this.isFocus;}
 	
@@ -116,16 +128,31 @@ public abstract class Entity {
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
 		this.Health = Health;
+		this.yVelocity = yVelocity;
+		this.xVelocity = xVelocity;
+	}
+	
+	public void TargetedBullet(Entity target) {
+		double tempX = this.xLocation - target.xLocation;
+		double tempY = this.yLocation - target.yLocation;
+		
+		float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
+		new targetedBullet(this.xLocation, this.yLocation, angleTo, 1, 5, false, Color.RED);
+	}
+	
+	public abstract void update();
+	
+	public abstract void draw(Graphics g);
+
+	public double getDistance(Entity e) {
+		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
+		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
+		return Math.sqrt(xTest + yTest);
 
 	}
 	
-	
-	
-	
-	public void update() {
+	public void hitCheck() {
 	}
 	
-	public void draw(Graphics g) {
-		//This shouldn't do anything, it's just to make this accessible by subclasses.
-	}
+	
 }
