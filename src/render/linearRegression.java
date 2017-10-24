@@ -5,20 +5,25 @@ import java.util.ArrayList;
 public class linearRegression {
 
 	public static int nextFrame(ArrayList<Long> deltaX) {
-		int n = deltaX.length();
+		if(!(deltaX.size() < 4)) {
+		int n = deltaX.size();
 		int sumX = 0;
 		int sumY = 0;
 		int sumXY = 0;
 		int sumX2 = 0;
 		for(int i = 0; i < n; i++) {
 			sumX += i;
-			sumY += deltaX[i];
-			sumXY += i*deltaX[i];
+			sumY += deltaX.get(i);
+			sumXY += i*deltaX.get(i);
 			sumX2 += i * i;
 		}
 		double a = (((sumY * sumX2) - (sumX * sumXY))) / ((n * sumX2) - (sumX * sumX));
 		double b = (((n * sumXY) - (sumX * sumY))) / ((n * sumX2) - (sumX * sumX));
 		int c = (int) Math.round((b * (n + 1)) + a);
-		return c;
+		return (c);
+		}
+		else {
+			return(1);
+		}
 	}
 }

@@ -182,7 +182,7 @@ public void draw(Graphics g) {
 	g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
 
 
-	System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
+	// System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
 }
 
 }
