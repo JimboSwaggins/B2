@@ -7,9 +7,8 @@ import gameWindow.GameWindow;
 
 public class Bullet extends Entity{
 private Color color;
-	public Bullet(double xLocation, double yLocation, double xDelta, double yDelta, double speed, int size, boolean hostile, Color color) {
+	public Bullet(double xLocation, double yLocation, double deltaX, double deltaY, double speed, int size, boolean hostile, Color color) {
 		super(xLocation, yLocation, 1, deltaX, deltaY);
-		this.isControllable = false;
 		this.xVelocity = .7 * deltaX;
 		this.yVelocity = .7 * deltaY;
 		this.acceleration = speed;

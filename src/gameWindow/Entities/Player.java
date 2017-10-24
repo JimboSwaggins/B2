@@ -47,107 +47,107 @@ public class Player extends Entity{
 			}
 			else{
 				this.yVelocity -= acceleration;
-		if(!isFocus) {
-			if(isUp) {
-				if(yVelocity > 0) {
-					this.yVelocity -= 2 * acceleration;
-				}
-				else {
-					this.yVelocity -= acceleration;
-				}
-			}
-			if(isDown) {
-				if(yVelocity < 0) {
-					this.yVelocity *= 0.99;
-				}
-				this.yVelocity += acceleration;
-			}
-		if(isDown) {
-			if(yVelocity < -0.1) {
-				this.yVelocity *= 0.98;
-			}
-			else{
-				this.yVelocity += acceleration;
-			}	
-			}
-		if(isRight) {
-			if(xVelocity < -0.1) {
-				this.xVelocity *= 0.98;
-			}
-			else{
-				this.xVelocity += acceleration;
-			}	
-			}
-		if(isLeft) {
-			if(xVelocity > 0.1) {
-				this.xVelocity *= 0.98;
-			}
-			else{
-				this.xVelocity -= acceleration;
-			}	
-			}
-		
-		if(! isLeft && ! isRight) {
-			this.xVelocity = this.slow(this.xVelocity, 0.99);
-			}
-		if(! isUp && ! isDown) {
-			this.yVelocity = this.slow(this.yVelocity, 0.99);
-			}
-		
-		}if(isFocus) {
-			if(isUp) {
-				this.yLocation -= 0.5;
-			}
-			if(isDown) {
-				this.yLocation += 0.5;
-			}
-			if(isRight) {
-				this.xLocation += 0.5;
-			}
-			if(isLeft) {
-				this.xLocation -= 0.5;
-			}
-		}
-		if(this.xLocation > 1280) {
-			this.xLocation = 1280;
-			this.xVelocity *=  -.75;
-		}
-		if(this.yLocation > 720) {
-			this.yLocation = 720;
-			this.yVelocity *= -.75;
-		}
-		if(this.xLocation < 0) {
-			this.xLocation = 0;
-			this.xVelocity *=  -.75;
-		}
-		if(this.yLocation < 0) {
-			this.yLocation = 0;
-			this.yVelocity *= -.75;
-		}
-	
-		
-		
-	
+				if(!isFocus) {
+					if(isUp) {
+						if(yVelocity > 0) {
+							this.yVelocity -= 2 * acceleration;
+						}
+						else {
+							this.yVelocity -= acceleration;
+						}
+					}
+					if(isDown) {
+						if(yVelocity < 0) {
+							this.yVelocity *= 0.99;
+						}
+						this.yVelocity += acceleration;
+					}
+					if(isDown) {
+						if(yVelocity < -0.1) {
+							this.yVelocity *= 0.98;
+						}
+						else{
+							this.yVelocity += acceleration;
+						}	
+					}
+					if(isRight) {
+						if(xVelocity < -0.1) {
+							this.xVelocity *= 0.98;
+						}
+						else{
+							this.xVelocity += acceleration;
+						}	
+					}
+					if(isLeft) {
+						if(xVelocity > 0.1) {
+							this.xVelocity *= 0.98;
+						}
+						else{
+							this.xVelocity -= acceleration;
+						}	
+					}
+					if(this.xLocation > 1280) {
+						this.xLocation = 1280;
+						this.xVelocity *=  -.75;
+					}
+					if(this.yLocation > 720) {
+						this.yLocation = 720;
+						this.yVelocity *= -.75;
+					}
+					if(this.xLocation < 0) {
+						this.xLocation = 0;
+						this.xVelocity *=  -.75;
+					}
+					if(this.yLocation < 0) {
+						this.yLocation = 0;
+						this.yVelocity *= -.75;
+					}
 
-		this.xLocation += this.xVelocity;
-		this.yLocation += this.yVelocity;
-		
-		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, this.xVelocity, this.yVelocity, 1,10));
-			this.lastFiring = System.currentTimeMillis();
+
+					if(! isLeft && ! isRight) {
+						this.xVelocity = this.slow(this.xVelocity, 0.99);
+					}
+					if(! isUp && ! isDown) {
+						this.yVelocity = this.slow(this.yVelocity, 0.99);
+					}
+
+					this.xLocation += this.xVelocity;
+					this.yLocation += this.yVelocity;
+
+				}if(isFocus) {
+					if(isUp) {
+						this.yLocation -= 0.5;
+					}
+					if(isDown) {
+						this.yLocation += 0.5;
+					}
+					if(isRight) {
+						this.xLocation += 0.5;
+					}
+					if(isLeft) {
+						this.xLocation -= 0.5;
+					}
+				}
+
+
+
+
+
+
+				if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
+					GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, this.xVelocity, this.yVelocity, 1,10,false, Color.BLUE));
+					this.lastFiring = System.currentTimeMillis();
+				}
+			}
 		}
 	}
-	
-	
-	
-	
 
 
-		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			new Bullet(this.xLocation, this.yLocation, this.xVelocity, this.yVelocity, 4, 9, false, Color.BLUE);
-			this.lastFiring = System.currentTimeMillis();
-		}
-	}
+
+
+
+
+
 
 
 	public void draw(Graphics g) {
@@ -177,7 +177,7 @@ public class Player extends Entity{
 		g.setColor(Color.BLUE);
 		g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
 
-		
+
 		System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
 	}
 
