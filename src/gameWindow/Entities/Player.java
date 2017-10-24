@@ -42,19 +42,14 @@ public class Player extends Entity{
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
 		if(!isFocus) {
+			
 			if(isUp) {
-				if(yVelocity > 0) {
-					this.yVelocity -= 2 * acceleration;
+				if(yVelocity > 0.1) {
+					this.yVelocity *= 0.98;
 				}
-				else {
+				else{
 					this.yVelocity -= acceleration;
 				}
-			}
-			if(isDown) {
-				if(yVelocity < 0) {
-					this.yVelocity *= 0.99;
-				}
-				this.yVelocity += acceleration;
 			}
 			if(isDown) {
 				if(yVelocity < -0.1) {
@@ -80,6 +75,8 @@ public class Player extends Entity{
 					this.xVelocity -= acceleration;
 				}	
 			}
+			
+			
 			if(this.xLocation > 1280) {
 				this.xLocation = 1280;
 				this.xVelocity *=  -.75;
@@ -108,7 +105,8 @@ public class Player extends Entity{
 			this.xLocation += this.xVelocity;
 			this.yLocation += this.yVelocity;
 
-		}if(isFocus) {
+		}
+		if(isFocus) {
 			if(isUp) {
 				this.yLocation -= 0.5;
 			}
