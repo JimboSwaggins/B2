@@ -55,5 +55,31 @@ class targetedBullet extends Bullet{
 		
 		sudoku();
 	}
+}
+
+class bouncingBullet extends targetedBullet{
+	public bouncingBullet(double xLocation, double yLocation, double angle, double speed, int size, boolean hostile, Color color) {
+		super(xLocation, yLocation, angle, speed, size, hostile, color);
+	}
 	
+	public void update() {
+		super.update();
+		
+		if(this.xLocation > 1280) {
+			this.xLocation = 1280;
+			this.xVelocity *=  -1;
+		}
+		if(this.yLocation > 720) {
+			this.yLocation = 720;
+			this.yVelocity *= -1;
+		}
+		if(this.xLocation < 0) {
+			this.xLocation = 0;
+			this.xVelocity *=  -1;
+		}
+		if(this.yLocation < 0) {
+			this.yLocation = 0;
+			this.yVelocity *= -1;
+		}
+	}
 }

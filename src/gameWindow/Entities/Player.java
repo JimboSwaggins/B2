@@ -119,6 +119,19 @@ public class Player extends Entity{
 			if(isLeft) {
 				this.xLocation -= 0.5;
 			}
+			if(this.xLocation > 1280) {
+				this.xLocation = 1280;
+			}
+			if(this.yLocation > 720) {
+				this.yLocation = 720;
+			}
+			if(this.xLocation < 0) {
+				this.xLocation = 0;
+			}
+			if(this.yLocation < 0) {
+				this.yLocation = 0;
+			}
+			
 		}
 
 
@@ -128,7 +141,7 @@ public class Player extends Entity{
 
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new Bullet(this.xLocation - 1, this.yLocation - 1, this.xVelocity, this.yVelocity, 1,10,false, Color.BLUE));
+			GameWindow.objList.add(new bouncingBullet(this.xLocation - 1, this.yLocation - 1, this.xVelocity, this.yVelocity, 90, false, Color.BLUE));
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
