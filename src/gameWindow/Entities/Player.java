@@ -99,7 +99,7 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			new Bullet(this.xLocation, this.yLocation, 0, -3, 4, 9, false, Color.BLUE);
+			new Bullet(this.xLocation, this.yLocation, this.xVelocity, this.yVelocity, 4, 9, false, Color.BLUE);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
