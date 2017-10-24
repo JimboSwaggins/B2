@@ -32,10 +32,9 @@ public class VRR {
 			long x2 = listOfTimes.get((i - 1));
 			long delta = x2 - x1;
 			deltaX.add(delta);
-			System.out.println(deltaX);
-			System.out.println(linearRegression.nextFrame(deltaX));
+			
 		}
-		//System.out.println(listOfTimes);
-		//System.out.println(deltaX);
+		System.out.println(deltaX);
+		System.out.println(linearRegression.nextFrame(deltaX));
 	}
 }
