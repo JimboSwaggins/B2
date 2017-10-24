@@ -51,7 +51,15 @@ public abstract class Entity {
 	protected int Score;
 	protected int Health;
 	protected double xLocation;
-	protected double xVelocity;
+
+	public double getX() {return this.xLocation;}
+	public void setX(int i) {this.xLocation = i;}
+	
+	public double xVelocity;
+	public double getXV() { return (this.xVelocity);}
+	public void setXV(int i) {this.xVelocity = i;}
+	
+
 	protected double yLocation;
 	protected double yVelocity;
   
@@ -75,6 +83,15 @@ public abstract class Entity {
 	public void updateOnAngle(double angle, double acceleration) {
 		this.xLocation += this.toXVelocity(angle, acceleration);
 		this.yLocation += this.toYVelocity(angle, acceleration);
+	}
+	
+	protected double slow(double velocity,double factor){
+		if(velocity < .05 && velocity > -.05){
+			return(0);
+		}
+		else{
+			return(velocity * factor);
+		}
 	}
 	
 	private int bombs;
@@ -131,6 +148,7 @@ public abstract class Entity {
 		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
 		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
 		return Math.sqrt(xTest + yTest);
+
 	}
 	
 	public void hitCheck() {
