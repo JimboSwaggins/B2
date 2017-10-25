@@ -11,6 +11,8 @@ public class VRR {
 	static double frameTime = 0;
 	static double weight = 0;
 	
+	public static double time = 0;
+	
 	
 	/*
 	 * I don't know what this does, but it works, so  that's cool. 
@@ -35,8 +37,8 @@ public class VRR {
 			
 		}
 		System.out.println(deltaX);
-		//System.out.println(linearRegression.nextFrame(deltaX));
-		System.out.println(nextFrame(deltaX));
+		time = nextFrame(deltaX);
+		System.out.println(time);
 		
 		
 		if(listOfTimes.size() > 6) {

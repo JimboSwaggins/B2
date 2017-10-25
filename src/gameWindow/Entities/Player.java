@@ -41,11 +41,12 @@ public class Player extends Entity{
 
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
+		this.acceleration = .002 * render.VRR.time;
 		if(!isFocus) {
 			
 			if(isUp) {
 				if(yVelocity > 0.1) {
-					this.yVelocity *= 0.98;
+					this.yVelocity *= .98;
 				}
 				else{
 					this.yVelocity -= acceleration;
@@ -53,7 +54,7 @@ public class Player extends Entity{
 			}
 			if(isDown) {
 				if(yVelocity < -0.1) {
-					this.yVelocity *= 0.98;
+					this.yVelocity *= .98;
 				}
 				else{
 					this.yVelocity += acceleration;
@@ -61,7 +62,7 @@ public class Player extends Entity{
 			}
 			if(isRight) {
 				if(xVelocity < -0.1) {
-					this.xVelocity *= 0.98;
+					this.xVelocity *= .98;
 				}
 				else{
 					this.xVelocity += acceleration;
@@ -69,13 +70,14 @@ public class Player extends Entity{
 			}
 			if(isLeft) {
 				if(xVelocity > 0.1) {
-					this.xVelocity *= 0.98;
+					this.xVelocity *= .98;
 				}
 				else{
 					this.xVelocity -= acceleration;
 				}	
 			}
 			
+			System.out.println(this.xVelocity);
 			
 			if(this.xLocation > 1280) {
 				this.xLocation = 1280;
@@ -102,8 +104,8 @@ public class Player extends Entity{
 				this.yVelocity = this.slow(this.yVelocity, 0.99);
 			}
 
-			this.xLocation += this.xVelocity;
-			this.yLocation += this.yVelocity;
+			this.xLocation += this.xVelocity * render.VRR.time;
+			this.yLocation += this.yVelocity * render.VRR.time;
 
 		}
 		if(isFocus) {
