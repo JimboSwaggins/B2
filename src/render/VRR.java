@@ -20,14 +20,11 @@ public class VRR {
 		
 		currentTime = (long) System.currentTimeMillis();
 		listOfTimes.add(0, currentTime);
-		if(listOfTimes.size() > 6) {
-			listOfTimes.remove((listOfTimes.size() - 1));
-		}
 		if(listOfTimes.size() < 2) {
 			listOfTimes.add(currentTime);
 		}
 		deltaX.clear();
-		for(int i = 1 ; i < (listOfTimes.size()); i++){
+		for(int i = 1 ; i < listOfTimes.size(); i++){
 			long x1 = listOfTimes.get((i));
 			long x2 = listOfTimes.get((i - 1));
 			long delta = x2 - x1;
@@ -35,6 +32,12 @@ public class VRR {
 			
 		}
 		System.out.println(deltaX);
-		System.out.println(linearRegression.nextFrame(deltaX));
+		//System.out.println(linearRegression.nextFrame(deltaX));
+		System.out.println(weightedEstimate.nextFrame(deltaX));
+		
+		
+		if(listOfTimes.size() > 6) {
+			listOfTimes.remove((listOfTimes.size() - 1));
+		}
 	}
 }
