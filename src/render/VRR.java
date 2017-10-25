@@ -8,6 +8,9 @@ public class VRR {
 	protected static ArrayList<Long> listOfTimes = new ArrayList<Long>();
 	protected static ArrayList<Long> deltaX = new ArrayList<Long>();
 	
+	static double frameTime = 0;
+	static double weight = 0;
+	
 	
 	/*
 	 * I don't know what this does, but it works, so  that's cool. 
@@ -33,11 +36,22 @@ public class VRR {
 		}
 		System.out.println(deltaX);
 		//System.out.println(linearRegression.nextFrame(deltaX));
-		System.out.println(weightedEstimate.nextFrame(deltaX));
+		System.out.println(nextFrame(deltaX));
 		
 		
 		if(listOfTimes.size() > 6) {
 			listOfTimes.remove((listOfTimes.size() - 1));
 		}
 	}
+
+	public static double nextFrame(ArrayList<Long> deltaX){
+		frameTime = 0;
+		for(double i = 0; i< deltaX.size(); i++){
+			frameTime += (double) deltaX.get((int)i) * (6.0 - i)/6.0;
+		}
+		frameTime /= 3.5;
+		return(frameTime);
+	}
+
+
 }
