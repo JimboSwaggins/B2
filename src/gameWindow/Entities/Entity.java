@@ -133,11 +133,8 @@ public abstract class Entity {
 	}
 	
 	public void TargetedBullet(Entity target) {
-		double tempX = this.xLocation - target.xLocation;
-		double tempY = this.yLocation - target.yLocation;
-		
-		float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-		new targetedBullet(this.xLocation, this.yLocation, angleTo, 1, 5, false, Color.RED);
+	
+		new targetedBullet(this.xLocation, this.yLocation, 1, 1, false, Color.RED, target);
 	}
 	
 	public abstract void update();

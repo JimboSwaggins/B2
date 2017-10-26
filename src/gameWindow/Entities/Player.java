@@ -41,19 +41,30 @@ public class Player extends Entity{
 
 	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
+		this.acceleration = .002 * render.VRR.time;
 		if(!isFocus) {
-			
 			if(isUp) {
+<<<<<<< HEAD
+				if(yVelocity > 0) {
+					this.yVelocity -= 2 * acceleration;
+=======
 				if(yVelocity > 0.1) {
-					this.yVelocity *= 0.98;
+					this.yVelocity *= .98;
+>>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
 				}
-				else{
+				else {
 					this.yVelocity -= acceleration;
 				}
 			}
 			if(isDown) {
+				if(yVelocity < 0) {
+					this.yVelocity *= 0.99;
+				}
+				this.yVelocity += acceleration;
+			}
+			if(isDown) {
 				if(yVelocity < -0.1) {
-					this.yVelocity *= 0.98;
+					this.yVelocity *= .98;
 				}
 				else{
 					this.yVelocity += acceleration;
@@ -61,7 +72,7 @@ public class Player extends Entity{
 			}
 			if(isRight) {
 				if(xVelocity < -0.1) {
-					this.xVelocity *= 0.98;
+					this.xVelocity *= .98;
 				}
 				else{
 					this.xVelocity += acceleration;
@@ -69,14 +80,18 @@ public class Player extends Entity{
 			}
 			if(isLeft) {
 				if(xVelocity > 0.1) {
-					this.xVelocity *= 0.98;
+					this.xVelocity *= .98;
 				}
 				else{
 					this.xVelocity -= acceleration;
 				}	
 			}
+<<<<<<< HEAD
+=======
 			
+			System.out.println(this.xVelocity);
 			
+>>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
 			if(this.xLocation > 1280) {
 				this.xLocation = 1280;
 				this.xVelocity *=  -.75;
@@ -102,11 +117,10 @@ public class Player extends Entity{
 				this.yVelocity = this.slow(this.yVelocity, 0.99);
 			}
 
-			this.xLocation += this.xVelocity;
-			this.yLocation += this.yVelocity;
+			this.xLocation += this.xVelocity * render.VRR.time;
+			this.yLocation += this.yVelocity * render.VRR.time;
 
-		}
-		if(isFocus) {
+		}if(isFocus) {
 			if(isUp) {
 				this.yLocation -= 0.5;
 			}
@@ -133,26 +147,16 @@ public class Player extends Entity{
 			}
 			
 		}
-
-
-
-
-
-
-
+		
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-			GameWindow.objList.add(new bouncingBullet(this.xLocation - 1, this.yLocation - 1, 90, 5, 5, false, Color.BLUE));
+<<<<<<< HEAD
+			GameWindow.objList.add(new targetedBullet(this.xLocation - 1, this.yLocation - 1, .1, 5, false, Color.BLUE, GameWindow.memer));
+=======
+			GameWindow.objList.add(new bouncingBullet(this.xLocation - 1, this.yLocation - 1, 90, 1, 10, false, Color.BLUE));
+>>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
-
-
-
-
-
-
-
-
 
 public void draw(Graphics g) {
 	BufferedImage img = null;
@@ -180,9 +184,12 @@ public void draw(Graphics g) {
 	g.drawImage(img, (int)(this.xLocation - (this.width/2) + 1), (int)(this.yLocation - (this.height/2) + 1), null);
 	g.setColor(Color.BLUE);
 	g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
+<<<<<<< HEAD
+=======
 
 
-	System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
+	// System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
+>>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
 }
 
 }
