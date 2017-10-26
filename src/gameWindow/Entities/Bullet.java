@@ -9,8 +9,8 @@ public class Bullet extends Entity{
 private Color color;
 	public Bullet(double xLocation, double yLocation, double deltaX, double deltaY, double speed, int size, boolean hostile, Color color) {
 		super(xLocation, yLocation, 1, deltaX, deltaY);
-		this.xVelocity = .7 * deltaX;
-		this.yVelocity = .7 * deltaY;
+		this.xVelocity =  deltaX;
+		this.yVelocity =  deltaY;
 		this.acceleration = speed;
 	  
 		this.color = color;
@@ -32,9 +32,9 @@ private Color color;
 	}
 	
 	public void update() {
-		this.xLocation += this.xVelocity;
+		this.xLocation +=  .6 * this.xVelocity * render.VRR.time;
 
-		this.yLocation += this.yVelocity - this.acceleration;
+		this.yLocation +=  .6 * this.yVelocity * render.VRR.time - .5 * this.acceleration * render.VRR.time;
 		
 		sudoku();
 	}
