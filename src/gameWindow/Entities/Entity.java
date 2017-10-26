@@ -149,8 +149,4 @@ public abstract class Entity {
 		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
 		return Math.sqrt(xTest + yTest);
 	}
-	
-	
-	
-	
 }
