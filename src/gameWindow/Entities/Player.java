@@ -15,7 +15,7 @@ public class Player extends Entity{
 	private double acceleration;
 	private long lastFiring;
 
-	private long rSpeed;
+	private long reloadTime;
 
 	//GOTTA GO FAST
 
@@ -27,13 +27,13 @@ public class Player extends Entity{
 		this.height = 30.0;
 		this.width = 30.0;
 
-		this.hitR = 3;
+		this.hitR = 5;
 
 		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
 		this.setFiring(false);
 
-		this.rSpeed = 100;
+		this.reloadTime = 100;
 
 		this.setLives(3);
 		this.Score = 0;;
@@ -75,7 +75,7 @@ public class Player extends Entity{
 					}	
 				}
 
-				System.out.println(this.xVelocity);
+				//System.out.println(this.xVelocity);
 
 				if(this.xLocation > 1280) {
 					this.xLocation = 1280;
@@ -133,14 +133,13 @@ public class Player extends Entity{
 
 		}
 
-		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
+		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
 
-			GameWindow.objList.add(new targetedBullet(this.xLocation - 1, this.yLocation - 1, .1, 5, false, Color.BLUE, GameWindow.memer));
+			TargetedBullet(GameWindow.memer);
 
 
 			this.lastFiring = System.currentTimeMillis();
 		}
-		hitCheck();
 	}
 
 	public void draw(Graphics g) {

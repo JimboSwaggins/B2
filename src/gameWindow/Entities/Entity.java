@@ -133,9 +133,12 @@ public abstract class Entity {
 	}
 	
 	public void TargetedBullet(Entity target) {
-	
-		new targetedBullet(this.xLocation, this.yLocation, 1, 1, false, Color.RED, target);
-	}
+				double tempX = this.xLocation - target.xLocation;
+				double tempY = this.yLocation - target.yLocation;
+			
+				float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
+				new targetedBullet(this.xLocation, this.yLocation, angleTo, 1, 5, false, Color.RED);
+			}
 	
 	public abstract void update();
 	
@@ -144,18 +147,10 @@ public abstract class Entity {
 	public double getDistance(Entity e) {
 		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
 		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
-		System.out.println(xTest + " " +  yTest);
-		return (double)Math.sqrt(xTest + yTest);
-
+		return Math.sqrt(xTest + yTest);
 	}
 	
-	public void hitCheck() {
-		for(int i = 0; i < GameWindow.objList.size(); i++) {
-			if(Math.abs(getDistance(GameWindow.objList.get(i))) < Math.abs(this.hitR + GameWindow.objList.get(i).hitR)){
-				System.out.println("HHH");
-			}
-		}
-	}
+	
 	
 	
 }
