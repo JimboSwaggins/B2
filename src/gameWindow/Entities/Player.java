@@ -50,6 +50,9 @@ public class Player extends Entity{
 =======
 				if(yVelocity > 0.1) {
 					this.yVelocity *= .98;
+<<<<<<< HEAD
+>>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
+=======
 >>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
 				}
 				else {
@@ -150,7 +153,11 @@ public class Player extends Entity{
 		
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			GameWindow.objList.add(new targetedBullet(this.xLocation - 1, this.yLocation - 1, .1, 5, false, Color.BLUE, GameWindow.memer));
+=======
+			GameWindow.objList.add(new bouncingBullet(this.xLocation - 1, this.yLocation - 1, 90, 1, 10, false, Color.BLUE));
+>>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
 =======
 			GameWindow.objList.add(new bouncingBullet(this.xLocation - 1, this.yLocation - 1, 90, 1, 10, false, Color.BLUE));
 >>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
@@ -189,6 +196,9 @@ public void draw(Graphics g) {
 
 
 	// System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
+<<<<<<< HEAD
+>>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
+=======
 >>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
 }
 
