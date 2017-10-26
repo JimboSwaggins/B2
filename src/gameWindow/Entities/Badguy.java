@@ -27,7 +27,7 @@ public class Badguy extends Entity{
 		this.entityType = eTYPE.HOSTILE;
 		this.rSpeed = 300;
 		this.lastShot = System.currentTimeMillis();
-		
+		this.hitR = 5;
 		GameWindow.objList.add(this);
 	}
 	
