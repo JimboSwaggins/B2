@@ -48,10 +48,10 @@ class targetedBullet extends Bullet{
 		double yDif = this.yLocation - target.yLocation;
 		
 		if(yDif > xDif) {
-			xDif = (Math.abs(xDif)/yDif);
+			xDif = (xDif/yDif);
 			yDif = (yDif/yDif);
 		}else {
-			yDif = (Math.abs(yDif)/xDif);
+			yDif = (yDif/xDif);
 			xDif = (xDif/xDif);
 		}
 		

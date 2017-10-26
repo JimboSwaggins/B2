@@ -36,9 +36,9 @@ public class VRR {
 			deltaX.add(delta);
 			
 		}
-		System.out.println(deltaX);
+		//System.out.println(deltaX);
 		time = nextFrame(deltaX);
-		System.out.println(time);
+		//System.out.println(time);
 		
 		
 		if(listOfTimes.size() > 6) {

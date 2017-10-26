@@ -140,6 +140,7 @@ public class Player extends Entity{
 
 			this.lastFiring = System.currentTimeMillis();
 		}
+		hitCheck();
 	}
 
 	public void draw(Graphics g) {
