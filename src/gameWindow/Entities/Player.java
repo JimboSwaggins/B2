@@ -134,10 +134,7 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
-
-			TargetedBullet(GameWindow.memer);
-
-
+			Bullet(this.xVelocity, this.yVelocity);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

@@ -138,8 +138,11 @@ public abstract class Entity {
 			
 				float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
 				new targetedBullet(this.xLocation, this.yLocation, angleTo, 1, 5, false, Color.RED);
-			}
+	}
 	
+	protected void Bullet(double xVelocity, double yVelocity ) {
+		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, false, Color.RED);
+	}
 	public abstract void update();
 	
 	public abstract void draw(Graphics g);
