@@ -43,87 +43,69 @@ public class Player extends Entity{
 	public void update() {
 		this.acceleration = .002 * render.VRR.time;
 		if(!isFocus) {
-			if(isUp) {
-<<<<<<< HEAD
-				if(yVelocity > 0) {
-					this.yVelocity -= 2 * acceleration;
-=======
-				if(yVelocity > 0.1) {
-					this.yVelocity *= .98;
-<<<<<<< HEAD
->>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
-=======
->>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
-				}
-				else {
+	
+				if(isUp) {
+					if(yVelocity > 0.1) {
+						this.yVelocity *= 0.99;
+					}
 					this.yVelocity -= acceleration;
 				}
-			}
-			if(isDown) {
-				if(yVelocity < 0) {
-					this.yVelocity *= 0.99;
+				if(isDown) {
+					if(yVelocity < -0.1) {
+						this.yVelocity *= .98;
+					}
+					else{
+						this.yVelocity += acceleration;
+					}	
 				}
-				this.yVelocity += acceleration;
-			}
-			if(isDown) {
-				if(yVelocity < -0.1) {
-					this.yVelocity *= .98;
+				if(isRight) {
+					if(xVelocity < -0.1) {
+						this.xVelocity *= .98;
+					}
+					else{
+						this.xVelocity += acceleration;
+					}	
 				}
-				else{
-					this.yVelocity += acceleration;
-				}	
-			}
-			if(isRight) {
-				if(xVelocity < -0.1) {
-					this.xVelocity *= .98;
+				if(isLeft) {
+					if(xVelocity > 0.1) {
+						this.xVelocity *= .98;
+					}
+					else{
+						this.xVelocity -= acceleration;
+					}	
 				}
-				else{
-					this.xVelocity += acceleration;
-				}	
-			}
-			if(isLeft) {
-				if(xVelocity > 0.1) {
-					this.xVelocity *= .98;
+
+				System.out.println(this.xVelocity);
+
+				if(this.xLocation > 1280) {
+					this.xLocation = 1280;
+					this.xVelocity *=  -.75;
 				}
-				else{
-					this.xVelocity -= acceleration;
-				}	
-			}
-<<<<<<< HEAD
-=======
-			
-			System.out.println(this.xVelocity);
-			
->>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
-			if(this.xLocation > 1280) {
-				this.xLocation = 1280;
-				this.xVelocity *=  -.75;
-			}
-			if(this.yLocation > 720) {
-				this.yLocation = 720;
-				this.yVelocity *= -.75;
-			}
-			if(this.xLocation < 0) {
-				this.xLocation = 0;
-				this.xVelocity *=  -.75;
-			}
-			if(this.yLocation < 0) {
-				this.yLocation = 0;
-				this.yVelocity *= -.75;
-			}
+				if(this.yLocation > 720) {
+					this.yLocation = 720;
+					this.yVelocity *= -.75;
+				}
+				if(this.xLocation < 0) {
+					this.xLocation = 0;
+					this.xVelocity *=  -.75;
+				}
+				if(this.yLocation < 0) {
+					this.yLocation = 0;
+					this.yVelocity *= -.75;
+				}
 
 
-			if(! isLeft && ! isRight) {
-				this.xVelocity = this.slow(this.xVelocity, 0.99);
-			}
-			if(! isUp && ! isDown) {
-				this.yVelocity = this.slow(this.yVelocity, 0.99);
-			}
+				if(! isLeft && ! isRight) {
+					this.xVelocity = this.slow(this.xVelocity, 0.99);
+				}
+				if(! isUp && ! isDown) {
+					this.yVelocity = this.slow(this.yVelocity, 0.99);
+				}
 
-			this.xLocation += this.xVelocity * render.VRR.time;
-			this.yLocation += this.yVelocity * render.VRR.time;
-
-		}if(isFocus) {
+				this.xLocation += this.xVelocity * render.VRR.time;
+				this.yLocation += this.yVelocity * render.VRR.time;
+			}
+		if(isFocus) {
 			if(isUp) {
 				this.yLocation -= 0.5;
 			}
@@ -148,58 +130,48 @@ public class Player extends Entity{
 			if(this.yLocation < 0) {
 				this.yLocation = 0;
 			}
-			
+
 		}
-		
+
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.rSpeed)) {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 			GameWindow.objList.add(new targetedBullet(this.xLocation - 1, this.yLocation - 1, .1, 5, false, Color.BLUE, GameWindow.memer));
-=======
-			GameWindow.objList.add(new bouncingBullet(this.xLocation - 1, this.yLocation - 1, 90, 1, 10, false, Color.BLUE));
->>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
-=======
-			GameWindow.objList.add(new bouncingBullet(this.xLocation - 1, this.yLocation - 1, 90, 1, 10, false, Color.BLUE));
->>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
+
+
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
 
-public void draw(Graphics g) {
-	BufferedImage img = null;
-	try {
-		switch(direction){
-		case 1:
-			img = ImageIO.read(new File("../B2/img/p_up.png"));
-			break;
-		case 2:
-			img = ImageIO.read(new File("../B2/img/p_right.png"));
-			break;
-		case 3:
-			img = ImageIO.read(new File("../B2/img/p_down.png"));
-			break;
-		case 4:
-			img = ImageIO.read(new File("../B2/img/p_left.png"));
-			break;
-		default:
-			img = ImageIO.read(new File("../B2/img/p.png"));
-			break;
+	public void draw(Graphics g) {
+		BufferedImage img = null;
+		try {
+			switch(direction){
+			case 1:
+				img = ImageIO.read(new File("../B2/img/p_up.png"));
+				break;
+			case 2:
+				img = ImageIO.read(new File("../B2/img/p_right.png"));
+				break;
+			case 3:
+				img = ImageIO.read(new File("../B2/img/p_down.png"));
+				break;
+			case 4:
+				img = ImageIO.read(new File("../B2/img/p_left.png"));
+				break;
+			default:
+				img = ImageIO.read(new File("../B2/img/p.png"));
+				break;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	} catch (IOException e) {
-		e.printStackTrace();
+		g.drawImage(img, (int)(this.xLocation - (this.width/2) + 1), (int)(this.yLocation - (this.height/2) + 1), null);
+		g.setColor(Color.BLUE);
+		g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
+
+
+
+		// System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
 	}
-	g.drawImage(img, (int)(this.xLocation - (this.width/2) + 1), (int)(this.yLocation - (this.height/2) + 1), null);
-	g.setColor(Color.BLUE);
-	g.fillOval((int)this.xLocation, (int)this.yLocation, 3, 3);
-<<<<<<< HEAD
-=======
-
-
-	// System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
-<<<<<<< HEAD
->>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
-=======
->>>>>>> 5b9db04971f92265c29637b8d172cb785a3e9c8a
-}
 
 }
