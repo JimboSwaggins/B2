@@ -63,7 +63,6 @@ class bouncingBullet extends targetedBullet{
 	}
 	
 	public void update() {
-		this.xLocation = 0;
 		
 		if(this.xLocation > 1280) {
 			this.xLocation = 1280;

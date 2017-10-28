@@ -42,6 +42,8 @@ public class Badguy extends Entity{
 		this.xLocation += 0.1;
 		this.yLocation += 0.1;
 		
+		TargetedBullet(GameWindow.character);
+		
 		sudoku();
 	}
 
