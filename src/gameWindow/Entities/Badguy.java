@@ -44,6 +44,7 @@ public class Badguy extends Entity{
 		
 		TargetedBullet(GameWindow.character);
 		
+	
 		sudoku();
 	}
 
