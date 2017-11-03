@@ -49,6 +49,7 @@ public class Badguy extends Entity{
 		}
 		
 		
+	
 		sudoku();
 	}
 
