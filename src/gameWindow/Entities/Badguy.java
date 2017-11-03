@@ -10,9 +10,10 @@ public class Badguy extends Entity{
 	
 
 	@SuppressWarnings("unused")
-	private int rSpeed;
+	private int reloadTime;
 	@SuppressWarnings("unused")
 	private long lastShot;
+	private long lastFiring;
 	
 	
 	public double angleTarget() {
@@ -25,10 +26,11 @@ public class Badguy extends Entity{
 	public Badguy(double xLocation, double yLocation, int Health) {
 		super(xLocation, yLocation, Health, 0, 0);
 		this.entityType = eTYPE.HOSTILE;
-		this.rSpeed = 300;
+		this.reloadTime = 300;
 		this.lastShot = System.currentTimeMillis();
 		this.hitR = 5;
 		GameWindow.objList.add(this);
+		this.lastFiring = System.currentTimeMillis();
 	}
 	
 	public void draw(Graphics g) {
@@ -41,8 +43,11 @@ public class Badguy extends Entity{
 	public void update() {
 		this.xLocation += 0.1;
 		this.yLocation += 0.1;
+		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
+			TargetedBullet(GameWindow.character);
+			this.lastFiring = System.currentTimeMillis();
+		}
 		
-		TargetedBullet(GameWindow.character);
 		
 		sudoku();
 	}
