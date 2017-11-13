@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import gameWindow.GameWindow;
+import mech.Point;
 
 public abstract class Entity {
 	
@@ -137,7 +138,7 @@ public abstract class Entity {
 				double tempY = this.yLocation - target.yLocation;
 			
 				float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-				new targetedBullet(this.xLocation, this.yLocation, angleTo, 1, 5, false, Color.RED);
+				new Bullet(this.xLocation, this.yLocation, 1,  0, 1, 5, false, Color.RED);
 	}
 	
 	protected void Bullet(double xVelocity, double yVelocity ) {
@@ -152,4 +153,7 @@ public abstract class Entity {
 		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
 		return Math.sqrt(xTest + yTest);
 	}
+	
+	
+	
 }

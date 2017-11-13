@@ -131,9 +131,13 @@ public class Player extends Entity{
 				this.yLocation = 0;
 			}
 
+			
 		}
 
-		
+		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
+			Bullet(this.xVelocity, this.yVelocity);
+			this.lastFiring = System.currentTimeMillis();
+		}
 	}
 
 	public void draw(Graphics g) {
