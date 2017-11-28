@@ -31,7 +31,6 @@ private Color color;
 	
 	public void update() {
 		this.xLocation +=  .6 * this.xVelocity * render.VRR.time;
-		System.out.println(this);
 		this.yLocation +=  .6 * this.yVelocity * render.VRR.time - .5 * this.acceleration * render.VRR.time;
 		
 		sudoku();
