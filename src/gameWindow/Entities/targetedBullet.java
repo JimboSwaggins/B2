@@ -13,7 +13,5 @@ class targetedBullet extends Bullet{
 		double rad = Math.toRadians(this.angle);
 		this.xLocation -= .5 * Math.cos(rad) * this.getSpeed() * render.VRR.time;
 		this.yLocation -= .5 * Math.sin(rad)  * this.getSpeed() * render.VRR.time;
-		
-		sudoku();
 	}
 }

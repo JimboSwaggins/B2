@@ -48,8 +48,7 @@ public class Badguy extends Entity{
 			TargetedBullet(GameWindow.character);
 			this.lastFiring = System.currentTimeMillis();
 		}
-		
-		sudoku();
+	
 	}
 
 }

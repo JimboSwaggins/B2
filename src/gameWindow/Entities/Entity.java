@@ -125,10 +125,10 @@ public abstract class Entity {
 	/**
 	 * Removes the entity from the update list if it is far enough beyond the screen
 	 */
-	public void sudoku() {
+	public boolean sudoku() {
 		if(this.xLocation > 1500||this.xLocation < -220||this.yLocation > 940||this.yLocation < -220) {
-			GameWindow.objList.remove(this);
-		}
+			return true;
+		}return false;
 	}
 	
 	

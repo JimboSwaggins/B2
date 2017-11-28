@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -49,6 +50,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	
 	private void ini_Systems() {
 		objList = new ArrayList<Entity>();
+		trash = new ArrayList<Entity>();
 	}
 	
 	public void keyPressed(KeyEvent Key) {
@@ -172,17 +174,19 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	
 	public GAMESTATE status = GAMESTATE.MENU;
 	public void calcUpdate() {
-		ArrayList<Entity> temp = GameWindow.objList;
-//		for(int i = 0; i < objList.size(); i++) {
-//			try {
-// 				temp.get(i).update();
-//				}catch(NullPointerException e) {
-//					e.printStackTrace();
-//				}
-//		}
-		for (Entity e : temp) {
-			e.update();
+		
+		for(int i = 0; i < objList.size();i++) {
+			objList.get(i).update();
 		}
+		Iterator<Entity> itr = objList.iterator();
+		while (itr.hasNext()){
+		    if (itr.next().sudoku()){
+		        itr.remove();
+		    }
+		}
+		
+		
+		
 	}
 	
 	private static BufferedImage image1;
