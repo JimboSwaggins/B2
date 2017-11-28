@@ -8,7 +8,7 @@ import gameWindow.GameWindow;
 public class Bullet extends Entity{
 private Color color;
 	public Bullet(double xLocation, double yLocation, double deltaX, double deltaY, double speed, int size, boolean hostile, Color color) {
-		super(xLocation, yLocation, 1, deltaX, deltaY);
+		super(xLocation, yLocation, 1, deltaX, deltaY, 5, 5, 5, 5);
 		this.xVelocity =  deltaX;
 		this.yVelocity =  deltaY;
 		this.acceleration = speed;
@@ -20,8 +20,6 @@ private Color color;
 		}else {
 			this.entityType = eTYPE.HARMLESS;
 		}
-	
-		this.size = size;
 		GameWindow.objList.add(this);
 			
 	}
@@ -41,21 +39,7 @@ private Color color;
 
 }
 
-class targetedBullet extends Bullet{
-	public targetedBullet(double xLocation, double yLocation, double angle, double speed, int size,
-			boolean hostile, Color color) {
-		super(xLocation, yLocation, 0, 0, speed, size, hostile, color);
-		this.angle = angle;
-	}
-	@Override 
-	public void update() {
-		double rad = Math.toRadians(this.angle);
-		this.xLocation -= .5 * Math.cos(rad) * this.getSpeed() * render.VRR.time;
-		this.yLocation -= .5 * Math.sin(rad)  * this.getSpeed() * render.VRR.time;
-		
-		sudoku();
-	}
-}
+
 
 class bouncingBullet extends targetedBullet{
 	public bouncingBullet(double xLocation, double yLocation, double angle, double speed, int size, boolean hostile, Color color) {

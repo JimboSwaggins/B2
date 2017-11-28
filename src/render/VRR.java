@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class VRR {
 	protected static long currentTime;
 	protected static ArrayList<Long> listOfTimes = new ArrayList<Long>();
-	protected static ArrayList<Long> deltaX = new ArrayList<Long>();
+	public static ArrayList<Long> deltaX = new ArrayList<Long>();
 	
 	static double frameTime = 0;
 	static double weight = 0;

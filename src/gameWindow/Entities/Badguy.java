@@ -8,13 +8,6 @@ import gameWindow.GameWindow;
 public class Badguy extends Entity{
 
 	
-
-	@SuppressWarnings("unused")
-	private int reloadTime;
-	@SuppressWarnings("unused")
-	private long lastShot;
-	private long lastFiring;
-	
 	
 	public double angleTarget() {
 		double i = 0;
@@ -22,9 +15,17 @@ public class Badguy extends Entity{
 		//get angle to player and stuff here.
 		
 	}
-	
+	/**
+	 * 
+	 * @param xLocation
+	 * The Current X Location of the badGuy
+	 * @param yLocation
+	 * The Current YLocation of the badGuy
+	 * @param Health
+	 * The Current Health of the badGuy
+	 */
 	public Badguy(double xLocation, double yLocation, int Health) {
-		super(xLocation, yLocation, Health, 0, 0);
+		super(xLocation, yLocation, Health, 0, 0, 60.0, 60.0, 5, 5);
 		this.entityType = eTYPE.HOSTILE;
 		this.reloadTime = 300;
 		this.lastShot = System.currentTimeMillis();
@@ -48,8 +49,6 @@ public class Badguy extends Entity{
 			this.lastFiring = System.currentTimeMillis();
 		}
 		
-		
-	
 		sudoku();
 	}
 

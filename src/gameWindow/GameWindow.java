@@ -1,5 +1,7 @@
 package gameWindow;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,8 +15,7 @@ import javax.swing.WindowConstants;
 import gameWindow.Entities.Badguy;
 import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
-import mech.gameCalculate;
-import render.gameRender;
+import render.VRR;
 
 public class GameWindow extends JFrame implements Runnable, KeyListener {
 
@@ -26,6 +27,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	public static Graphics2D g;
 	public static Player character;
 	public static ArrayList<Entity> objList;
+	public static ArrayList<Entity> trash;
 	
 	private void createAndShowGUI() {
 		mainWindow = new JFrame();
@@ -59,7 +61,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 					}
 				}
 			}
-			if(keyCode == KeyEvent.VK_RIGHT) {
+			else if(keyCode == KeyEvent.VK_RIGHT) {
 				for(int i = 0; i < objList.size(); i++) {
 					if(objList.get(i).CtrlCheck()) {
 						objList.get(i).setRight(true);
@@ -75,7 +77,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 					}
 				}
 			}
-			if(keyCode == KeyEvent.VK_DOWN){
+			else if(keyCode == KeyEvent.VK_DOWN){
 				for(int i = 0; i < objList.size(); i++) {
 					if(objList.get(i).CtrlCheck()) {
 						objList.get(i).setDown(true);
@@ -91,7 +93,6 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 				}
 			}
 			if(keyCode == KeyEvent.VK_Z){
-
 				for(int i = 0; i < objList.size(); i++) {
 					if(objList.get(i).CtrlCheck()) {
 						objList.get(i).setFiring(true);
@@ -101,20 +102,19 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	}
 
 	@Override
-	
 	public void keyReleased(KeyEvent Key) {
 		int keyCode = Key.getKeyCode();
 		if(keyCode == KeyEvent.VK_LEFT){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setLeft(false);
+			for(Entity e: objList) {
+				if(e.CtrlCheck()) {
+					e.setLeft(false);
 				}
 			}
 		}
 		if(keyCode == KeyEvent.VK_RIGHT){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setRight(false);
+			for(Entity e: objList) {
+				if(e.CtrlCheck()) {
+					e.setRight(false);
 				}
 			}
 		}
@@ -148,7 +148,7 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		}
 		
 	}
-	public static Badguy memer;
+	public Badguy memer;
 	public void run() {
 		boolean running = true;
 		                                                                                                            
@@ -156,8 +156,8 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		character = new Player(400, 400);
 		memer = new Badguy(93, 39, 1);
 		while(running) {
-			gameCalculate.update();
-			gameRender.update();
+			calcUpdate();
+			renderUpdate();
 		}
 	}
 	
@@ -166,6 +166,59 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		this.run();
 	}
 	
+	public enum GAMESTATE{
+		MENU,
+	}
+	
+	public GAMESTATE status = GAMESTATE.MENU;
+	public void calcUpdate() {
+		ArrayList<Entity> temp = GameWindow.objList;
+//		for(int i = 0; i < objList.size(); i++) {
+//			try {
+// 				temp.get(i).update();
+//				}catch(NullPointerException e) {
+//					e.printStackTrace();
+//				}
+//		}
+		for (Entity e : temp) {
+			e.update();
+		}
+	}
+	
+	private static BufferedImage image1;
+	
+	private static String LifeNum;
+	public static void setLifeNum(int i) {LifeNum = Integer.toString(i);}
+	
+	private static String Score;
+	public static void setScore(int i) {Score = Integer.toString(i);}
+	
+	public static void renderUpdate() {	
+		image  = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_RGB);
+		Graphics g2  = image.getGraphics();
+		g2.drawImage(image, 0, 0, null);
+		g2.setColor(Color.BLACK);
+		g2.fillRect(0, 0, 1280, 720);
+
+		g2.setColor(Color.GREEN);
+		g2.drawString("DEBUG STRING", 50, 400);
+
+		g2.setColor(Color.RED);
+		g2.drawString(VRR.deltaX.toString(), 50, 50);
+		g2.drawString("Lives :" + LifeNum, 60, 60);
+		g2.drawString("Score : " + Score, 60, 70);
+
+		g2.drawString(String.valueOf(GameWindow.objList.size()), 70, 80);
+		for(int i = 0; i < objList.size(); i++) {
+			objList.get(i).draw(g2);
+		}
+		
+		
+		g2 = drawBoard.getGraphics();
+		g2.drawImage(image, 0, 0, null);
+		//DRAW IMAGES OF STUFF HERE
+		VRR.ping();
+	}
 	
 	@Override
 	public void keyTyped(KeyEvent arg0) {

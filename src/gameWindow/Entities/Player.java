@@ -20,14 +20,19 @@ public class Player extends Entity{
 	//GOTTA GO FAST
 
 
+	/**
+	 * 
+	 * @param x
+	 * Sets the starting XLocation of the player
+	 * @param y
+	 * Sets the starting YLocation of the player
+	 */
+	
+	
 	public Player(int x, int y) {
-		super(x, y, 100, 0, 0);
+		super(x, y, 100, 0, 0, 30.0, 30.0, 5, 5);
 		GameWindow.objList.add(this);
 		this.acceleration = .01;
-		this.height = 30.0;
-		this.width = 30.0;
-
-		this.hitR = 5;
 
 		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
