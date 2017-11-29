@@ -88,7 +88,7 @@ public abstract class Entity {
 	/**
 	 * The score of the player.
 	 */
-	protected static int Score;
+	protected int Score;
 	
 	/**
 	 * The health of the entity.
@@ -115,10 +115,22 @@ public abstract class Entity {
 	
 	public double xVelocity;
 	public double getXV() { return (this.xVelocity);}
+	
+	/**
+	 * 
+	 * @param i new xVelocity
+	 */
 	public void setXV(int i) {this.xVelocity = i;}
 	
 
+	/**
+	 * Current yLocation in pixels of the entity
+	 */
 	protected double yLocation;
+	
+	/**
+	 * Current velocity on the y-axis in pixels/second of the entity.
+	 */
 	protected double yVelocity;
   
 	
@@ -194,24 +206,33 @@ public abstract class Entity {
 	public boolean isFocused() {return this.isFocus;}
 	
 	/**
-	 * Sets the starting xLocation of the Entity
+	 * 
 	 * @param xLocation
-	 * Sets the starting yLocation of the Entity
+	 * Sets the starting xLocation of the Entity
+	 * 
 	 * @param yLocation
-	 * Sets the starting health of the Entity
+	 * Sets the starting yLocation of the Entity
+	 * 
 	 * @param Health
-	 * Sets the starting yVelocity of the Entity
+	 * Sets the starting health of the Entity
+	 * 
 	 * @param yVelocity
-	 * Sets the starting xVelocity of the Entity
+	 * Sets the starting yVelocity of the Entity
+	 * 
 	 * @param xVelocity
-	 * Sets the starting height of the Entity
+	 * Sets the starting xVelocity of the Entity
+	 * 
 	 * @param Height
-	 * Sets the starting width of the Entity
+	 * Sets the starting height of the Entity
+	 * 
 	 * @param Width
-	 * Sets the starting size of the Entity
+	 * Sets the starting width of the Entity
+	 * 
 	 * @param size
-	 * Sets the hitbox radius of the entity
+	 * Sets the starting size of the Entity
+	 * 
 	 * @param hitR
+	 * Sets the hitbox radius of the Entity
 	 */
 	public Entity(double xLocation, double yLocation, int Health, double yVelocity, double xVelocity, double Height, double Width,int size,
 			int hitR) {
@@ -232,12 +253,12 @@ public abstract class Entity {
 	 * 
 	 * Fires a bullet targeted at another entity. All calculations are handled internally.
 	 */
-	public void TargetedBullet(Entity target) {
+	public void TargetedBullet(Entity target, double speed, int size) {
 				double tempX = this.xLocation - target.xLocation;
 				double tempY = this.yLocation - target.yLocation;
 			
 				float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-				new Bullet(this.xLocation, this.yLocation, 1,  0, 1, 5, false, Color.RED);
+				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED);
 	}
 	
 	protected void Bullet(double xVelocity, double yVelocity) {

@@ -17,15 +17,13 @@ public class Player extends Entity{
 
 	private long reloadTime;
 
-	//GOTTA GO FAST
 
 
-	/**
-	 * 
+	/** 
 	 * @param x
-	 * Sets the starting XLocation of the player
+	 * Starting xLocation of the player
 	 * @param y
-	 * Sets the starting YLocation of the player
+	 * Starting yLocation of the player
 	 */
 	
 	
@@ -48,7 +46,6 @@ public class Player extends Entity{
 	public void update() {
 		this.acceleration = .0024 * render.VRR.time;
 		if(!isFocus) {
-	
 				if(isUp) {
 					if(yVelocity > 0.1) {
 						this.yVelocity -= this.yVelocity * .01 * render.VRR.time;

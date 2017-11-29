@@ -30,6 +30,9 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	public static ArrayList<Entity> objList;
 	public static ArrayList<Entity> trash;
 	
+	/**
+	 * Creates the main game window.
+	 */
 	private void createAndShowGUI() {
 		mainWindow = new JFrame();
 		mainWindow.setSize(1280, 720);
@@ -48,6 +51,9 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		mainWindow.setVisible(true);
 	}
 	
+	/**
+	 * Initiates the game array, which holds every entity in the game.
+	 */
 	private void ini_Systems() {
 		objList = new ArrayList<Entity>();
 		trash = new ArrayList<Entity>();
@@ -151,6 +157,10 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		
 	}
 	public Badguy memer;
+	
+	/**
+	 * Initializes the game.
+	 */
 	public void run() {
 		boolean running = true;
 		                                                                                                            
@@ -162,7 +172,9 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 			renderUpdate();
 		}
 	}
-	
+	/**
+	 * Initializes the game.
+	 */
 	public GameWindow() {
 		createAndShowGUI();
 		this.run();
@@ -173,8 +185,12 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 	}
 	
 	public GAMESTATE status = GAMESTATE.MENU;
-	public void calcUpdate() {
-		
+	
+	/**
+	 * Updates every entity in the game. First, it checks through the list and updates every entity.
+	 * Then, it removes every entity that is outside the bounds of the game. 
+	 */
+	private void calcUpdate() {
 		for(int i = 0; i < objList.size();i++) {
 			objList.get(i).update();
 		}
@@ -189,14 +205,16 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		
 	}
 	
-	private static BufferedImage image1;
-	
 	private static String LifeNum;
 	public static void setLifeNum(int i) {LifeNum = Integer.toString(i);}
 	
 	private static String Score;
 	public static void setScore(int i) {Score = Integer.toString(i);}
 	
+	
+	/**
+	 * Renders the entities in the game to the main JFrame.
+	 */
 	public static void renderUpdate() {	
 		image  = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_RGB);
 		Graphics g2  = image.getGraphics();

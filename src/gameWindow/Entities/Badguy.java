@@ -45,7 +45,7 @@ public class Badguy extends Entity{
 		this.xLocation += 0.1;
 		this.yLocation += 0.1;
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
-			TargetedBullet(GameWindow.character);
+
 			this.lastFiring = System.currentTimeMillis();
 		}
 	
