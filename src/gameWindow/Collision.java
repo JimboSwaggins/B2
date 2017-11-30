@@ -1,4 +1,4 @@
-package gameWindow.Entities;
+package gameWindow;
 
 public class Collision implements Runnable{
 
