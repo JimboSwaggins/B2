@@ -168,8 +168,10 @@ public class GameWindow extends JFrame implements Runnable, KeyListener {
 		character = new Player(400, 400);
 		memer = new Badguy(93, 39, 1);
 		while(running) {
+			new Collision();
 			calcUpdate();
 			renderUpdate();
+
 		}
 	}
 	/**
