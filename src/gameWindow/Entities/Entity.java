@@ -280,10 +280,13 @@ public abstract class Entity {
 	protected void Bullet(double xVelocity, double yVelocity) {
 		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, false, Color.RED);
 	}
+	
 	public abstract void update();
 	
 	public abstract void draw(Graphics g);
 
+
+	
 	public double getDistance(Entity e) {
 		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
 		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
