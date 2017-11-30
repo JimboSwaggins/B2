@@ -159,13 +159,6 @@ public abstract class Entity {
 		this.yLocation += this.toYVelocity(angle, acceleration);
 	}
 	
-	/**
-	 * 
-	 * @param velocity
-	 * @param factor
-	 * @return
-	 */
-	
 	protected double slow(double velocity,double factor){
 		if(velocity < .05 && velocity > -.05){
 			return(0);
@@ -178,11 +171,34 @@ public abstract class Entity {
 	
 	private int bombs;
 	public void bombsArithmetic(int deltaValue) {this.bombs += deltaValue;}
+	
+	/**
+	 * 
+	 * @return number of bombs in an entity's possession.
+	 */
 	public int getBombs() {return this.bombs;}
 	
+	/**
+	 * Number of lives that an entity has.
+	 */
 	private int lives;
+	
+	/**
+	 * Overwrites the number of lives that an entity has. 
+	 * @param i new amount of lives that the entity has.
+	 */
 	public void setLives(int i) {this.lives = i;}
+	
+	/**
+	 * Adds a number to an entity's number of lives. Use negative numbers to subtract lives from the entities lives. 
+	 * @param deltaValue number to be added or subtracted.
+	 */
 	public void livesArithmetic(int deltaValue) {this.lives += deltaValue;}
+	
+	/**
+	 * Returns the number of lives than entity has.
+	 * @return 
+	 */
 	public int getLives() {return this.lives;}
 	
 	protected boolean isRight;
