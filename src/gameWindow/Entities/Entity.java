@@ -283,6 +283,10 @@ public abstract class Entity {
 	
 	public abstract void update();
 	
+	/**
+	 * Draws the entity on the screen.
+	 * @param g its a pre-initialized graphics thing
+	 */
 	public abstract void draw(Graphics g);
 
 

@@ -18,7 +18,7 @@ import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
 import render.VRR;
 
-public class GameWindow extends JFrame implements Runnable, KeyListener {
+public class GameWindow extends Thread implements Runnable, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	public JFrame mainWindow;

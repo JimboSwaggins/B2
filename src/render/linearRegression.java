@@ -1,10 +1,10 @@
 package render;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class linearRegression {
-
-	public static int nextFrame(ArrayList<Long> deltaX) {
+	
+	public static int nextFrame(List<Long> deltaX) {
 		if(!(deltaX.size() < 4)) {
 		int n = deltaX.size();
 		int sumX = 0;
