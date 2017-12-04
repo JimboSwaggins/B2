@@ -8,6 +8,8 @@
 
 package render;
 
+import gameWindow.GameWindow;
+
 public class powerLaw extends VRR{
 	private double sumLnX;
 	//will store summation of natural log of x
@@ -69,6 +71,10 @@ public class powerLaw extends VRR{
 		 * [                                                      ]
 		 * 
 		 * 
+		 * 
+		 * if(GameWindow.objList.get(i).getDistance(GameWindow.objList.get(b)) > GameWindow.objList.get(i).getR()) {
+					System.out.println("AAAAAAAA");
+				}
 		 * 
 		 * [                                                                     ]
 		 * |                         [                  [(SUM(ln x))(SUM(ln s))]]|
