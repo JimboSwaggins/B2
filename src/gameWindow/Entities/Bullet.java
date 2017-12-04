@@ -14,7 +14,7 @@ private Color color;
 		this.acceleration = speed;
 	  
 		this.color = color;
-		
+		this.hitR = (double)size/2;
 		if(hostile) {
 			this.entityType = eTYPE.HOSTILE;
 		}else {

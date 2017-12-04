@@ -61,20 +61,10 @@ public class Player extends Entity{
 					}	
 				}
 				if(isRight) {
-					if(xVelocity < -0.1) {
-						this.xVelocity -= this.xVelocity * .01 * render.VRR.time;
-					}
-					else{
-						this.xVelocity += acceleration;
-					}	
+					this.xLocation += 1;
 				}
 				if(isLeft) {
-					if(xVelocity > 0.1) {
-						this.xVelocity -= this.xVelocity * .01 * render.VRR.time;
-					}
-					else{
-						this.xVelocity -= acceleration;
-					}	
+					this.xLocation -= 1;
 				}
 
 				//System.out.println(this.xVelocity);
@@ -104,7 +94,6 @@ public class Player extends Entity{
 					this.yVelocity = this.slow(this.yVelocity, 0.99);
 				}
 
-				this.xLocation +=  .6 * this.xVelocity * render.VRR.time;
 				this.yLocation +=  .6 * this.yVelocity * render.VRR.time;
 			}
 		if(isFocus) {
