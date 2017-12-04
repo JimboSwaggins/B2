@@ -64,6 +64,10 @@ public abstract class Entity {
 	 * The radius of the entity's hitbox, which extends from the point (hitX, hitY)
 	 */
 	protected double hitR;
+	public double getR() {
+		return this.hitR;
+	}
+	
 	
 	protected final int size;
 	
