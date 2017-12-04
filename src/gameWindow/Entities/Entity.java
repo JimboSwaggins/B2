@@ -241,6 +241,9 @@ public abstract class Entity {
 	 */
 	public int getLives() {return this.lives;}
 	
+	/**
+	 * 
+	 */
 	protected boolean isRight;
 	public void setRight(boolean input) {this.isRight = input;}
 	

@@ -159,7 +159,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public Badguy memer;
 	
 	/**
-	 * Initializes the game.
+	 * The main engine of the game
 	 */
 	public void run() {
 		boolean running = true;
