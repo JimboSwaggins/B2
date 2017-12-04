@@ -167,8 +167,15 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		ini_Systems();
 		character = new Player(400, 400);
 		memer = new Badguy(93, 39, 1);
+		
 		while(running) {
-			new Collision();
+			Collision cc = new Collision();
+			cc.start();
+			try {
+				cc.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			calcUpdate();
 			renderUpdate();
 
