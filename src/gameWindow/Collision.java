@@ -4,9 +4,7 @@ import gameWindow.Entities.Entity;
 
 public class Collision extends Thread{
 
-	public Collision() {
-		this.start();
-	}
+
 	@Override
 	public void run() {
 		for(int i = 0; i < GameWindow.objList.size(); i++) {
