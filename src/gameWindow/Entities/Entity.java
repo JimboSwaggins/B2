@@ -113,7 +113,15 @@ public abstract class Entity {
 	 */
 	public void setX(int i) {this.xLocation = i;}
 	
+	/**
+	 * the Xvelocity of an object.
+	 */
 	public double xVelocity;
+	
+	/**
+	 * 
+	 * @return the objects xVelocity
+	 */
 	public double getXV() { return (this.xVelocity);}
 	
 	/**
@@ -144,21 +152,46 @@ public abstract class Entity {
 	}
 	
 	
+	/**
+	 * Calculates the speed that an object is moving on the x-axis if it is moving at an angle
+	 * 
+	 * @param theta the angle that the object is moving
+	 * @param acceleration the base acceleration
+	 * @return the value that the object should be moving on the x-axis based on the angle it is moving.
+	 */
 	public double toXVelocity(double theta, double acceleration) {
 		theta = Math.cos(theta);
 		return(theta * acceleration);
 	}
 	
+	/**
+	 * Calculates the speed that an object is moving on the y-axis if it is moving at an angle
+	 * 
+	 * @param theta the angle that the object is moving
+	 * @param acceleration the base acceleration
+	 * @return the value that the object should be moving on the y-axis based on the angle it is moving.
+	 */
 	public double toYVelocity(double theta, double acceleration) {
 		theta = Math.sin(theta);
 		return(-1 * theta * acceleration);
 	}
 	
+	/**
+	 * moves an object based on an angle with left being 0 degrees. 
+	 * @param angle The angle that the object should be moving.
+	 * @param acceleration The instantaneous acceleration of the object
+	 */
 	public void updateOnAngle(double angle, double acceleration) {
 		this.xLocation += this.toXVelocity(angle, acceleration);
 		this.yLocation += this.toYVelocity(angle, acceleration);
 	}
 	
+	/**
+	 * Dampens the speed of the object if it's not moving.
+	 * @param velocity The current velocity of the object
+	 * @param factor The factor by which the object should be dampened
+	 * @return The new speed of the object
+	 */
 	protected double slow(double velocity,double factor){
 		if(velocity < .05 && velocity > -.05){
 			return(0);
@@ -168,8 +201,15 @@ public abstract class Entity {
 		}
 	}
 	
-	
+	/**
+	 * The number of bombs that an entity has.
+	 */
 	private int bombs;
+	
+	/**
+	 * Modifies the number of bombs that an entity has.
+	 * @param deltaValue The amount by which bombs should be changed.
+	 */
 	public void bombsArithmetic(int deltaValue) {this.bombs += deltaValue;}
 	
 	/**
