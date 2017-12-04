@@ -9,7 +9,7 @@ public class Collision extends Thread{
 			for(int b = i + 1; b < GameWindow.objList.size(); b++) {
 				//System.out.println(GameWindow.objList.get(i) + " " + GameWindow.objList.get(b));
 				if(GameWindow.objList.get(i).getDistance(GameWindow.objList.get(b)) < GameWindow.objList.get(i).getR()) {
-					System.out.println("AAAAAAAA");
+					//System.out.println("AAAAAAAA");
 				}
 
 
