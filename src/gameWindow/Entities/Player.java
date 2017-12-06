@@ -126,7 +126,7 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
-			Bullet(0, this.yVelocity);
+			Bullet(0, this.yVelocity, false);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

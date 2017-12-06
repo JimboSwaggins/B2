@@ -328,6 +328,9 @@ public abstract class Entity {
 		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, false, Color.RED);
 	}
 	
+	protected void Bullet(double xVelocity, double yVelocity,boolean hostile) {
+		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, hostile, Color.RED);
+	}
 	public abstract void update();
 	
 	/**

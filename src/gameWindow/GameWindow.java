@@ -227,12 +227,10 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public static void renderUpdate() {	
 		image  = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_RGB);
 		Graphics g2  = image.getGraphics();
-		g2.drawImage(image, 0, 0, null);
+		//g2.drawImage(image, 0, 0, null);
 		g2.setColor(Color.BLACK);
 		g2.fillRect(0, 0, 1280, 720);
 
-		g2.setColor(Color.GREEN);
-		g2.drawString("DEBUG STRING", 50, 400);
 
 		g2.setColor(Color.RED);
 		g2.drawString(VRR.deltaX.toString(), 50, 50);
