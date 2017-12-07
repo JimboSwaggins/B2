@@ -23,10 +23,12 @@ public abstract class Entity {
 	/**
 	 * 
 	 * The classification of the entity in relation to the player:
+	 * 
 	 * HARMLESS indicates that it cannot hurt the player, but can hurt enemies.
+	 * 
 	 * HOSTILE indicates that it can hurt the player, and is hurt by HARMLESS entities.
 	 * CTRL indicates that it is player controlled.
-	 * @author nahte
+	 * 
 	 *
 	 */
 	protected enum eTYPE{
@@ -34,6 +36,11 @@ public abstract class Entity {
 	}
 	
 	protected eTYPE entityType;
+	
+	/**
+	 * Determines whether or  not an entity is controlled by the player
+	 * @return a boolean based off the entity type, true if controllable, false if anything else.
+	 */
 	public boolean CtrlCheck(){
 		if(this.entityType.equals(eTYPE.CRTL)) {
 			return true;
@@ -64,6 +71,11 @@ public abstract class Entity {
 	 * The radius of the entity's hitbox, which extends from the point (hitX, hitY)
 	 */
 	protected double hitR;
+	
+	/**
+	 * Returns the radius of the callers hitbox.
+	 * @return The hitbox radius as a double.
+	 */
 	public double getR() {
 		return this.hitR;
 	}
@@ -241,13 +253,9 @@ public abstract class Entity {
 	
 	/**
 	 * Returns the number of lives than entity has.
-	 * @return 
+	 * @return number of lives an entity has.
 	 */
 	public int getLives() {return this.lives;}
-	
-	/**
-	 * 
-	 */
 	protected boolean isRight;
 	public void setRight(boolean input) {this.isRight = input;}
 	
@@ -264,6 +272,10 @@ public abstract class Entity {
 	public void setFiring(boolean input) {this.isFiring = input;}
 	public boolean isFiring() {return this.isFiring;}
 	
+	
+	/**
+	 * Whether or not the current entity is focused (Player only).
+	 */
 	protected boolean isFocus;
 	public void setFocus(boolean input) {this.isFocus = input;}
 	public boolean isFocused() {return this.isFocus;}
@@ -310,6 +322,31 @@ public abstract class Entity {
 		this.hitR = hitR;
 	}
 	
+	
+	
+	/**
+	 * Fires a bullet from the entity that calls the method. Calls the bullet constructor with default parameters. This method always fires friendly bullets.
+	 * @param xVelocity The xVelocity of the fired bullet.
+	 * @param yVelocity The yVelocity of the fired bullet.
+	 * 
+	 * 
+	 */
+	protected void Bullet(double xVelocity, double yVelocity) {
+		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, false, Color.RED);
+	}
+	
+	/**
+	 * Fires a bullet from the entity that calls the method. Calls the bullet constructor with default parameters. Bullets can be friendly or hostile
+	 * @param xVelocity The xVelocity of the fired bullet.
+	 * @param yVelocity The yVelocity of the fired bullet.
+	 * @param hostile If true, the bullet will be hostile to players. 
+	 * 
+	 * .
+	 */
+	protected void Bullet(double xVelocity, double yVelocity,boolean hostile) {
+		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, hostile, Color.RED);
+	}
+	
 	/**
 	 * The target that the bullet will be aimed at.
 	 * @param target
@@ -324,13 +361,9 @@ public abstract class Entity {
 				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED);
 	}
 	
-	protected void Bullet(double xVelocity, double yVelocity) {
-		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, false, Color.RED);
-	}
-	
-	protected void Bullet(double xVelocity, double yVelocity,boolean hostile) {
-		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, hostile, Color.RED);
-	}
+	/**
+	 * Updates the current entity. Completely abstract.
+	 */
 	public abstract void update();
 	
 	/**
@@ -340,7 +373,11 @@ public abstract class Entity {
 	public abstract void draw(Graphics g);
 
 
-	
+	/**
+	 * Standard distance formula.
+	 * @param e The target entity
+	 * @return the distance between the entity that calls this method and the target (e) in pixels as a double.
+ 	 */
 	public double getDistance(Entity e) {
 		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
 		double yTest = Math.pow((this.yLocation - e.yLocation), 2);

@@ -13,11 +13,7 @@ import gameWindow.GameWindow;
 public class Player extends Entity{
 
 	private double acceleration;
-	private long lastFiring;
-
-	private long reloadTime;
-
-
+	
 
 	/** 
 	 * @param x
@@ -42,7 +38,6 @@ public class Player extends Entity{
 		this.Score = 0;;
 	}
 
-	//TODO Add speed. In other words, get the delta working based on how long the player has been moving or something, and also make it so that the player's movement speed is based of of their base speed oar acceleration
 	public void update() {
 		this.acceleration = .0024 * render.VRR.time;
 		if(!isFocus) {
