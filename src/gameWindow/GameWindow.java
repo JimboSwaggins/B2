@@ -164,7 +164,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public void run() {
 		boolean running = true;
 		ArrayList<Collision> cc = new ArrayList<Collision>();
-		int numThreads = 4;
+		int numThreads = 8;
 		int lastC;
 		                                                                                                            
 		ini_Systems();
