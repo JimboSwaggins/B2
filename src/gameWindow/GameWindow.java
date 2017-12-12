@@ -168,7 +168,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public void run() {
 		boolean running = true;
 		ArrayList<Collision> cc = new ArrayList<Collision>();
-		int numThreads = 15;
+		int numC1Threads = 15;
 		int lastC;
 		                                                                                                            
 		ini_Systems();
@@ -187,8 +187,8 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			
 			lastC = 0;
 			cc.clear();
-			for(int i = 1; i <= numThreads; i++){
-				int nextC = (int) (GameWindow.objList.size() * (1 - Math.sqrt(1 - (i/numThreads))));
+			for(int i = 1; i <= numC1Threads; i++){
+				int nextC = (int) (GameWindow.notBullets.size() * (1 - Math.sqrt(1 - (i/numC1Threads))));
 				cc.add(new Collision(lastC, nextC));
 				lastC = nextC;
 				cc.get(i-1).start();
