@@ -8,8 +8,6 @@
 
 package render;
 
-import gameWindow.GameWindow;
-
 public class powerLaw extends VRR{
 	private double sumLnX;
 	//will store summation of natural log of x

@@ -21,7 +21,7 @@ public class VRR {
 	 * Also, use "//TODO" in order to mark down stuff that needs to be done. It'll come up in the "Tasks" portion of the GUI in eclipse. If there is something you need me to do, 
 	 * do that. Thanks.
 	 */
-	public static void ping() {
+	/*public static void ping() {
 		
 		currentTime = (long) System.currentTimeMillis();
 		listOfTimes.add(0, currentTime);
@@ -54,6 +54,6 @@ public class VRR {
 		frameTime /= 3.5;
 		return(frameTime);
 	}
-
+*/
 
 }

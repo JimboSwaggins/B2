@@ -50,5 +50,10 @@ public class Badguy extends Entity{
 		}
 	
 	}
+	@Override
+	public boolean isBullet() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

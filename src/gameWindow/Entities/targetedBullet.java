@@ -32,7 +32,7 @@ class targetedBullet extends Bullet{
 	@Override
 	public void update() {
 		double rad = Math.toRadians(this.angle);
-		this.xLocation -= .5 * Math.cos(rad) * this.getSpeed() * render.VRR.time;
-		this.yLocation -= .5 * Math.sin(rad)  * this.getSpeed() * render.VRR.time;
+		this.xLocation -= .5 * Math.cos(rad) * this.getSpeed();
+		this.yLocation -= .5 * Math.sin(rad)  * this.getSpeed();
 	}
 }

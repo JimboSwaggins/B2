@@ -3,9 +3,6 @@ package gameWindow.Entities;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import gameWindow.GameWindow;
-import mech.Point;
-
 public abstract class Entity {
 	
 	/**
@@ -35,6 +32,10 @@ public abstract class Entity {
 		CRTL, HOSTILE, HARMLESS
 	}
 	
+	public eTYPE geteTYPE() {
+		return this.entityType;
+	}
+	public abstract boolean isBullet();
 	protected eTYPE entityType;
 	
 	/**

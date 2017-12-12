@@ -20,7 +20,6 @@ import render.VRR;
 
 public class GameWindow extends Thread implements Runnable, KeyListener {
 
-	private static final long serialVersionUID = 1L;
 	public JFrame mainWindow;
 	public static JPanel drawBoard;
 	boolean running; 
@@ -164,14 +163,21 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public void run() {
 		boolean running = true;
 		ArrayList<Collision> cc = new ArrayList<Collision>();
-		int numThreads = 8;
+		int numThreads = 15;
 		int lastC;
 		                                                                                                            
 		ini_Systems();
 		character = new Player(400, 400);
 		memer = new Badguy(93, 39, 1);
-		
+	
+		long nextFrame =  (System.nanoTime() + 16666667);	
 		while(running) {
+			
+			
+			while(System.nanoTime() <= nextFrame) {
+					
+			}
+			nextFrame += 16666667;
 			calcUpdate();
 			
 			lastC = 0;
@@ -221,9 +227,6 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		        itr.remove();
 		    }
 		}
-		
-		
-		
 	}
 	
 	private static String LifeNum;
@@ -258,7 +261,6 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		g2 = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
 		//DRAW IMAGES OF STUFF HERE
-		VRR.ping();
 	}
 	
 	@Override

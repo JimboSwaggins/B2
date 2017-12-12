@@ -19,6 +19,7 @@ private Color color;
  * @param hostile Whether or not the bullet will hurt the player
  * @param color The Color of the bullet
  */
+	
 	public Bullet(double xLocation, double yLocation, double deltaX, double deltaY, double speed, int size, boolean hostile, Color color) {
 		super(xLocation, yLocation, 1, deltaX, deltaY, 5, 5, 5, 5);
 		this.xVelocity =  deltaX;
@@ -47,6 +48,11 @@ private Color color;
 	public void update() {
 		this.xLocation +=  .6 * this.xVelocity * render.VRR.time;
 		this.yLocation +=  .6 * this.yVelocity * render.VRR.time - .5 * this.acceleration * render.VRR.time;
+	}
+	@Override
+	public boolean isBullet() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

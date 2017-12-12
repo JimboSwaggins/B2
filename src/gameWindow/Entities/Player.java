@@ -12,9 +12,7 @@ import gameWindow.GameWindow;
 
 public class Player extends Entity{
 
-	private double acceleration;
-	
-
+	//private double acceleration;
 	/** 
 	 * @param x
 	 * Starting xLocation of the player
@@ -32,34 +30,37 @@ public class Player extends Entity{
 		this.setFocus(false);
 		this.setFiring(false);
 
-		this.reloadTime = 100;
+		this.reloadTime = 1;
 
 		this.setLives(3);
 		this.Score = 0;;
 	}
 
 	public void update() {
-		this.acceleration = .0024 * render.VRR.time;
+		this.acceleration = .1;
 		if(!isFocus) {
 				if(isUp) {
-					if(yVelocity > 0.1) {
-						this.yVelocity -= this.yVelocity * .01 * render.VRR.time;
+					/*if(yVelocity > 0.1) {
+						this.yVelocity -= this.yVelocity * .01;
 					}
 					this.yVelocity -= acceleration;
+					*/
+					this.yLocation -= 2;
 				}
 				if(isDown) {
-					if(yVelocity < -0.1) {
-						this.yVelocity -= this.yVelocity * .01 * render.VRR.time;
-					}
-					else{
-						this.yVelocity += acceleration;
-					}	
+//					if(yVelocity < -0.1) {
+//						this.yVelocity -= this.yVelocity * .01;
+//					}
+//					else{
+//						this.yVelocity += acceleration;
+//					}
+					this.yLocation += 2;
 				}
 				if(isRight) {
-					this.xLocation += 1;
+					this.xLocation += 2;
 				}
 				if(isLeft) {
-					this.xLocation -= 1;
+					this.xLocation -= 2;
 				}
 
 				//System.out.println(this.xVelocity);
@@ -89,7 +90,7 @@ public class Player extends Entity{
 					this.yVelocity = this.slow(this.yVelocity, 0.99);
 				}
 
-				this.yLocation +=  .6 * this.yVelocity * render.VRR.time;
+				this.yLocation +=  .6 * this.yVelocity;
 			}
 		if(isFocus) {
 			if(isUp) {
@@ -156,6 +157,12 @@ public class Player extends Entity{
 
 
 		// System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
+	}
+
+	@Override
+	public boolean isBullet() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
