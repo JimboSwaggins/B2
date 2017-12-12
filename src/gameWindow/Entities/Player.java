@@ -163,5 +163,9 @@ public class Player extends Entity{
 		}
 		
 	}
+	@Override
+	public boolean sudoku() {
+		return false;
+	}
 
 }

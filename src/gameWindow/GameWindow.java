@@ -227,9 +227,10 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			objList.get(i).update();
 		}
 		Iterator<Entity> itr = objList.iterator();
+
 		while (itr.hasNext()){
-		    if (itr.next().sudoku()){
-		        itr.remove();
+		    if(itr.next().sudoku()){
+		    	itr.remove();
 		    }
 		}
 	}

@@ -1,5 +1,7 @@
 package gameWindow;
 
+import gameWindow.Entities.Entity;
+
 public class Collision extends Thread{
 	private int start;
 	private int end;
@@ -11,18 +13,16 @@ public class Collision extends Thread{
 	}
 
 	public void run() {
-		for(int i = this.start; i < this.end; i++) {
-			if(!GameWindow.objList.get(i).isBullet()){
-				for(int b = i + 1; b < this.end; b++) {
+		for(Entity e: GameWindow.notBullets) {
+			if(!e.isBullet()){
+				for(Entity b : GameWindow.bullets) {
 					//System.out.println(GameWindow.objList.get(i) + " " + GameWindow.objList.get(b));
-					if(GameWindow.objList.get(i).getDistance(GameWindow.objList.get(b)) < GameWindow.objList.get(i).getR() + GameWindow.objList.get(b).getR()) {
-						System.out.println( i + " and " + b);
-						if(GameWindow.objList.get(b).isBullet()) {
-							
-						}
+					if(e.getDistance(b) < e.getR() + b.getR()&&!e.CtrlCheck()) {
+						b.setX(8000);
 					}
 				}
 			}
 		}
 	}
 }
+

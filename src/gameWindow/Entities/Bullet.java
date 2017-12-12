@@ -24,7 +24,7 @@ private Color color;
 		super(xLocation, yLocation, 1, 5, 5, 5, 5);
 	  
 		this.color = color;
-		this.hitR = (double)size/2;
+		this.hitR = 4;
 		if(hostile) {
 			this.entityType = eTYPE.HOSTILE;
 		}else {
@@ -45,7 +45,7 @@ private Color color;
 	 */
 	public void update() {
 		this.xLocation += 0;
-		this.yLocation -=  30;
+		this.yLocation -=  3;
 	}
 	@Override
 	public boolean isBullet() {
