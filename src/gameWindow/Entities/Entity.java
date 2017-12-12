@@ -350,6 +350,7 @@ public abstract class Entity {
 	 */
 	public abstract void draw(Graphics g);
 
+	public abstract void doOnHit(Entity e);
 
 	/**
 	 * Standard distance formula.

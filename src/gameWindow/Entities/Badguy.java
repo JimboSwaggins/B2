@@ -56,5 +56,10 @@ public class Badguy extends Entity{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	@Override
+	public void doOnHit(Entity e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -45,12 +45,17 @@ private Color color;
 	 */
 	public void update() {
 		this.xLocation += 0;
-		this.yLocation +=  3;
+		this.yLocation -=  30;
 	}
 	@Override
 	public boolean isBullet() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	@Override
+	public void doOnHit(Entity e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

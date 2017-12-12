@@ -156,4 +156,12 @@ public class Player extends Entity{
 		return false;
 	}
 
+	@Override
+	public void doOnHit(Entity e) {
+		if(e.isBullet()) {
+			
+		}
+		
+	}
+
 }
