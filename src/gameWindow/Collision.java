@@ -13,6 +13,7 @@ public class Collision extends Thread{
 	}
 
 	public void run() {
+
 		for(Entity e: GameWindow.notBullets) {
 			if(!e.isBullet()){
 				for(Entity b : GameWindow.bullets) {
