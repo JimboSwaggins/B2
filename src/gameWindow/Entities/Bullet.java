@@ -20,11 +20,8 @@ private Color color;
  * @param color The Color of the bullet
  */
 	
-	public Bullet(double xLocation, double yLocation, double deltaX, double deltaY, double speed, int size, boolean hostile, Color color) {
-		super(xLocation, yLocation, 1, deltaX, deltaY, 5, 5, 5, 5);
-		this.xVelocity =  deltaX;
-		this.yVelocity =  deltaY;
-		this.acceleration = speed;
+	public Bullet(double xLocation, double yLocation, double speed, int size, boolean hostile, Color color) {
+		super(xLocation, yLocation, 1, 5, 5, 5, 5);
 	  
 		this.color = color;
 		this.hitR = (double)size/2;
@@ -34,6 +31,7 @@ private Color color;
 			this.entityType = eTYPE.HARMLESS;
 		}
 		GameWindow.objList.add(this);
+		GameWindow.bullets.add(this);
 			
 	}
 	public void draw(Graphics g) {
@@ -46,8 +44,8 @@ private Color color;
 	 * Updates the position of the bullet based on the current framerate and a base number.
 	 */
 	public void update() {
-		this.xLocation +=  .6 * this.xVelocity * render.VRR.time;
-		this.yLocation +=  .6 * this.yVelocity * render.VRR.time - .5 * this.acceleration * render.VRR.time;
+		this.xLocation += 0;
+		this.yLocation +=  3;
 	}
 	@Override
 	public boolean isBullet() {
@@ -55,32 +53,4 @@ private Color color;
 		return true;
 	}
 
-}
-
-
-
-class bouncingBullet extends targetedBullet{
-	public bouncingBullet(double xLocation, double yLocation, double angle, double speed, int size, boolean hostile, Color color) {
-		super(xLocation, yLocation, angle, speed, size, hostile, color);
-	}
-	
-	public void update() {
-		
-		if(this.xLocation > 1280) {
-			this.xLocation = 1280;
-			this.xVelocity *=  -1;
-		}
-		if(this.yLocation > 720) {
-			this.yLocation = 720;
-			this.yVelocity *= -1;
-		}
-		if(this.xLocation < 0) {
-			this.xLocation = 0;
-			this.xVelocity *=  -1;
-		}
-		if(this.yLocation < 0) {
-			this.yLocation = 0;
-			this.yVelocity *= -1;
-		}
-	}
 }

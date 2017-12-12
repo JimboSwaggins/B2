@@ -22,9 +22,10 @@ public class Player extends Entity{
 	
 	
 	public Player(int x, int y) {
-		super(x, y, 100, 0, 0, 30.0, 30.0, 5, 5);
+		super(x, y, 100, 30.0, 30.0, 5, 5);
 		GameWindow.objList.add(this);
-		this.acceleration = .01;
+		GameWindow.notBullets.add(this);
+
 
 		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
@@ -37,7 +38,7 @@ public class Player extends Entity{
 	}
 
 	public void update() {
-		this.acceleration = .1;
+
 		if(!isFocus) {
 				if(isUp) {
 					/*if(yVelocity > 0.1) {
@@ -67,30 +68,20 @@ public class Player extends Entity{
 
 				if(this.xLocation > 1280) {
 					this.xLocation = 1280;
-					this.xVelocity *=  -.75;
 				}
 				if(this.yLocation > 720) {
 					this.yLocation = 720;
-					this.yVelocity *= -.75;
+	
 				}
 				if(this.xLocation < 0) {
 					this.xLocation = 0;
-					this.xVelocity *=  -.75;
+				
 				}
 				if(this.yLocation < 0) {
 					this.yLocation = 0;
-					this.yVelocity *= -.75;
+
 				}
 
-
-				if(! isLeft && ! isRight) {
-					this.xVelocity = this.slow(this.xVelocity, 0.99);
-				}
-				if(! isUp && ! isDown) {
-					this.yVelocity = this.slow(this.yVelocity, 0.99);
-				}
-
-				this.yLocation +=  .6 * this.yVelocity;
 			}
 		if(isFocus) {
 			if(isUp) {
@@ -122,7 +113,7 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
-			Bullet(0, this.yVelocity, false);
+			Bullet(false);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

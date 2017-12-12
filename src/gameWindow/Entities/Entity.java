@@ -3,6 +3,9 @@ package gameWindow.Entities;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gameWindow.GameWindow;
+import mech.Point;
+
 public abstract class Entity {
 	
 	/**
@@ -35,7 +38,6 @@ public abstract class Entity {
 	public eTYPE geteTYPE() {
 		return this.entityType;
 	}
-	public abstract boolean isBullet();
 	protected eTYPE entityType;
 	
 	/**
@@ -131,24 +133,6 @@ public abstract class Entity {
 	public void setX(int i) {this.xLocation = i;}
 	
 	/**
-	 * the Xvelocity of an object.
-	 */
-	public double xVelocity;
-	
-	/**
-	 * 
-	 * @return the objects xVelocity
-	 */
-	public double getXV() { return (this.xVelocity);}
-	
-	/**
-	 * 
-	 * @param i new xVelocity
-	 */
-	public void setXV(int i) {this.xVelocity = i;}
-	
-
-	/**
 	 * Current yLocation in pixels of the entity
 	 */
 	protected double yLocation;
@@ -156,12 +140,7 @@ public abstract class Entity {
 	/**
 	 * Current velocity on the y-axis in pixels/second of the entity.
 	 */
-	protected double yVelocity;
-  
-	
-	/**
-	 * Removes the entity from the update list if it is far enough beyond the screen
-	 */
+
 	public boolean sudoku() {
 		if(this.xLocation > 1500||this.xLocation < -220||this.yLocation > 940||this.yLocation < -220) {
 			return true;
@@ -310,13 +289,11 @@ public abstract class Entity {
 	 * @param hitR
 	 * Sets the hitbox radius of the Entity
 	 */
-	public Entity(double xLocation, double yLocation, int Health, double yVelocity, double xVelocity, double Height, double Width,int size,
+	public Entity(double xLocation, double yLocation, int Health, double Height, double Width,int size,
 			int hitR) {
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
 		this.Health = Health;
-		this.yVelocity = yVelocity;
-		this.xVelocity = xVelocity;
 		this.height = Height;
 		this.width = Width;
 		this.size = size;
@@ -332,8 +309,8 @@ public abstract class Entity {
 	 * 
 	 * 
 	 */
-	protected void Bullet(double xVelocity, double yVelocity) {
-		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, false, Color.RED);
+	protected void Bullet() {
+		new Bullet(this.xLocation, this.yLocation, 1, 5, false, Color.RED);
 	}
 	
 	/**
@@ -344,8 +321,8 @@ public abstract class Entity {
 	 * 
 	 * .
 	 */
-	protected void Bullet(double xVelocity, double yVelocity,boolean hostile) {
-		new Bullet(this.xLocation, this.yLocation, xVelocity, yVelocity, 1, 5, hostile, Color.RED);
+	protected void Bullet(boolean hostile) {
+		new Bullet(this.xLocation, this.yLocation, 1, 5, hostile, Color.RED);
 	}
 	
 	/**
@@ -385,6 +362,5 @@ public abstract class Entity {
 		return Math.sqrt(xTest + yTest);
 	}
 	
-	
-	
+	public abstract boolean isBullet();
 }

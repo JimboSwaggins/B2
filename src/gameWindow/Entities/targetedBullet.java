@@ -22,7 +22,7 @@ class targetedBullet extends Bullet{
 	 */
 	public targetedBullet(double xLocation, double yLocation, double angle, double speed, int size,
 			boolean hostile, Color color) {
-		super(xLocation, yLocation, 0, 0, speed, size, hostile, color);
+		super(xLocation, yLocation, speed, size, hostile, color);
 		this.angle = angle;
 	}
 	 

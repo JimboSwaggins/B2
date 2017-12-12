@@ -29,6 +29,9 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public static ArrayList<Entity> objList;
 	public static ArrayList<Entity> trash;
 	
+	public static ArrayList<Entity> notBullets;
+	public static ArrayList<Entity> bullets;
+	
 	/**
 	 * Creates the main game window.
 	 */
@@ -56,6 +59,8 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	private void ini_Systems() {
 		objList = new ArrayList<Entity>();
 		trash = new ArrayList<Entity>();
+		bullets = new ArrayList<Entity>();
+		notBullets = new ArrayList<Entity>();
 	}
 	
 	public void keyPressed(KeyEvent Key) {
