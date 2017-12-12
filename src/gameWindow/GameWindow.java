@@ -168,12 +168,16 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public void run() {
 		boolean running = true;
 		ArrayList<Collision> cc = new ArrayList<Collision>();
-		int numC1Threads = 15;
+		int numC1Threads = 1;
 		int lastC;
 		                                                                                                            
 		ini_Systems();
 		character = new Player(400, 400);
 		memer = new Badguy(93, 39, 1);
+		
+		for(int i = 0; i < 500; i ++) {
+			new Badguy(Math.random() * 1280 , Math.random() * 720, 1);
+		}
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	
 		while(running) {
@@ -182,10 +186,20 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			while(System.nanoTime() <= nextFrame) {
 					
 			}
-			nextFrame += 16666667;
 			calcUpdate();
 			
+			nextFrame += 16666667;
 			lastC = 0;
+			
+			if(GameWindow.notBullets.size() >= 16) {
+				numC1Threads = 3;
+			}
+			else if(GameWindow.notBullets.size() >= 100) {
+				numC1Threads = 7;
+			}
+			else {
+				numC1Threads = 1;
+			}
 			cc.clear();
 			for(int i = 1; i <= numC1Threads; i++){
 				int nextC = (int) (GameWindow.notBullets.size() * (1 - Math.sqrt(1 - (i/numC1Threads))));
