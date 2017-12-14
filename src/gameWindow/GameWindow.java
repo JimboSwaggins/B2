@@ -8,6 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -205,13 +207,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 				int nextC = (int) (GameWindow.notBullets.size() * (1 - Math.sqrt(1 - (i/numC1Threads))));
 				cc.add(new Collision(lastC, nextC));
 				lastC = nextC;
-				cc.get(i-1).start();
 				
-				try {
-					cc.get(i-1).join();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 			}
 			
 			renderUpdate();
