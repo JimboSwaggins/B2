@@ -15,24 +15,13 @@ public class Collision extends Thread{
 			if(!GameWindow.notBullets.get(i).isBullet()){
 				for(int b = i + 1; b < this.end; b++) {
 					//System.out.println(GameWindow.objList.get(i) + " " + GameWindow.objList.get(b));
-					if(GameWindow.notBullets.get(i).geteTYPE().equals(GameWindow.bullets.get(b).geteTYPE())) {
-						continue;
-					}
-					else if(Math.abs(GameWindow.notBullets.get(i).getX() - GameWindow.bullets.get(b).getX()) >= 50) {
-						continue;
-					}
-					else if(Math.abs(GameWindow.notBullets.get(i).getY() - GameWindow.bullets.get(b).getY()) >= 50) {
-						continue;
-					}
-					else if(GameWindow.notBullets.get(i).getDistance(GameWindow.bullets.get(b)) < GameWindow.notBullets.get(i).getR() + GameWindow.bullets.get(b).getR()) {
-						if(GameWindow.notBullets.get(i).CtrlCheck()&&!GameWindow.bullets.get(b).geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
-							GameWindow.bullets.get(b).setX(8000);
-							//GameWindow.notBullets.get(i).setX(8000);\
-							continue;
-						}else if(GameWindow.notBullets.get(i).geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
-							GameWindow.bullets.get(b).setX(8000);
-							GameWindow.notBullets.get(i).hMath(GameWindow.bullets.get(b).getDamage());
-							break;
+					if(GameWindow.notBullets.get(i).getDistance(GameWindow.notBullets.get(b)) < GameWindow.notBullets.get(i).getR() + GameWindow.notBullets.get(b).getR()) {
+						System.out.println( i + " and " + b);
+						if(GameWindow.notBullets.get(i).CtrlCheck()) {
+							GameWindow.notBullets.get(b).setX(8000);
+						}
+						if(GameWindow.notBullets.get(b).CtrlCheck()) {
+							GameWindow.notBullets.get(i).setX(8000);
 						}
 					}
 				}
