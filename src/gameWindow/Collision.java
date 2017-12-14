@@ -2,7 +2,9 @@ package gameWindow;
 
 import gameWindow.Entities.Entity;
 
-public class Collision extends Thread implements Runnable{
+public class Collision implements Runnable{
+
+
 	
 
 	public Collision(){
