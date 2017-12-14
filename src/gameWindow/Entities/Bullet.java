@@ -20,11 +20,12 @@ private Color color;
  * @param color The Color of the bullet
  */
 	
-	public Bullet(double xLocation, double yLocation, double speed, int size, boolean hostile, Color color) {
-		super(xLocation, yLocation, 1, 5, 5, 5, 5);
-	  
+	public Bullet(double xLocation, double yLocation, double speed, int size, boolean hostile, Color color, int damage) {
+		super(xLocation, yLocation, 1, 5, 5, size, 5);
+		this.acceleration = speed;
 		this.color = color;
 		this.hitR = 4;
+		this.damage = -1 *  damage;
 		if(hostile) {
 			this.entityType = eTYPE.HOSTILE;
 		}else {
@@ -45,17 +46,13 @@ private Color color;
 	 */
 	public void update() {
 		this.xLocation += 0;
-		this.yLocation -=  3;
+		this.yLocation -=3;
 	}
 	@Override
 	public boolean isBullet() {
 		// TODO Auto-generated method stub
 		return true;
 	}
-	@Override
-	public void doOnHit(Entity e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }
