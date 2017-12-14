@@ -202,7 +202,6 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 					bullets.remove(objList.get(i));
 				}else {
 					notBullets.remove(objList.get(i));
-
 				}
 			}
 		}
