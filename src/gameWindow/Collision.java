@@ -25,6 +25,7 @@ public class Collision extends Thread implements Runnable{
 				else if(GameWindow.notBullets.get(i).getDistance(GameWindow.bullets.get(b)) < GameWindow.notBullets.get(i).getR() + GameWindow.bullets.get(b).getR()) {
 					if(GameWindow.notBullets.get(i).CtrlCheck()&&!GameWindow.bullets.get(b).geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
 						GameWindow.bullets.get(b).setX(8000);
+						GameWindow.character.livesArithmetic(-1);
 						//GameWindow.notBullets.get(i).setX(8000);\
 						continue;
 					}else if(GameWindow.notBullets.get(i).geteTYPE().equals(Entity.eTYPE.HOSTILE)) {

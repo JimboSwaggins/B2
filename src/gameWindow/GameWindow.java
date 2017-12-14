@@ -1,6 +1,7 @@
 package gameWindow;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -232,17 +233,17 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		g2.fillRect(0, 0, 1280, 720);
 
 
-		g2.setColor(Color.RED);
-		g2.drawString(VRR.deltaX.toString(), 50, 50);
-		g2.drawString("Lives :" + LifeNum, 60, 60);
-		g2.drawString("Score : " + Score, 60, 70);
-
+	
 		g2.drawString(String.valueOf(GameWindow.objList.size()), 70, 80);
 		for(int i = 0; i < objList.size(); i++) {
 			objList.get(i).draw(g2);
 		}
 
-
+		g2.setColor(Color.BLUE);
+		g2.drawString(VRR.deltaX.toString(), 50, 50);g2.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+		g2.drawString("Lives :" + character.getLives(), 60, 60);
+		g2.drawString("Score : " + Score, 60, 70);
+		
 		g2 = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
 		//DRAW IMAGES OF STUFF HERE

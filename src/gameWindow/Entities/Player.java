@@ -25,8 +25,7 @@ public class Player extends Entity{
 		super(x, y, 100, 30.0, 30.0, 5, 5);
 		GameWindow.objList.add(this);
 		GameWindow.notBullets.add(this);
-
-
+		
 		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
 		this.setFiring(false);
