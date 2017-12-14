@@ -120,9 +120,9 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 */
 	public void run() {
 		boolean running = true;
-		ArrayList<Collision> cc = new ArrayList<Collision>();
-		int numC1Threads = 1;
-		int lastC;
+		//ArrayList<Collision> cc = new ArrayList<Collision>();
+		//int numC1Threads = 1;
+		//int lastC;
 
 		ini_Systems();
 		character = new Player(400, 400);
@@ -142,7 +142,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			calcUpdate();
 
 			nextFrame += 16666667;
-			lastC = 0;
+			//lastC = 0;
 
 			executor.execute(new Collision());
 			/*if(GameWindow.bullets.size() >= 10000) {

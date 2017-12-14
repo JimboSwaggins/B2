@@ -3,9 +3,7 @@ package gameWindow;
 import gameWindow.Entities.Entity;
 
 public class Collision extends Thread implements Runnable{
-	private int start;
-	private int end;
-
+	
 
 	public Collision(){
 		
