@@ -5,6 +5,8 @@ import gameWindow.Entities.Entity;
 public class Collision implements Runnable{
 
 
+	
+
 	public Collision(){
 		
 	}
