@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -162,10 +163,13 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	}
 	public Badguy memer;
 	
+	private ExecutorService executor;
+	
 	/**
 	 * The main engine of the game
 	 */
 	public void run() {
+		
 		boolean running = true;
 		ArrayList<Collision> cc = new ArrayList<Collision>();
 		int numC1Threads = 1;
