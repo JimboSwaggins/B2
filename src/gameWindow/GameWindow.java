@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -58,8 +59,8 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 * Initiates the game array, which holds every entity in the game.
 	 */
 	private void ini_Systems() {
+		executor = Executors.newCachedThreadPool();
 		objList = new ArrayList<Entity>();
-		trash = new ArrayList<Entity>();
 		bullets = new ArrayList<Entity>();
 		notBullets = new ArrayList<Entity>();
 	}
@@ -169,7 +170,6 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 * The main engine of the game
 	 */
 	public void run() {
-		
 		boolean running = true;
 		ArrayList<Collision> cc = new ArrayList<Collision>();
 		int numC1Threads = 1;
@@ -179,7 +179,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		character = new Player(400, 400);
 		memer = new Badguy(93, 39, 1);
 		
-		for(int i = 0; i < 500; i ++) {
+		for(int i = 0; i < 5000; i ++) {
 			new Badguy(Math.random() * 1280 , Math.random() * 720, 1);
 		}
 	
@@ -209,17 +209,11 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 				int nextC = (int) (GameWindow.notBullets.size() * (1 - Math.sqrt(1 - (i/numC1Threads))));
 				cc.add(new Collision(lastC, nextC));
 				lastC = nextC;
-				cc.get(i-1).start();
-				
-				try {
-					cc.get(i-1).join();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				executor.execute(cc.get(i-1));
 			}
 			
 			renderUpdate();
-
+			
 		}
 	}
 	/**

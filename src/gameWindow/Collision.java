@@ -1,6 +1,6 @@
 package gameWindow;
 
-public class Collision extends Thread{
+public class Collision implements Runnable{
 	private final int start;
 	private final int end;
 
