@@ -8,6 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,8 +28,8 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public static BufferedImage image;
 	public static Graphics2D g;
 	public static Player character;
-public static ArrayList<Entity> objList;
-	
+	public static ArrayList<Entity> objList;
+
 	public static ArrayList<Entity> notBullets;
 	public static ArrayList<Entity> bullets;
 
@@ -55,9 +57,12 @@ public static ArrayList<Entity> objList;
 	/**
 	 * Initiates the game array, which holds every entity in the game.
 	 */
+	private ExecutorService executor;
+
+
 	private void ini_Systems() {
 		objList = new ArrayList<Entity>();
-
+		executor = Executors.newCachedThreadPool();
 		bullets = new ArrayList<Entity>();
 		notBullets = new ArrayList<Entity>();
 	}
@@ -65,50 +70,22 @@ public static ArrayList<Entity> objList;
 	public void keyPressed(KeyEvent Key) {
 		int keyCode = Key.getKeyCode();
 		if(keyCode == KeyEvent.VK_LEFT){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setLeft(true);
-					objList.get(i).setDirection(4);
-				}
-			}
+			character.setLeft(true);
 		}
 		else if(keyCode == KeyEvent.VK_RIGHT) {
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setRight(true);
-					objList.get(i).setDirection(2);
-				}
-			}
+			character.setRight(true);
 		}
 		if(keyCode == KeyEvent.VK_UP){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setUp(true);
-					objList.get(i).setDirection(1);
-				}
-			}
+			character.setUp(true);
 		}
 		else if(keyCode == KeyEvent.VK_DOWN){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setDown(true);
-					objList.get(i).setDirection(3);
-				}
-			}
+			character.setDown(true);
 		}
 		if(keyCode == KeyEvent.VK_SHIFT){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setFocus(true);
-				}
-			}
+			character.setFocus(true);
 		}
 		if(keyCode == KeyEvent.VK_Z){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setFiring(true);
-				}
-			}
+			character.setFiring(true);
 		}
 	}
 
@@ -116,46 +93,23 @@ public static ArrayList<Entity> objList;
 	public void keyReleased(KeyEvent Key) {
 		int keyCode = Key.getKeyCode();
 		if(keyCode == KeyEvent.VK_LEFT){
-			for(Entity e: objList) {
-				if(e.CtrlCheck()) {
-					e.setLeft(false);
-				}
-			}
+			character.setLeft(false);
 		}
 		if(keyCode == KeyEvent.VK_RIGHT){
-			for(Entity e: objList) {
-				if(e.CtrlCheck()) {
-					e.setRight(false);
-				}
-			}
+			character.setRight(false);
+
 		}
 		if(keyCode == KeyEvent.VK_UP){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setUp(false);
-				}
-			}
+			character.setUp(false);
 		}
 		if(keyCode == KeyEvent.VK_DOWN){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setDown(false);
-				}
-			}
+			character.setDown(false);
 		}
 		if(keyCode == KeyEvent.VK_SHIFT){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setFocus(false);
-				}
-			}
+			character.setFocus(false);
 		}
 		if(keyCode == KeyEvent.VK_Z){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setFiring(false);
-				}
-			}
+			character.setFiring(false);
 		}
 
 	}
@@ -189,7 +143,9 @@ public static ArrayList<Entity> objList;
 
 			nextFrame += 16666667;
 			lastC = 0;
-			if(GameWindow.bullets.size() >= 10000) {
+
+			executor.execute(new Collision());
+			/*if(GameWindow.bullets.size() >= 10000) {
 				numC1Threads = 11;
 			}
 			else if(GameWindow.bullets.size() >= 1000) {
@@ -214,7 +170,7 @@ public static ArrayList<Entity> objList;
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-			}
+			}*/
 
 			renderUpdate();
 
@@ -246,7 +202,7 @@ public static ArrayList<Entity> objList;
 					bullets.remove(objList.get(i));
 				}else {
 					notBullets.remove(objList.get(i));
-				
+
 				}
 			}
 		}

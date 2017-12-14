@@ -2,19 +2,18 @@ package gameWindow;
 
 import gameWindow.Entities.Entity;
 
-public class Collision extends Thread{
+public class Collision extends Thread implements Runnable{
 	private int start;
 	private int end;
 
 
-	public Collision(int START, int END){
-		this.start = START;
-		this.end = END;
+	public Collision(){
+		
 	}
 
 	public void run() {
 		for(int i = 0; i < GameWindow.notBullets.size(); i++) {
-			for(int b = this.start; b < this.end; b++) {
+			for(int b = 0; b < GameWindow.bullets.size(); b++) {
 				//System.out.println(GameWindow.objList.get(i) + " " + GameWindow.objList.get(b));
 				if(GameWindow.notBullets.get(i).geteTYPE().equals(GameWindow.bullets.get(b).geteTYPE())) {
 					continue;
