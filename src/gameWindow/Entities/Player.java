@@ -46,7 +46,7 @@ public class Player extends Entity{
 					}
 					this.yVelocity -= acceleration;
 					*/
-					this.yLocation -= 2;
+					this.yLocation -= 4;
 				}
 				if(isDown) {
 //					if(yVelocity < -0.1) {
@@ -55,13 +55,13 @@ public class Player extends Entity{
 //					else{
 //						this.yVelocity += acceleration;
 //					}
-					this.yLocation += 2;
+					this.yLocation += 4;
 				}
 				if(isRight) {
-					this.xLocation += 2;
+					this.xLocation += 4;
 				}
 				if(isLeft) {
-					this.xLocation -= 2;
+					this.xLocation -= 4;
 				}
 
 				//System.out.println(this.xVelocity);
@@ -85,16 +85,16 @@ public class Player extends Entity{
 			}
 		if(isFocus) {
 			if(isUp) {
-				this.yLocation -= 0.5;
+				this.yLocation -= 1.5;
 			}
 			if(isDown) {
-				this.yLocation += 0.5;
+				this.yLocation += 1.5;
 			}
 			if(isRight) {
-				this.xLocation += 0.5;
+				this.xLocation += 1.5;
 			}
 			if(isLeft) {
-				this.xLocation -= 0.5;
+				this.xLocation -= 1.5;
 			}
 			if(this.xLocation > 1280) {
 				this.xLocation = 1280;
@@ -156,13 +156,8 @@ public class Player extends Entity{
 		return false;
 	}
 
-	@Override
-	public void doOnHit(Entity e) {
-		if(e.isBullet()) {
-			
-		}
-		
-	}
+
+	
 	@Override
 	public boolean sudoku() {
 		return false;

@@ -25,11 +25,12 @@ public class Badguy extends Entity{
 	 * The Current Health of the badGuy
 	 */
 	public Badguy(double xLocation, double yLocation, int Health) {
-		super(xLocation, yLocation, Health, 60.0, 60.0, 5, 5);
+		super(xLocation, yLocation, Health, 60.0, 60.0, 40, 40);
 		this.entityType = eTYPE.HOSTILE;
-		this.reloadTime = 300;
+		this.reloadTime = 1;
 		this.lastShot = System.currentTimeMillis();
 		this.hitR = 5;
+		this.t = 0;
 		GameWindow.objList.add(this);
 		GameWindow.notBullets.add(this);
 		this.lastFiring = System.currentTimeMillis();
@@ -42,24 +43,29 @@ public class Badguy extends Entity{
 		//TODO add a size constructor
 	}
 	
+	private double t;
+	
 	public void update() {
-		this.xLocation += 0.1;
-		this.yLocation += 0.1;
+		this.t++;
+		this.xLocation += 2*(double)Math.cos(t * 0.02);
+		this.yLocation += 2*(double)Math.sin(t * 0.02);
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
-
+			for(int i = 0; i <= 360;i+= 5) {
+				AngledBullet(i, 5, 4, 5);
+			}
 			this.lastFiring = System.currentTimeMillis();
 		}
 	
 	}
+	
+	/**
+	 * Always returns false because this entity is not a bullet.
+	 */
 	@Override
 	public boolean isBullet() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	@Override
-	public void doOnHit(Entity e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }
