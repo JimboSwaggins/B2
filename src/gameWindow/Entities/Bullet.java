@@ -52,10 +52,7 @@ private Color color;
 		// TODO Auto-generated method stub
 		return true;
 	}
-	@Override
-	public void doOnHit(Entity e) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 
 }
