@@ -72,6 +72,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		int keyCode = Key.getKeyCode();
 		if(keyCode == KeyEvent.VK_LEFT){
 			character.setLeft(true);
+			
 		}
 		else if(keyCode == KeyEvent.VK_RIGHT) {
 			character.setRight(true);

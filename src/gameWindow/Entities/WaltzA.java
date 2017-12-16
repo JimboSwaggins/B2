@@ -13,7 +13,7 @@ public class WaltzA extends Badguy{
 	}
 	public void update() {
 		for(int i = 0; i < choreo.length;i++) {
-
+			
 		}
 	}
 }
