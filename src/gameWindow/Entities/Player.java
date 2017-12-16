@@ -25,7 +25,8 @@ public class Player extends Entity{
 		super(x, y, 100, 30.0, 30.0, 5, 5);
 		GameWindow.objList.add(this);
 		GameWindow.notBullets.add(this);
-		
+
+
 		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
 		this.setFiring(false);
@@ -45,7 +46,7 @@ public class Player extends Entity{
 					}
 					this.yVelocity -= acceleration;
 					*/
-					this.yLocation -= 4;
+					this.yLocation -= 2;
 				}
 				if(isDown) {
 //					if(yVelocity < -0.1) {
@@ -54,13 +55,13 @@ public class Player extends Entity{
 //					else{
 //						this.yVelocity += acceleration;
 //					}
-					this.yLocation += 4;
+					this.yLocation += 2;
 				}
 				if(isRight) {
-					this.xLocation += 4;
+					this.xLocation += 2;
 				}
 				if(isLeft) {
-					this.xLocation -= 4;
+					this.xLocation -= 2;
 				}
 
 				//System.out.println(this.xVelocity);
@@ -84,16 +85,16 @@ public class Player extends Entity{
 			}
 		if(isFocus) {
 			if(isUp) {
-				this.yLocation -= 1.5;
+				this.yLocation -= 0.5;
 			}
 			if(isDown) {
-				this.yLocation += 1.5;
+				this.yLocation += 0.5;
 			}
 			if(isRight) {
-				this.xLocation += 1.5;
+				this.xLocation += 0.5;
 			}
 			if(isLeft) {
-				this.xLocation -= 1.5;
+				this.xLocation -= 0.5;
 			}
 			if(this.xLocation > 1280) {
 				this.xLocation = 1280;
@@ -155,8 +156,13 @@ public class Player extends Entity{
 		return false;
 	}
 
-
-	
+	@Override
+	public void doOnHit(Entity e) {
+		if(e.isBullet()) {
+			
+		}
+		
+	}
 	@Override
 	public boolean sudoku() {
 		return false;

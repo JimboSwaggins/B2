@@ -3,20 +3,20 @@ package gameWindow.Entities;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gameWindow.GameWindow;
+import mech.Point;
+
 public abstract class Entity {
 	
 	/**
 	 * Amount of time in milliseconds between shots fired by this entity
 	 */
 	protected int reloadTime;
-
+	@SuppressWarnings("unused")
 	protected long lastShot;
-	protected int damage;
-	public int getDamage() {
-		return this.damage;
-	}
+	
 	/**
-	 * The last time that the entity fired	
+	 * The last time that the entity fired
 	 */
 	protected long lastFiring;
 	
@@ -31,7 +31,7 @@ public abstract class Entity {
 	 * 
 	 *
 	 */
-	public enum eTYPE{
+	protected enum eTYPE{
 		CRTL, HOSTILE, HARMLESS
 	}
 	
@@ -113,10 +113,6 @@ public abstract class Entity {
 	 * The health of the entity.
 	 */
 	protected int Health;
-	public void hMath(int i) {
-		this.Health += i;
-	}
-	
 	
 	/**
 	 * The current xLocation of the entity.
@@ -141,21 +137,14 @@ public abstract class Entity {
 	 */
 	protected double yLocation;
 	
-	public double getY() {return this.yLocation;}
-	public void setY(double toSet) {this.yLocation = toSet;}
-	
 	/**
 	 * Current velocity on the y-axis in pixels/second of the entity.
 	 */
 
-	
 	public boolean sudoku() {
 		if(this.xLocation > 1500||this.xLocation < -220||this.yLocation > 940||this.yLocation < -220) {
 			return true;
-		}if(this.Health <= 0) {
-			return true;
-		}
-		return false;
+		}return false;
 	}
 	
 	
@@ -321,7 +310,7 @@ public abstract class Entity {
 	 * 
 	 */
 	protected void Bullet() {
-		new Bullet(this.xLocation, this.yLocation, 1, 5, false, Color.RED, 5);
+		new Bullet(this.xLocation, this.yLocation, 1, 5, false, Color.RED);
 	}
 	
 	/**
@@ -333,7 +322,7 @@ public abstract class Entity {
 	 * .
 	 */
 	protected void Bullet(boolean hostile) {
-		new Bullet(this.xLocation, this.yLocation, 1, 5, hostile, Color.RED, 5);
+		new Bullet(this.xLocation, this.yLocation, 1, 5, hostile, Color.RED);
 	}
 	
 	/**
@@ -342,17 +331,12 @@ public abstract class Entity {
 	 * 
 	 * Fires a bullet targeted at another entity. All calculations are handled internally.
 	 */
-	public double speed;
 	public void TargetedBullet(Entity target, double speed, int size) {
 				double tempX = this.xLocation - target.xLocation;
 				double tempY = this.yLocation - target.yLocation;
 			
 				float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED, 5);
-	}
-	
-	public void AngledBullet(double angle, double speed, int size, int damage) {
-		new targetedBullet(this.xLocation, this.yLocation, angle, speed, size, true, Color.RED, damage);
+				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED);
 	}
 	
 	/**
@@ -365,7 +349,8 @@ public abstract class Entity {
 	 * @param g its a pre-initialized graphics thing
 	 */
 	public abstract void draw(Graphics g);
-	
+
+	public abstract void doOnHit(Entity e);
 
 	/**
 	 * Standard distance formula.

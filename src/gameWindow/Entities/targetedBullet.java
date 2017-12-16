@@ -21,9 +21,8 @@ class targetedBullet extends Bullet{
 	 * The color that the bullet is drawn with
 	 */
 	public targetedBullet(double xLocation, double yLocation, double angle, double speed, int size,
-			boolean hostile, Color color, int damage) {
-		super(xLocation, yLocation, speed, size, hostile, color, damage);
-
+			boolean hostile, Color color) {
+		super(xLocation, yLocation, speed, size, hostile, color);
 		this.angle = angle;
 	}
 	 
