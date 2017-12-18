@@ -123,8 +123,8 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		ini_Systems();
 		character = new Player(400, 400);
 		
-		for(int i = 0; i < 2; i ++) {
-			new Badguy(Math.random() * 1280 , Math.random() * 720, 1000);
+		for(int i = 0; i < 1; i ++) {
+			new Badguy(Math.random() * 1280 , Math.random() * 720, 50);
 		}
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	

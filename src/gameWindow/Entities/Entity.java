@@ -435,6 +435,10 @@ public abstract class Entity implements Runnable{
 				float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
 				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED, 6);
 	}
+	
+	public void angledBullet(int angle, double speed, int size) {
+		new targetedBullet(this.xLocation, this.yLocation, angle, speed, size, false, Color.RED, 6);
+}
 
 
 
