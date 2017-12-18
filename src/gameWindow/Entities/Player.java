@@ -12,59 +12,43 @@ import gameWindow.GameWindow;
 
 public class Player extends Entity{
 
-	//private double acceleration;
 	/** 
 	 * @param x
 	 * Starting xLocation of the player
 	 * @param y
 	 * Starting yLocation of the player
 	 */
-	
-	
 	public Player(int x, int y) {
-		super(x, y, 100, 30.0, 30.0, 5, 5);
-		GameWindow.objList.add(this);
+		super(x, y, 100, 3, 30.0, 30.0, 5, 5);
+
 		GameWindow.notBullets.add(this);
 
-
+		GameWindow.lives = 3;
 		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
 		this.setFiring(false);
 
 		this.reloadTime = 1;
 
-		this.setLives(3);
-		this.Score = 0;;
 	}
 
+	
 	public void update() {
 
 		if(!isFocus) {
 				if(isUp) {
-					/*if(yVelocity > 0.1) {
-						this.yVelocity -= this.yVelocity * .01;
-					}
-					this.yVelocity -= acceleration;
-					*/
-					this.yLocation -= 2;
+					this.yLocation -= 4;
 				}
 				if(isDown) {
-//					if(yVelocity < -0.1) {
-//						this.yVelocity -= this.yVelocity * .01;
-//					}
-//					else{
-//						this.yVelocity += acceleration;
-//					}
-					this.yLocation += 2;
+					this.yLocation += 4;
 				}
 				if(isRight) {
-					this.xLocation += 2;
+					this.xLocation += 4;
 				}
 				if(isLeft) {
-					this.xLocation -= 2;
+					this.xLocation -= 4;
 				}
 
-				//System.out.println(this.xVelocity);
 
 				if(this.xLocation > 1280) {
 					this.xLocation = 1280;
@@ -113,7 +97,7 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
-			Bullet(false);
+			Bullet(false, 5);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
@@ -147,22 +131,21 @@ public class Player extends Entity{
 
 
 
-		// System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
+		
 	}
 
+	
+	
+	
+	
+	//System Methods
 	@Override
 	public boolean isBullet() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
-	public void doOnHit(Entity e) {
-		if(e.isBullet()) {
-			
-		}
-		
-	}
+
 	@Override
 	public boolean sudoku() {
 		return false;

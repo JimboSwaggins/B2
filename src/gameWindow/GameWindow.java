@@ -28,8 +28,6 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public static BufferedImage image;
 	public static Graphics2D g;
 	public static Player character;
-	public static ArrayList<Entity> objList;
-	public static ArrayList<Entity> trash;
 	
 	public static ArrayList<Entity> notBullets;
 	public static ArrayList<Entity> bullets;
@@ -60,105 +58,54 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 */
 	private void ini_Systems() {
 		executor = Executors.newCachedThreadPool();
-		objList = new ArrayList<Entity>();
+
 		bullets = new ArrayList<Entity>();
 		notBullets = new ArrayList<Entity>();
 	}
 	
 	public void keyPressed(KeyEvent Key) {
 		int keyCode = Key.getKeyCode();
-			if(keyCode == KeyEvent.VK_LEFT){
-				for(int i = 0; i < objList.size(); i++) {
-					if(objList.get(i).CtrlCheck()) {
-						objList.get(i).setLeft(true);
-						objList.get(i).setDirection(4);
-					}
-				}
-			}
-			else if(keyCode == KeyEvent.VK_RIGHT) {
-				for(int i = 0; i < objList.size(); i++) {
-					if(objList.get(i).CtrlCheck()) {
-						objList.get(i).setRight(true);
-						objList.get(i).setDirection(2);
-					}
-				}
-			}
-			if(keyCode == KeyEvent.VK_UP){
-				for(int i = 0; i < objList.size(); i++) {
-					if(objList.get(i).CtrlCheck()) {
-						objList.get(i).setUp(true);
-						objList.get(i).setDirection(1);
-					}
-				}
-			}
-			else if(keyCode == KeyEvent.VK_DOWN){
-				for(int i = 0; i < objList.size(); i++) {
-					if(objList.get(i).CtrlCheck()) {
-						objList.get(i).setDown(true);
-						objList.get(i).setDirection(3);
-					}
-				}
-			}
-			if(keyCode == KeyEvent.VK_SHIFT){
-				for(int i = 0; i < objList.size(); i++) {
-					if(objList.get(i).CtrlCheck()) {
-						objList.get(i).setFocus(true);
-					}
-				}
-			}
-			if(keyCode == KeyEvent.VK_Z){
-				for(int i = 0; i < objList.size(); i++) {
-					if(objList.get(i).CtrlCheck()) {
-						objList.get(i).setFiring(true);
-					}
-				}
-			}
+
+		if(keyCode == KeyEvent.VK_LEFT){
+			character.setLeft(true);
+			
+		}
+		else if(keyCode == KeyEvent.VK_RIGHT) {
+			character.setRight(true);
+		}
+		if(keyCode == KeyEvent.VK_UP){
+			character.setUp(true);
+		}
+		else if(keyCode == KeyEvent.VK_DOWN){
+			character.setDown(true);
+		}
+		if(keyCode == KeyEvent.VK_SHIFT){
+			character.setFocus(true);
+		}
+		if(keyCode == KeyEvent.VK_Z){
+			character.setFiring(true);
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent Key) {
 		int keyCode = Key.getKeyCode();
 		if(keyCode == KeyEvent.VK_LEFT){
-			for(Entity e: objList) {
-				if(e.CtrlCheck()) {
-					e.setLeft(false);
-				}
-			}
+			character.setLeft(false);
 		}
 		if(keyCode == KeyEvent.VK_RIGHT){
-			for(Entity e: objList) {
-				if(e.CtrlCheck()) {
-					e.setRight(false);
-				}
-			}
+			character.setRight(false);
 		}
 		if(keyCode == KeyEvent.VK_UP){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setUp(false);
-				}
-			}
+			character.setUp(false);
 		}
 		if(keyCode == KeyEvent.VK_DOWN){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setDown(false);
-				}
-			}
-		}
+			character.setDown(false);		}
 		if(keyCode == KeyEvent.VK_SHIFT){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setFocus(false);
-				}
-			}
+			character.setFocus(false);
 		}
 		if(keyCode == KeyEvent.VK_Z){
-			for(int i = 0; i < objList.size(); i++) {
-				if(objList.get(i).CtrlCheck()) {
-					objList.get(i).setFiring(false);
-				}
-			}
+			character.setFiring(false);
 		}
 		
 	}
@@ -171,14 +118,12 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 */
 	public void run() {
 		boolean running = true;
-
-		                                                                                                            
+                                                                                                        
 		ini_Systems();
 		character = new Player(400, 400);
-		memer = new Badguy(93, 39, 1);
 		
-		for(int i = 0; i < 5000; i ++) {
-			new Badguy(Math.random() * 1280 , Math.random() * 720, 1);
+		for(int i = 0; i < 1; i ++) {
+			new Badguy(Math.random() * 1280 , Math.random() * 720, 50);
 		}
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	
@@ -191,12 +136,12 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			calcUpdate();
 			
 			nextFrame += 16666667;
-			
-			
-			
-				executor.execute(new Collision());
-			
-			
+
+
+			for(Entity e: notBullets) {
+				executor.execute(e);
+			}
+
 			renderUpdate();
 			
 		}
@@ -220,11 +165,21 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 * Then, it removes every entity that is outside the bounds of the game. 
 	 */
 	private void calcUpdate() {
-		for(int i = 0; i < objList.size();i++) {
-			objList.get(i).update();
+		for(Entity e: bullets) {
+			e.update();
 		}
-		Iterator<Entity> itr = objList.iterator();
+		for(Entity e: notBullets) {
+			e.update();
+		}
+		Iterator<Entity> itr = notBullets.iterator();
 
+		while (itr.hasNext()){
+		    if(itr.next().sudoku()){
+		    	itr.remove();
+		    }
+		}
+		
+		itr = bullets.iterator();
 		while (itr.hasNext()){
 		    if(itr.next().sudoku()){
 		    	itr.remove();
@@ -232,12 +187,25 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		}
 	}
 	
-	private static String LifeNum;
-	public static void setLifeNum(int i) {LifeNum = Integer.toString(i);}
+	public static int lives;
 	
-	private static String Score;
-	public static void setScore(int i) {Score = Integer.toString(i);}
+	/**
+	 * Overwrites the number of lives that the player has. 
+	 * @param i new amount of lives that the player has.
+	 */
+	public void setLives(int i) {lives = i;}
 	
+	/**
+	 * Adds a number to the player's number of lives. Use negative numbers to subtract lives from the player's lives. 
+	 * @param deltaValue number to be added or subtracted.
+	 */
+	public void livesArithmetic(int deltaValue) {lives += deltaValue;}
+	
+	/**
+	 * Returns the number of lives that the player has.
+	 * @return number of lives the player has.
+	 */
+	public int getLives() {return lives;}
 	
 	/**
 	 * Renders the entities in the game to the main JFrame.
@@ -252,12 +220,14 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 
 		g2.setColor(Color.RED);
 		g2.drawString(VRR.deltaX.toString(), 50, 50);
-		g2.drawString("Lives :" + LifeNum, 60, 60);
-		g2.drawString("Score : " + Score, 60, 70);
+		g2.drawString("Lives :" + lives, 60, 60);
+		//g2.drawString("Score : " + score, 60, 70);
 
-		g2.drawString(String.valueOf(GameWindow.objList.size()), 70, 80);
-		for(int i = 0; i < objList.size(); i++) {
-			objList.get(i).draw(g2);
+		for(Entity e:bullets) {
+			e.draw(g2);
+		}
+		for(Entity e:notBullets) {
+			e.draw(g2);
 		}
 		
 		

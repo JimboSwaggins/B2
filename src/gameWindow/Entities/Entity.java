@@ -4,22 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import gameWindow.GameWindow;
-import mech.Point;
 
-public abstract class Entity {
+public abstract class Entity implements Runnable{
 	
-	/**
-	 * Amount of time in milliseconds between shots fired by this entity
-	 */
-	protected int reloadTime;
-	@SuppressWarnings("unused")
-	protected long lastShot;
-	
-	/**
-	 * The last time that the entity fired
-	 */
-	protected long lastFiring;
-	
+	//Classification values
 	/**
 	 * 
 	 * The classification of the entity in relation to the player:
@@ -31,7 +19,7 @@ public abstract class Entity {
 	 * 
 	 *
 	 */
-	protected enum eTYPE{
+	public enum eTYPE{
 		CRTL, HOSTILE, HARMLESS
 	}
 	
@@ -49,6 +37,13 @@ public abstract class Entity {
 			return true;
 			}return false;	
 	}
+	/**
+	 * Boolean based on whether or not caller is a bullet
+	 * @return true if entity is bullet, otherwise returns false
+	 */
+	public abstract boolean isBullet();
+	
+	//Metadata on Entities
 	
 	/**
 	 * The height of the entity.
@@ -59,16 +54,6 @@ public abstract class Entity {
 	 * The width of the entity
 	 */
 	protected final double width;
-	
-	/**
-	 * The xLocation of the center of the entity's hitbox
-	 */
-	protected double hitX;
-	
-	/**
-	 * The yLocation of the center of the entity's hitbox
-	 */
-	protected double hitY;
 	
 	/**
 	 * The radius of the entity's hitbox, which extends from the point (hitX, hitY)
@@ -82,19 +67,43 @@ public abstract class Entity {
 	public double getR() {
 		return this.hitR;
 	}
-	
-	
+	/**
+	 * The size of the entity.
+	 */
 	protected final int size;
-	
+	/**
+	 * The angle at which an entity is going to move. Only relevant to targeted bullets as of now.
+	 */
 	protected double angle;
-	public double getAngle() {return this.angle;}
+	/**
+	 * The speed of the entity
+	 */
+	protected double speed;
 	
-	protected double acceleration;
-	public void setSpeed(double newSpeed) {this.acceleration = newSpeed;}
-	public double getSpeed() {return this.acceleration;}
+	/**
+	 * Changes the speed of the caller
+	 * @param newSpeed The value that will be the caller's new speed
+	 */
+	public void setSpeed(double newSpeed) {this.speed = newSpeed;}
 	
+	/**
+	 * Gets the speed of the entity it is called on.
+	 * @return the speed of the entity it is called on.
+	 */
+	public double getSpeed() {return this.speed;}
 	
+	protected Color color;
+	
+	//Sprite related variables
+	/**
+	 * The direction that the entity is facing. Used for spritedrawing purposes.
+	 */
 	protected int direction;
+	
+	/**
+	 * Sets the direction of the entity that it is called on. Only used for spritedrawing purposes.
+	 * @param i the direction which the entity will now be facing.
+	 */
 	public void setDirection(int i) {
 		if(i <= 4&&i >= 0) {
 			this.direction = i;
@@ -104,18 +113,80 @@ public abstract class Entity {
 		}
 	}
 	
+	
+	//Player Only Variables
 	/**
 	 * The score of the player.
 	 */
 	protected int Score;
 	
 	/**
-	 * The health of the entity.
+	 * The number of bombs that the player has
 	 */
-	protected int Health;
+	private static int bombs;
 	
 	/**
-	 * The current xLocation of the entity.
+	 * Modifies the number of bombs that an entity has.
+	 * @param deltaValue The amount by which bombs should be changed.
+	 */
+	public void bombsArithmetic(int deltaValue) {bombs += deltaValue;}
+	
+	/**
+	 * 
+	 * @return number of bombs in an entity's possession.
+	 */
+	public int getBombs() {return bombs;}
+	
+	/**
+	 * Number of lives that the player has.
+	 */
+	protected static int lives;
+	
+	/**
+	 * Overwrites the number of lives that the player has. 
+	 * @param i new amount of lives that the player has.
+	 */
+	public void setLives(int i) {lives = i;}
+	
+	/**
+	 * Adds a number to the player's number of lives. Use negative numbers to subtract lives from the player's lives. 
+	 * @param deltaValue number to be added or subtracted.
+	 */
+	public void livesArithmetic(int deltaValue) {lives += deltaValue;}
+	
+	/**
+	 * Returns the number of lives that the player has.
+	 * @return number of lives the player has.
+	 */
+	public int getLives() {return lives;}
+	protected boolean isRight;
+	public void setRight(boolean input) {this.isRight = input;}
+	
+	protected boolean isLeft;
+	public void setLeft(boolean input) {this.isLeft = input;}
+	
+	protected boolean isUp;
+	public void setUp(boolean input) {this.isUp = input;}
+	
+	protected boolean isDown;
+	public void setDown(boolean input) {this.isDown = input;}
+	
+	private boolean isFiring;
+	public void setFiring(boolean input) {this.isFiring = input;}
+	public boolean isFiring() {return this.isFiring;}
+	
+	
+	/**
+	 * Whether or not the current entity is focused (Player only).
+	 */
+	protected boolean isFocus;
+	public void setFocus(boolean input) {this.isFocus = input;}
+	public boolean isFocused() {return this.isFocus;}
+	
+	
+	//Location based variables and methods
+	/**
+	 * The current xLocation of the entity in pixels.
 	 */
 	protected double xLocation;
 
@@ -136,18 +207,36 @@ public abstract class Entity {
 	 * Current yLocation in pixels of the entity
 	 */
 	protected double yLocation;
+
+	/**
+	 * Gets the yLocation of the entity in pixels.
+	 * @return the yLocation of the entity in pixels.
+	 */
+	public double getY() {return this.yLocation;}
 	
 	/**
-	 * Current velocity on the y-axis in pixels/second of the entity.
+	 * Sets the yLocation of the entity to the given value
+	 * @param newY the value that the entity's yLocation will be set to.
 	 */
-
+	public void setY(double newY) {this.yLocation = newY;}
+	
+	/**
+	 * Tells the update processor to remove the entity if it is far enough out of the game bounds. The player will always return false.
+	 * @return true if the entity is far enough off-screen, false otherwise.
+	 */
 	public boolean sudoku() {
 		if(this.xLocation > 1500||this.xLocation < -220||this.yLocation > 940||this.yLocation < -220) {
 			return true;
-		}return false;
+		}if(this.Health <= 0) {
+			return true;
+		}
+			return false;
+		
 	}
 	
+
 	
+	//MATHEMATICAL FUNCTIONS
 	/**
 	 * Calculates the speed that an object is moving on the x-axis if it is moving at an angle
 	 * 
@@ -198,68 +287,72 @@ public abstract class Entity {
 	}
 	
 	/**
-	 * The number of bombs that an entity has.
+	 * Standard distance formula.
+	 * @param e The target entity
+	 * @return the distance between the entity that calls this method and the target (e) in pixels as a double.
+ 	 */
+	public double getDistance(Entity e) {
+		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
+		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
+		return Math.sqrt(xTest + yTest);
+	}
+	
+	
+	
+	//Damage related variables
+	/**
+	 * Amount of time in milliseconds between shots fired by this entity
 	 */
-	private int bombs;
+	protected int reloadTime;
+	
+	protected long lastShot;
 	
 	/**
-	 * Modifies the number of bombs that an entity has.
-	 * @param deltaValue The amount by which bombs should be changed.
+	 * The last time that the entity fired
 	 */
-	public void bombsArithmetic(int deltaValue) {this.bombs += deltaValue;}
+	protected long lastFiring;
 	
 	/**
-	 * 
-	 * @return number of bombs in an entity's possession.
+	 * The health of the entity.
 	 */
-	public int getBombs() {return this.bombs;}
-	
+	protected int Health;
 	/**
-	 * Number of lives that an entity has.
+	 * Damages the entity by the number input
+	 * @param damageTaken the damage to be taken from the health
 	 */
-	private int lives;
-	
+	public void hMath(int damageTaken) {this.Health -= damageTaken;}
+
 	/**
-	 * Overwrites the number of lives that an entity has. 
-	 * @param i new amount of lives that the entity has.
+	 * The damage dealt by the entity on contact with another. Note that the player only has lives, not a health system.
 	 */
-	public void setLives(int i) {this.lives = i;}
-	
+	protected int damage;
 	/**
-	 * Adds a number to an entity's number of lives. Use negative numbers to subtract lives from the entities lives. 
-	 * @param deltaValue number to be added or subtracted.
+	 * Get the damage value of the caller
+	 * @return the damage value of the caller
 	 */
-	public void livesArithmetic(int deltaValue) {this.lives += deltaValue;}
+	public int getDamage() {return this.damage;}
 	
-	/**
-	 * Returns the number of lives than entity has.
-	 * @return number of lives an entity has.
-	 */
-	public int getLives() {return this.lives;}
-	protected boolean isRight;
-	public void setRight(boolean input) {this.isRight = input;}
-	
-	protected boolean isLeft;
-	public void setLeft(boolean input) {this.isLeft = input;}
-	
-	protected boolean isUp;
-	public void setUp(boolean input) {this.isUp = input;}
-	
-	protected boolean isDown;
-	public void setDown(boolean input) {this.isDown = input;}
-	
-	private boolean isFiring;
-	public void setFiring(boolean input) {this.isFiring = input;}
-	public boolean isFiring() {return this.isFiring;}
 	
 	
 	/**
-	 * Whether or not the current entity is focused (Player only).
+	 * Don't use this
+	 * @param newDamage Don't use this.
 	 */
-	protected boolean isFocus;
-	public void setFocus(boolean input) {this.isFocus = input;}
-	public boolean isFocused() {return this.isFocus;}
+	public void setDamage(int newDamage) {this.damage = newDamage;}
 	
+	//Mechanical methods
+	/**
+	 * Updates the current entity. Completely abstract.
+	 */
+	public abstract void update();
+	
+	/**
+	 * Draws the entity on the screen.
+	 * @param g its a pre-initialized graphics thing
+	 */
+	public abstract void draw(Graphics g);
+	
+	//Constructors and Bullet firing mechanisms
 	/**
 	 * 
 	 * @param xLocation
@@ -270,6 +363,9 @@ public abstract class Entity {
 	 * 
 	 * @param Health
 	 * Sets the starting health of the Entity
+	 * 
+	 * @param Speed
+	 * Sest the sped of the entity
 	 * 
 	 * @param yVelocity
 	 * Sets the starting yVelocity of the Entity
@@ -289,10 +385,11 @@ public abstract class Entity {
 	 * @param hitR
 	 * Sets the hitbox radius of the Entity
 	 */
-	public Entity(double xLocation, double yLocation, int Health, double Height, double Width,int size,
+	public Entity(double xLocation, double yLocation, int Health, double speed, double Height, double Width,int size,
 			int hitR) {
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
+		this.speed = speed;
 		this.Health = Health;
 		this.height = Height;
 		this.width = Width;
@@ -309,8 +406,8 @@ public abstract class Entity {
 	 * 
 	 * 
 	 */
-	protected void Bullet() {
-		new Bullet(this.xLocation, this.yLocation, 1, 5, false, Color.RED);
+	protected void Bullet(int damage) {
+		new Bullet(this.xLocation, this.yLocation, 1, 5, false, Color.RED, damage);
 	}
 	
 	/**
@@ -321,8 +418,8 @@ public abstract class Entity {
 	 * 
 	 * .
 	 */
-	protected void Bullet(boolean hostile) {
-		new Bullet(this.xLocation, this.yLocation, 1, 5, hostile, Color.RED);
+	protected void Bullet(boolean hostile, int damage) {
+		new Bullet(this.xLocation, this.yLocation, 1, 5, hostile, Color.RED, damage);
 	}
 	
 	/**
@@ -336,32 +433,48 @@ public abstract class Entity {
 				double tempY = this.yLocation - target.yLocation;
 			
 				float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED);
+				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED, 6);
 	}
 	
-	/**
-	 * Updates the current entity. Completely abstract.
-	 */
-	public abstract void update();
-	
-	/**
-	 * Draws the entity on the screen.
-	 * @param g its a pre-initialized graphics thing
-	 */
-	public abstract void draw(Graphics g);
+	public void angledBullet(int angle, double speed, int size) {
+		new targetedBullet(this.xLocation, this.yLocation, angle, speed, size, false, Color.RED, 6);
+}
 
-	public abstract void doOnHit(Entity e);
 
-	/**
-	 * Standard distance formula.
-	 * @param e The target entity
-	 * @return the distance between the entity that calls this method and the target (e) in pixels as a double.
- 	 */
-	public double getDistance(Entity e) {
-		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
-		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
-		return Math.sqrt(xTest + yTest);
+
+
+	public void run() {
+			for(int b = 0; b < GameWindow.bullets.size(); b++) {
+				hitCheck(GameWindow.bullets.get(b));
+			}
+			for(int j = 0; j <  GameWindow.notBullets.size(); j++) {
+				hitCheck(GameWindow.notBullets.get(j));
+			}
+	}
+		
+	private void hitCheck(Entity b) {
+		if(this.geteTYPE().equals(b.geteTYPE())) {
+			return;
+		}
+		if(Math.abs(this.getX() - b.getX()) > 500||Math.abs(this.getY() - b.getY()) > 500){
+			return;
+		}
+		else if(this.getDistance(b) < this.getR() + b.getR()) {
+			if(this.CtrlCheck()&&!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
+				b.setX(8000);
+				GameWindow.lives--;
+				//GameWindow.notBullets.get(i).setX(8000);\
+				return;
+			}if(this.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
+				b.setX(8000);
+				this.hMath(b.getDamage());
+				return;
+			}if(this.geteTYPE().equals(Entity.eTYPE.CRTL)&&b.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
+				b.hMath(50);
+				GameWindow.lives--;
+			}
+		}
 	}
 	
-	public abstract boolean isBullet();
+	
 }
