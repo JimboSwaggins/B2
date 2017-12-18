@@ -25,12 +25,12 @@ public class Badguy extends Entity{
 	 * The Current Health of the badGuy
 	 */
 	public Badguy(double xLocation, double yLocation, int Health) {
-		super(xLocation, yLocation, Health, 60.0, 60.0, 5, 5);
+		super(xLocation, yLocation, 3, Health, 60.0, 60.0, 5, 5);
 		this.entityType = eTYPE.HOSTILE;
 		this.reloadTime = 300;
 		this.lastShot = System.currentTimeMillis();
 		this.hitR = 5;
-		GameWindow.objList.add(this);
+		this.Health = Health;
 		GameWindow.notBullets.add(this);
 		this.lastFiring = System.currentTimeMillis();
 	}

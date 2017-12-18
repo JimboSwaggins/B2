@@ -225,7 +225,11 @@ public abstract class Entity {
 	public boolean sudoku() {
 		if(this.xLocation > 1500||this.xLocation < -220||this.yLocation > 940||this.yLocation < -220) {
 			return true;
-		}return false;
+		}if(this.Health <= 0) {
+			return true;
+		}
+			return false;
+		
 	}
 	
 
@@ -310,6 +314,10 @@ public abstract class Entity {
 	 * The health of the entity.
 	 */
 	protected int Health;
+	/**
+	 * Damages the entity by the number input
+	 * @param damageTaken the damage to be taken from the health
+	 */
 	public void hMath(int damageTaken) {this.Health -= damageTaken;}
 
 	/**
@@ -349,6 +357,8 @@ public abstract class Entity {
 	 * @param Health
 	 * Sets the starting health of the Entity
 	 * 
+	 * @param Speed
+	 * The Speed of the entity
 	 * @param yVelocity
 	 * Sets the starting yVelocity of the Entity
 	 * 
@@ -367,10 +377,11 @@ public abstract class Entity {
 	 * @param hitR
 	 * Sets the hitbox radius of the Entity
 	 */
-	public Entity(double xLocation, double yLocation, int Health, double Height, double Width,int size,
+	public Entity(double xLocation, double yLocation, int Health, double speed, double Height, double Width,int size,
 			int hitR) {
 		this.xLocation = xLocation;
 		this.yLocation = yLocation;
+		this.speed = speed;
 		this.Health = Health;
 		this.height = Height;
 		this.width = Width;
@@ -387,8 +398,8 @@ public abstract class Entity {
 	 * 
 	 * 
 	 */
-	protected void Bullet() {
-		new Bullet(this.xLocation, this.yLocation, 1, 5, false, Color.RED);
+	protected void Bullet(int damage) {
+		new Bullet(this.xLocation, this.yLocation, 1, 5, false, Color.RED, damage);
 	}
 	
 	/**
@@ -399,8 +410,8 @@ public abstract class Entity {
 	 * 
 	 * .
 	 */
-	protected void Bullet(boolean hostile) {
-		new Bullet(this.xLocation, this.yLocation, 1, 5, hostile, Color.RED);
+	protected void Bullet(boolean hostile, int damage) {
+		new Bullet(this.xLocation, this.yLocation, 1, 5, hostile, Color.RED, damage);
 	}
 	
 	/**
@@ -414,7 +425,7 @@ public abstract class Entity {
 				double tempY = this.yLocation - target.yLocation;
 			
 				float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED);
+				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED, 6);
 	}
 
 

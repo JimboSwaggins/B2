@@ -14,30 +14,28 @@ public class Collision implements Runnable{
 
 	public void run() {
 		for(int i = 0; i < GameWindow.notBullets.size(); i++) {
-			for(int b = 0; b < GameWindow.objList.size(); b++) {
-				//System.out.println(GameWindow.objList.get(i) + " " + GameWindow.objList.get(b));
-				if(GameWindow.notBullets.get(i).geteTYPE().equals(GameWindow.objList.get(b).geteTYPE())) {
-					continue;
-				}
-				else if(Math.abs(GameWindow.notBullets.get(i).getX() - GameWindow.objList.get(b).getX()) >= 50) {
-					continue;
-				}
-				else if(Math.abs(GameWindow.notBullets.get(i).getY() - GameWindow.objList.get(b).getY()) >= 50) {
-					continue;
-				}
-				else if(GameWindow.notBullets.get(i).getDistance(GameWindow.objList.get(b)) < GameWindow.notBullets.get(i).getR() + GameWindow.objList.get(b).getR()) {
-					if(GameWindow.notBullets.get(i).CtrlCheck()&&!GameWindow.objList.get(b).geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
-						GameWindow.objList.get(b).setX(8000);
-						GameWindow.character.livesArithmetic(-1);
-						//GameWindow.notBullets.get(i).setX(8000);\
-						continue;
-					}else if(GameWindow.notBullets.get(i).geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
-						GameWindow.objList.get(b).setX(8000);
-						GameWindow.notBullets.get(i).hMath(GameWindow.objList.get(b).getDamage());
-						break;
-					}
-				}
+			for(int b = start; b < end; b++) {
+				hitCheck(GameWindow.notBullets.get(i), GameWindow.bullets.get(b));
 			}
-}
+		}
+	}
+		
+	private void hitCheck(Entity e, Entity b) {
+		if(e.geteTYPE().equals(b.geteTYPE())) {
+			return;
+		}
+
+		else if(e.getDistance(b) < e.getR() + b.getR()) {
+			if(e.CtrlCheck()&&!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
+				b.setX(8000);
+				GameWindow.character.livesArithmetic(-1);
+				//GameWindow.notBullets.get(i).setX(8000);\
+				return;
+			}else if(e.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
+				b.setX(8000);
+				e.hMath(b.getDamage());
+				return;
+			}
+		}
 	}
 }

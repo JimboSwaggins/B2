@@ -19,8 +19,8 @@ public class Player extends Entity{
 	 * Starting yLocation of the player
 	 */
 	public Player(int x, int y) {
-		super(x, y, 100, 30.0, 30.0, 5, 5);
-		GameWindow.objList.add(this);
+		super(x, y, 100, 3, 30.0, 30.0, 5, 5);
+
 		GameWindow.notBullets.add(this);
 
 
@@ -39,16 +39,16 @@ public class Player extends Entity{
 
 		if(!isFocus) {
 				if(isUp) {
-					this.yLocation -= 2;
+					this.yLocation -= 4;
 				}
 				if(isDown) {
-					this.yLocation += 2;
+					this.yLocation += 4;
 				}
 				if(isRight) {
-					this.xLocation += 2;
+					this.xLocation += 4;
 				}
 				if(isLeft) {
-					this.xLocation -= 2;
+					this.xLocation -= 4;
 				}
 
 
@@ -99,7 +99,7 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
-			Bullet(false);
+			Bullet(false, 5);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

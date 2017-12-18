@@ -28,8 +28,6 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public static BufferedImage image;
 	public static Graphics2D g;
 	public static Player character;
-	public static ArrayList<Entity> objList;
-	public static ArrayList<Entity> trash;
 	
 	public static ArrayList<Entity> notBullets;
 	public static ArrayList<Entity> bullets;
@@ -60,7 +58,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 */
 	private void ini_Systems() {
 		executor = Executors.newCachedThreadPool();
-		objList = new ArrayList<Entity>();
+
 		bullets = new ArrayList<Entity>();
 		notBullets = new ArrayList<Entity>();
 	}
@@ -120,16 +118,15 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 */
 	public void run() {
 		boolean running = true;
-		ArrayList<Collision> cc = new ArrayList<Collision>();
+		ArrayList<Collision> collisionList = new ArrayList<Collision>();
 		int numC1Threads = 1;
 		int lastC;
 		                                                                                                            
 		ini_Systems();
 		character = new Player(400, 400);
-		memer = new Badguy(93, 39, 1);
 		
 		for(int i = 0; i < 2; i ++) {
-			new Badguy(Math.random() * 1280 , Math.random() * 720, 1);
+			new Badguy(Math.random() * 1280 , Math.random() * 720, 1000);
 		}
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	
@@ -153,12 +150,12 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			else {
 				numC1Threads = 1;
 			}
-			cc.clear();
+			collisionList.clear();
 			for(int i = 1; i <= numC1Threads; i++){
-				int nextC = (int) (GameWindow.notBullets.size() * (1 - Math.sqrt(1 - (i/numC1Threads))));
-				cc.add(new Collision(lastC, nextC));
+				int nextC = (int) (GameWindow.bullets.size() * (1 - Math.sqrt(1 - (i/numC1Threads))));
+				collisionList.add(new Collision(lastC, nextC));
 				lastC = nextC;
-				executor.execute(cc.get(i-1));
+				executor.execute(collisionList.get(i-1));
 			}
 			
 			renderUpdate();
@@ -184,11 +181,21 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 * Then, it removes every entity that is outside the bounds of the game. 
 	 */
 	private void calcUpdate() {
-		for(int i = 0; i < objList.size();i++) {
-			objList.get(i).update();
+		for(Entity e: bullets) {
+			e.update();
 		}
-		Iterator<Entity> itr = objList.iterator();
+		for(Entity e: notBullets) {
+			e.update();
+		}
+		Iterator<Entity> itr = notBullets.iterator();
 
+		while (itr.hasNext()){
+		    if(itr.next().sudoku()){
+		    	itr.remove();
+		    }
+		}
+		
+		itr = bullets.iterator();
 		while (itr.hasNext()){
 		    if(itr.next().sudoku()){
 		    	itr.remove();
@@ -219,9 +226,11 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		g2.drawString("Lives :" + LifeNum, 60, 60);
 		g2.drawString("Score : " + Score, 60, 70);
 
-		g2.drawString(String.valueOf(GameWindow.objList.size()), 70, 80);
-		for(int i = 0; i < objList.size(); i++) {
-			objList.get(i).draw(g2);
+		for(Entity e:bullets) {
+			e.draw(g2);
+		}
+		for(Entity e:notBullets) {
+			e.draw(g2);
 		}
 		
 		

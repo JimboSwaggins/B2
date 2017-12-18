@@ -20,17 +20,18 @@ public class Bullet extends Entity{
  * @param color The Color of the bullet
  */
 	
-	public Bullet(double xLocation, double yLocation, double speed, int size, boolean hostile, Color color) {
-		super(xLocation, yLocation, 1, 5, 5, 5, 5);
+	public Bullet(double xLocation, double yLocation, double speed, int size, boolean hostile, Color color, int damage) {
+		super(xLocation, yLocation, 1, 3, 5, 5, 5, 5);
 	  
 		this.color = color;
 		this.hitR = 4;
+		this.damage = damage;
 		if(hostile) {
 			this.entityType = eTYPE.HOSTILE;
 		}else {
 			this.entityType = eTYPE.HARMLESS;
 		}
-		GameWindow.objList.add(this);
+
 		GameWindow.bullets.add(this);
 			
 	}
