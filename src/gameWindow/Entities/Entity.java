@@ -3,7 +3,9 @@ package gameWindow.Entities;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public abstract class Entity {
+import gameWindow.GameWindow;
+
+public abstract class Entity implements Runnable{
 	
 	//Classification values
 	/**
@@ -138,7 +140,25 @@ public abstract class Entity {
 	/**
 	 * Number of lives that the player has.
 	 */
+	protected static int lives;
 	
+	/**
+	 * Overwrites the number of lives that the player has. 
+	 * @param i new amount of lives that the player has.
+	 */
+	public void setLives(int i) {lives = i;}
+	
+	/**
+	 * Adds a number to the player's number of lives. Use negative numbers to subtract lives from the player's lives. 
+	 * @param deltaValue number to be added or subtracted.
+	 */
+	public void livesArithmetic(int deltaValue) {lives += deltaValue;}
+	
+	/**
+	 * Returns the number of lives that the player has.
+	 * @return number of lives the player has.
+	 */
+	public int getLives() {return lives;}
 	protected boolean isRight;
 	public void setRight(boolean input) {this.isRight = input;}
 	
@@ -345,7 +365,7 @@ public abstract class Entity {
 	 * Sets the starting health of the Entity
 	 * 
 	 * @param Speed
-	 * Sets the starting speed of the entity
+	 * Sest the sped of the entity
 	 * 
 	 * @param yVelocity
 	 * Sets the starting yVelocity of the Entity
@@ -418,7 +438,39 @@ public abstract class Entity {
 
 
 
-	
+
+	public void run() {
+			for(int b = 0; b < GameWindow.bullets.size(); b++) {
+				hitCheck(GameWindow.bullets.get(b));
+			}
+			for(int j = 0; j <  GameWindow.notBullets.size(); j++) {
+				hitCheck(GameWindow.notBullets.get(j));
+			}
+	}
+		
+	private void hitCheck(Entity b) {
+		if(this.geteTYPE().equals(b.geteTYPE())) {
+			return;
+		}
+		if(Math.abs(this.getX() - b.getX()) > 500||Math.abs(this.getY() - b.getY()) > 500){
+			return;
+		}
+		else if(this.getDistance(b) < this.getR() + b.getR()) {
+			if(this.CtrlCheck()&&!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
+				b.setX(8000);
+				GameWindow.lives--;
+				//GameWindow.notBullets.get(i).setX(8000);\
+				return;
+			}if(this.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
+				b.setX(8000);
+				this.hMath(b.getDamage());
+				return;
+			}if(this.geteTYPE().equals(Entity.eTYPE.CRTL)&&b.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
+				b.hMath(50);
+				GameWindow.lives--;
+			}
+		}
+	}
 	
 	
 }
