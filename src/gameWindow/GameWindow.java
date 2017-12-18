@@ -128,7 +128,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		character = new Player(400, 400);
 		memer = new Badguy(93, 39, 1);
 		
-		for(int i = 0; i < 5000; i ++) {
+		for(int i = 0; i < 2; i ++) {
 			new Badguy(Math.random() * 1280 , Math.random() * 720, 1);
 		}
 	
