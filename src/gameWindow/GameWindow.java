@@ -102,7 +102,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		if(keyCode == KeyEvent.VK_DOWN){
 			character.setDown(false);		}
 		if(keyCode == KeyEvent.VK_SHIFT){
-			character.setDown(false);
+			character.setFocus(false);
 		}
 		if(keyCode == KeyEvent.VK_Z){
 			character.setFiring(false);
@@ -203,12 +203,25 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		}
 	}
 	
-	private static String LifeNum;
-	public static void setLifeNum(int i) {LifeNum = Integer.toString(i);}
+	public static int lives;
 	
-	private static String Score;
-	public static void setScore(int i) {Score = Integer.toString(i);}
+	/**
+	 * Overwrites the number of lives that the player has. 
+	 * @param i new amount of lives that the player has.
+	 */
+	public void setLives(int i) {lives = i;}
 	
+	/**
+	 * Adds a number to the player's number of lives. Use negative numbers to subtract lives from the player's lives. 
+	 * @param deltaValue number to be added or subtracted.
+	 */
+	public void livesArithmetic(int deltaValue) {lives += deltaValue;}
+	
+	/**
+	 * Returns the number of lives that the player has.
+	 * @return number of lives the player has.
+	 */
+	public int getLives() {return lives;}
 	
 	/**
 	 * Renders the entities in the game to the main JFrame.
@@ -223,8 +236,8 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 
 		g2.setColor(Color.RED);
 		g2.drawString(VRR.deltaX.toString(), 50, 50);
-		g2.drawString("Lives :" + LifeNum, 60, 60);
-		g2.drawString("Score : " + Score, 60, 70);
+		g2.drawString("Lives :" + lives, 60, 60);
+		//g2.drawString("Score : " + score, 60, 70);
 
 		for(Entity e:bullets) {
 			e.draw(g2);

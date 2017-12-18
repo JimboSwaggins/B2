@@ -138,25 +138,7 @@ public abstract class Entity {
 	/**
 	 * Number of lives that the player has.
 	 */
-	private static int lives;
 	
-	/**
-	 * Overwrites the number of lives that the player has. 
-	 * @param i new amount of lives that the player has.
-	 */
-	public void setLives(int i) {lives = i;}
-	
-	/**
-	 * Adds a number to the player's number of lives. Use negative numbers to subtract lives from the player's lives. 
-	 * @param deltaValue number to be added or subtracted.
-	 */
-	public void livesArithmetic(int deltaValue) {lives += deltaValue;}
-	
-	/**
-	 * Returns the number of lives that the player has.
-	 * @return number of lives the player has.
-	 */
-	public int getLives() {return lives;}
 	protected boolean isRight;
 	public void setRight(boolean input) {this.isRight = input;}
 	
@@ -331,6 +313,11 @@ public abstract class Entity {
 	public int getDamage() {return this.damage;}
 	
 	
+	
+	/**
+	 * Don't use this
+	 * @param newDamage Don't use this.
+	 */
 	public void setDamage(int newDamage) {this.damage = newDamage;}
 	
 	//Mechanical methods
@@ -358,7 +345,8 @@ public abstract class Entity {
 	 * Sets the starting health of the Entity
 	 * 
 	 * @param Speed
-	 * The Speed of the entity
+	 * Sets the starting speed of the entity
+	 * 
 	 * @param yVelocity
 	 * Sets the starting yVelocity of the Entity
 	 * 

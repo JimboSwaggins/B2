@@ -17,6 +17,9 @@ public class Collision implements Runnable{
 			for(int b = start; b < end; b++) {
 				hitCheck(GameWindow.notBullets.get(i), GameWindow.bullets.get(b));
 			}
+			for(int j = 0; j <  GameWindow.notBullets.size(); j++) {
+				hitCheck(GameWindow.notBullets.get(i), GameWindow.notBullets.get(j));
+			}
 		}
 	}
 		
@@ -28,13 +31,16 @@ public class Collision implements Runnable{
 		else if(e.getDistance(b) < e.getR() + b.getR()) {
 			if(e.CtrlCheck()&&!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
 				b.setX(8000);
-				GameWindow.character.livesArithmetic(-1);
+				GameWindow.lives--;
 				//GameWindow.notBullets.get(i).setX(8000);\
 				return;
-			}else if(e.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
+			}if(e.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
 				b.setX(8000);
 				e.hMath(b.getDamage());
 				return;
+			}if(e.geteTYPE().equals(Entity.eTYPE.CRTL)&&b.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
+				b.hMath(50);
+				GameWindow.lives--;
 			}
 		}
 	}

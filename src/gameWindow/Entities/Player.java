@@ -23,15 +23,13 @@ public class Player extends Entity{
 
 		GameWindow.notBullets.add(this);
 
-
+		GameWindow.lives = 3;
 		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
 		this.setFiring(false);
 
 		this.reloadTime = 1;
 
-		this.setLives(3);
-		this.Score = 0;
 	}
 
 	
