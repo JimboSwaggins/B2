@@ -65,9 +65,13 @@ public abstract class Entity {
 	public double getR() {
 		return this.hitR;
 	}
-	
+	/**
+	 * The size of the entity.
+	 */
 	protected final int size;
-	
+	/**
+	 * The angle at which an entity is going to move. Only relevant to targeted bullets as of now.
+	 */
 	protected double angle;
 	/**
 	 * The speed of the entity
@@ -86,6 +90,7 @@ public abstract class Entity {
 	 */
 	public double getSpeed() {return this.speed;}
 	
+	protected Color color;
 	
 	//Sprite related variables
 	/**
@@ -113,7 +118,9 @@ public abstract class Entity {
 	 */
 	protected int Score;
 	
-	
+	/**
+	 * The number of bombs that the player has
+	 */
 	private static int bombs;
 	
 	/**
@@ -149,7 +156,7 @@ public abstract class Entity {
 	 * Returns the number of lives that the player has.
 	 * @return number of lives the player has.
 	 */
-	public int getLives() {return this.lives;}
+	public int getLives() {return lives;}
 	protected boolean isRight;
 	public void setRight(boolean input) {this.isRight = input;}
 	
@@ -175,7 +182,7 @@ public abstract class Entity {
 	public boolean isFocused() {return this.isFocus;}
 	
 	
-	
+	//Location based variables and methods
 	/**
 	 * The current xLocation of the entity in pixels.
 	 */
@@ -273,9 +280,64 @@ public abstract class Entity {
 		}
 	}
 	
+	/**
+	 * Standard distance formula.
+	 * @param e The target entity
+	 * @return the distance between the entity that calls this method and the target (e) in pixels as a double.
+ 	 */
+	public double getDistance(Entity e) {
+		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
+		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
+		return Math.sqrt(xTest + yTest);
+	}
 	
-	//Player only variables
 	
+	
+	//Damage related variables
+	/**
+	 * Amount of time in milliseconds between shots fired by this entity
+	 */
+	protected int reloadTime;
+	
+	protected long lastShot;
+	
+	/**
+	 * The last time that the entity fired
+	 */
+	protected long lastFiring;
+	
+	/**
+	 * The health of the entity.
+	 */
+	protected int Health;
+	public void hMath(int damageTaken) {this.Health -= damageTaken;}
+
+	/**
+	 * The damage dealt by the entity on contact with another. Note that the player only has lives, not a health system.
+	 */
+	protected int damage;
+	/**
+	 * Get the damage value of the caller
+	 * @return the damage value of the caller
+	 */
+	public int getDamage() {return this.damage;}
+	
+	
+	public void setDamage(int newDamage) {this.damage = newDamage;}
+	
+	//Mechanical methods
+	/**
+	 * Updates the current entity. Completely abstract.
+	 */
+	public abstract void update();
+	
+	/**
+	 * Draws the entity on the screen.
+	 * @param g its a pre-initialized graphics thing
+	 */
+	public abstract void draw(Graphics g);
+	
+	//Constructors and Bullet firing mechanisms
 	/**
 	 * 
 	 * @param xLocation
@@ -356,62 +418,6 @@ public abstract class Entity {
 	}
 
 
-	/**
-	 * Standard distance formula.
-	 * @param e The target entity
-	 * @return the distance between the entity that calls this method and the target (e) in pixels as a double.
- 	 */
-	public double getDistance(Entity e) {
-		double xTest = Math.pow((this.xLocation - e.xLocation), 2);
-		double yTest = Math.pow((this.yLocation - e.yLocation), 2);
-		return Math.sqrt(xTest + yTest);
-	}
-	
-	
-	
-	//Damage related variables
-	/**
-	 * Amount of time in milliseconds between shots fired by this entity
-	 */
-	protected int reloadTime;
-	
-	protected long lastShot;
-	
-	/**
-	 * The last time that the entity fired
-	 */
-	protected long lastFiring;
-	
-	/**
-	 * The health of the entity.
-	 */
-	protected int Health;
-	public void hMath(int damageTaken) {this.Health -= damageTaken;}
-
-	/**
-	 * The damage dealt by the entity on contact with another. Note that the player only has lives, not a health system.
-	 */
-	protected int damage;
-	/**
-	 * Get the damage value of the caller
-	 * @return the damage value of the caller
-	 */
-	public int getDamage() {return this.damage;}
-	
-	
-	public void setDamage(int newDamage) {this.damage = newDamage;}
-	
-	//Mechanical methods
-	/**
-	 * Updates the current entity. Completely abstract.
-	 */
-	public abstract void update();
-	
-	/**
-	 * Draws the entity on the screen.
-	 * @param g its a pre-initialized graphics thing
-	 */
-	public abstract void draw(Graphics g);
 
 	
 	

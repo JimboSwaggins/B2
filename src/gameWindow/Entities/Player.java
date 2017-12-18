@@ -12,15 +12,12 @@ import gameWindow.GameWindow;
 
 public class Player extends Entity{
 
-	//private double acceleration;
 	/** 
 	 * @param x
 	 * Starting xLocation of the player
 	 * @param y
 	 * Starting yLocation of the player
 	 */
-	
-	
 	public Player(int x, int y) {
 		super(x, y, 100, 30.0, 30.0, 5, 5);
 		GameWindow.objList.add(this);
@@ -34,27 +31,17 @@ public class Player extends Entity{
 		this.reloadTime = 1;
 
 		this.setLives(3);
-		this.Score = 0;;
+		this.Score = 0;
 	}
 
+	
 	public void update() {
 
 		if(!isFocus) {
 				if(isUp) {
-					/*if(yVelocity > 0.1) {
-						this.yVelocity -= this.yVelocity * .01;
-					}
-					this.yVelocity -= acceleration;
-					*/
 					this.yLocation -= 2;
 				}
 				if(isDown) {
-//					if(yVelocity < -0.1) {
-//						this.yVelocity -= this.yVelocity * .01;
-//					}
-//					else{
-//						this.yVelocity += acceleration;
-//					}
 					this.yLocation += 2;
 				}
 				if(isRight) {
@@ -64,7 +51,6 @@ public class Player extends Entity{
 					this.xLocation -= 2;
 				}
 
-				//System.out.println(this.xVelocity);
 
 				if(this.xLocation > 1280) {
 					this.xLocation = 1280;
@@ -147,9 +133,14 @@ public class Player extends Entity{
 
 
 
-		// System.out.println(Math.sqrt(this.xVelocity * this.xVelocity + this.yVelocity * this.yVelocity));
+		
 	}
 
+	
+	
+	
+	
+	//System Methods
 	@Override
 	public boolean isBullet() {
 		// TODO Auto-generated method stub

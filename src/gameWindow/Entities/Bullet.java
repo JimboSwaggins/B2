@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import gameWindow.GameWindow;
 
 public class Bullet extends Entity{
-private Color color;
+
 
 /**
  * Creates a new bullet entity
@@ -34,6 +34,10 @@ private Color color;
 		GameWindow.bullets.add(this);
 			
 	}
+	
+	/**
+	 * Draws the bullet at the nearest integer coordinates (rounded up)
+	 */
 	public void draw(Graphics g) {
 		g.setColor(color);
 		g.fillOval((int)xLocation, (int)yLocation, this.size, this.size);
@@ -41,15 +45,14 @@ private Color color;
 	
 	
 	/**
-	 * Updates the position of the bullet based on the current framerate and a base number.
+	 * Updates the position of the bullet based on its speed.
 	 */
 	public void update() {
 		this.xLocation += 0;
-		this.yLocation -=  3;
+		this.yLocation -= speed;
 	}
-	@Override
+
 	public boolean isBullet() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
