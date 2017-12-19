@@ -433,11 +433,11 @@ public abstract class Entity implements Runnable{
 				double tempY = this.yLocation - target.yLocation;
 			
 				float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, false, Color.RED, 6);
+				new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6);
 	}
 	
 	public void angledBullet(int angle, double speed, int size) {
-		new targetedBullet(this.xLocation, this.yLocation, angle, speed, size, false, Color.RED, 6);
+		new targetedBullet(this.xLocation, this.yLocation, angle, speed, size, true, Color.RED, 6);
 }
 
 
@@ -453,7 +453,7 @@ public abstract class Entity implements Runnable{
 	}
 		
 	private void hitCheck(Entity b) {
-		if(this.geteTYPE().equals(b.geteTYPE())) {
+		if(this.geteTYPE() == b.geteTYPE()) {
 			return;
 		}
 		if(Math.abs(this.getX() - b.getX()) > 500||Math.abs(this.getY() - b.getY()) > 500){
@@ -464,8 +464,8 @@ public abstract class Entity implements Runnable{
 				b.setX(8000);
 				GameWindow.lives--;
 				//GameWindow.notBullets.get(i).setX(8000);\
-				return;
-			}if(this.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
+				return;	
+			}if(this.geteTYPE().equals(Entity.eTYPE.HOSTILE)&&!b.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
 				b.setX(8000);
 				this.hMath(b.getDamage());
 				return;

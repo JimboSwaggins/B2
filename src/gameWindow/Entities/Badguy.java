@@ -41,12 +41,12 @@ public class Badguy extends Entity{
 		
 		//TODO add a size constructor
 	}
-	
+	int angle = 0;
 	public void update() {
 		this.xLocation += 0.1;
 		this.yLocation += 0.1;
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
-
+			TargetedBullet(GameWindow.character, 5, 5);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	
