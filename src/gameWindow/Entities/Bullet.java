@@ -22,7 +22,7 @@ public class Bullet extends Entity{
 	
 	public Bullet(double xLocation, double yLocation, double speed, int size, boolean hostile, Color color, int damage) {
 		super(xLocation, yLocation, 1, 3, 5, 5, 5, 5);
-	  
+		this.size = size;
 		this.color = color;
 		this.hitR = 4;
 		this.damage = damage;
@@ -52,6 +52,7 @@ public class Bullet extends Entity{
 	public void update() {
 		this.xLocation += 0;
 		this.yLocation -= speed;
+		this.speed += 1;
 	}
 
 	public boolean isBullet() {

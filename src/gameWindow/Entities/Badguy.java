@@ -32,7 +32,7 @@ public class Badguy extends Entity{
 	public Badguy(double xLocation, double yLocation, int Health) {
 		super(xLocation, yLocation, 3, Health, 60.0, 60.0, 5, 5);
 		this.entityType = eTYPE.HOSTILE;
-		this.reloadTime = 600;
+		this.reloadTime = 2000;
 		this.lastShot = System.currentTimeMillis();
 		this.hitR = 5;
 		this.Health = Health;
@@ -43,12 +43,16 @@ public class Badguy extends Entity{
 	public void draw(Graphics g) {
 		BufferedImage img = null;
 		try {
+			if(firing <= 0){
+				img = ImageIO.read(new File("../B2/img/enemy1a.png"));
+			}
+			else{
 				img = ImageIO.read(new File("../B2/img/enemy1.png"));
-		
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		g.drawImage(img, (int)(this.xLocation - (img.getWidth()/2)), (int)(this.yLocation - (img.getHeight()/2)), null);
+		g.drawImage(img, (int)(this.xLocation - (img.getWidth()/2)+1), (int)(this.yLocation - (img.getHeight()/2)+1), null);
 
 		//TODO add a size constructor
 	}
@@ -63,8 +67,9 @@ public class Badguy extends Entity{
 		}
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
 			firing++;
-			TargetedBulletToPoint(target, 10, 10);
-			if(firing >= 10) {
+			TargetedBulletToPoint(target,-5, 8);
+
+			if(firing >= 100) {
 				this.lastFiring = System.currentTimeMillis();
 				firing = 0;
 			}

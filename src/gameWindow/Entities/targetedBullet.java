@@ -34,5 +34,6 @@ class targetedBullet extends Bullet{
 		double rad = Math.toRadians(this.angle);
 		this.xLocation -= .5 * Math.cos(rad) * this.getSpeed();
 		this.yLocation -= .5 * Math.sin(rad)  * this.getSpeed();
+		this.speed += 0.5;
 	}
 }

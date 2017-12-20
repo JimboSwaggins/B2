@@ -71,7 +71,7 @@ public abstract class Entity implements Runnable{
 	/**
 	 * The size of the entity.
 	 */
-	protected final int size;
+	protected int size;
 	/**
 	 * The angle at which an entity is going to move. Only relevant to targeted bullets as of now.
 	 */
