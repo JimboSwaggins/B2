@@ -67,14 +67,24 @@ public class Badguy extends Entity{
 		}
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
 			firing++;
-			TargetedBulletToPoint(target,-30, 8);
-
+			TargetedBullet(GameWindow.character,-30, 8);
+			
 			if(firing >= 100) {
 				this.lastFiring = System.currentTimeMillis();
 				firing = 0;
 			}
 		}
 	
+	}
+	
+	@Override
+	public boolean sudoku() {
+		if(this.xLocation > 1920||this.xLocation < -10||this.yLocation >720||this.yLocation < -10) {
+			return true;
+		}if(this.Health <= 0) {
+			return true;
+		}
+		return false;
 	}
 	@Override
 	public boolean isBullet() {

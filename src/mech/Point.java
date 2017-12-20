@@ -11,8 +11,8 @@ public class Point {
 		return this.Yloc;
 	}
 	
-	public Point(double x, double y) {
-		this.Xloc = x;
-		this.Yloc = y;
+	public Point(double xLocation, double yLocation) {
+		this.Xloc = xLocation;
+		this.Yloc = yLocation;
 	}
 }

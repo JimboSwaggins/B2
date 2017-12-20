@@ -21,10 +21,10 @@ public class Bullet extends Entity{
  */
 	
 	public Bullet(double xLocation, double yLocation, double speed, int size, boolean hostile, Color color, int damage) {
-		super(xLocation, yLocation, 1, 3, 5, 5, 5, 5);
+		super(xLocation, yLocation, 1, 3, 5, 5, size, 5);
 		this.size = size;
 		this.color = color;
-		this.hitR = 4;
+		this.hitR = size;
 		this.damage = damage;
 		this.speed = speed;
 		if(hostile) {
@@ -42,7 +42,7 @@ public class Bullet extends Entity{
 	 */
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval((int)xLocation, (int)yLocation, this.size, this.size);
+		g.fillOval((int)xLocation - this.size/2, (int)yLocation , this.size, this.size);
 	}
 	
 	
@@ -52,9 +52,12 @@ public class Bullet extends Entity{
 	public void update() {
 		this.xLocation += 0;
 		this.yLocation -= speed;
-		this.speed += 1;
+		this.speed += .333;
 	}
-
+	
+	/**
+	 * Returns true, because this is a bullet.
+	 */
 	public boolean isBullet() {
 		return true;
 	}

@@ -218,7 +218,10 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		g2.fillRect(0, 0, 1280, 720);
 
 
-		
+		g2.setColor(Color.RED);
+		g2.drawString(VRR.deltaX.toString(), 50, 50);
+		g2.drawString("Lives :" + lives, 60, 60);
+		//g2.drawString("Score : " + score, 60, 70);
 
 		
 		for(Entity e:notBullets) {
@@ -228,10 +231,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			e.draw(g2);
 		}
 		
-		g2.setColor(Color.RED);
-		g2.drawString(VRR.deltaX.toString(), 50, 50);
-		g2.drawString("Lives :" + lives, 60, 60);
-		//g2.drawString("Score : " + score, 60, 70);
+		
 		g2 = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
 		//DRAW IMAGES OF STUFF HERE

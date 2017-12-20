@@ -24,9 +24,17 @@ public abstract class Entity implements Runnable{
 		CRTL, HOSTILE, HARMLESS
 	}
 
+	/**
+	 * Gives the eTYPE of the entity that calls the function
+	 * @return The eTYPE of the entity that calls the function
+	 */
 	public eTYPE geteTYPE() {
 		return this.entityType;
 	}
+	
+	/**
+	 * The eTYPE of the entity
+	 */
 	protected eTYPE entityType;
 
 	/**
@@ -435,8 +443,8 @@ public abstract class Entity implements Runnable{
 	 * 
 	 * .
 	 */
-	protected void Bullet(boolean hostile, int damage, double speed) {
-		new Bullet(this.xLocation, this.yLocation, speed, 5, hostile, Color.RED, damage);
+	protected void Bullet(boolean hostile, int damage, double speed, int size) {
+		new Bullet(this.xLocation, this.yLocation, speed, size, hostile, Color.RED, damage);
 	}
 
 	/**
@@ -511,7 +519,7 @@ public abstract class Entity implements Runnable{
 			return;
 		}
 		else if(this.getDistance(b) < this.getR() + b.getR()) {
-			if(this.CtrlCheck()&&(System.currentTimeMillis() - this.getLastHit()) <= 3000&&!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
+			if(this.CtrlCheck()&&/**(System.currentTimeMillis() - this.getLastHit()) <= 3000&&*/!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
 				b.setX(8000);
 				GameWindow.lives--;
 				this.setLastHit(System.currentTimeMillis());
