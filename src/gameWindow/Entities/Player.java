@@ -22,7 +22,7 @@ public class Player extends Entity{
 	
 	public Player(int x, int y) {
 		
-		super(x, y, 100, 3, 30.0, 30.0, 5, 5);
+		super(x, y, 100, 3, 30.0, 30.0, 5, 1);
 
 		GameWindow.notBullets.add(this);
 		this.lastHit = System.currentTimeMillis();
@@ -81,7 +81,7 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
-			Bullet(false, 5);
+			Bullet(false, 6, 10);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

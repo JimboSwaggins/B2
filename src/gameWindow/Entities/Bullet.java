@@ -26,6 +26,7 @@ public class Bullet extends Entity{
 		this.color = color;
 		this.hitR = 4;
 		this.damage = damage;
+		this.speed = speed;
 		if(hostile) {
 			this.entityType = eTYPE.HOSTILE;
 		}else {

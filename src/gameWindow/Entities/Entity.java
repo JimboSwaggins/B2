@@ -424,8 +424,8 @@ public abstract class Entity implements Runnable{
 	 * 
 	 * .
 	 */
-	protected void Bullet(boolean hostile, int damage) {
-		new Bullet(this.xLocation, this.yLocation, 1, 5, hostile, Color.RED, damage);
+	protected void Bullet(boolean hostile, int damage, double speed) {
+		new Bullet(this.xLocation, this.yLocation, speed, 5, hostile, Color.RED, damage);
 	}
 
 	/**
@@ -479,7 +479,7 @@ public abstract class Entity implements Runnable{
 			return;
 		}
 		else if(this.getDistance(b) < this.getR() + b.getR()) {
-			if(this.CtrlCheck()&&!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)&&(System.currentTimeMillis() - this.getLastHit()) <= 3000) {
+			if(this.CtrlCheck()&&(System.currentTimeMillis() - this.getLastHit()) <= 3000&&!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
 				b.setX(8000);
 				GameWindow.lives--;
 				this.setLastHit(System.currentTimeMillis());
