@@ -67,7 +67,7 @@ public class Badguy extends Entity{
 		}
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
 			firing++;
-			TargetedBulletToPoint(target,-5, 8);
+			TargetedBulletToPoint(target,-30, 8);
 
 			if(firing >= 100) {
 				this.lastFiring = System.currentTimeMillis();
