@@ -42,7 +42,7 @@ public class Bullet extends Entity{
 	 */
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval((int)xLocation - this.size/2, (int)yLocation , this.size, this.size);
+		g.fillOval((int)xLocation - this.size/2 + 1, (int)yLocation - 1, this.size, this.size);
 	}
 	
 	

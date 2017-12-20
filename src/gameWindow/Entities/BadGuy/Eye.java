@@ -1,4 +1,4 @@
-package gameWindow.Entities;
+package gameWindow.Entities.BadGuy;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -8,10 +8,33 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import gameWindow.GameWindow;
+import gameWindow.Entities.Badguy;
+import gameWindow.Entities.Entity.eTYPE;
 import mech.Point;
 
-public class Badguy extends Entity{
-
+public class Eye extends Badguy{
+	public void update() {
+		this.xLocation += 0.1;
+		this.yLocation += 0.1;
+		if(firing <= 0) {
+			target = this.getPoint(GameWindow.character);
+		}
+		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
+			firing++;
+			TargetedBullet(GameWindow.character,-30, 8);
+			
+			if(firing >= 100) {
+				this.lastFiring = System.currentTimeMillis();
+				firing = 0;
+			}
+		}
+	}
+	public double angleTarget() {
+		double i = 0;
+		return i;
+		//get angle to player and stuff here.
+		
+	}
 	/**
 	 * 
 	 * @param xLocation
@@ -21,8 +44,8 @@ public class Badguy extends Entity{
 	 * @param Health
 	 * The Current Health of the badGuy
 	 */
-	public Badguy(double xLocation, double yLocation, int Health, int speed) {
-		super(xLocation, yLocation, Health, speed, 60.0, 60.0, 5, 5);
+	public Eye(double xLocation, double yLocation, int Health, int speed) {
+		super(xLocation, yLocation, speed, Health);
 		this.entityType = eTYPE.HOSTILE;
 		this.reloadTime = 2000;
 		this.lastShot = System.currentTimeMillis();
@@ -31,21 +54,27 @@ public class Badguy extends Entity{
 		GameWindow.notBullets.add(this);
 		this.lastFiring = System.currentTimeMillis();
 	}
-	
+	@Override
 	public void draw(Graphics g) {
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File("../B2/img/p_down.png"));
+			if(firing <= 0){
+				img = ImageIO.read(new File("../B2/img/enemy1a.png"));
+			}
+			else{
+				img = ImageIO.read(new File("../B2/img/enemy1.png"));
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		g.drawImage(img, (int)(this.xLocation - (img.getWidth()/2)+1), (int)(this.yLocation - (img.getHeight()/2)+1), null);
+
+		//TODO add a size constructor
 	}
 	int angle = 0;
 	int firing = 0;
 	Point target;
-	public void update() {}
-	
+
 	@Override
 	public boolean sudoku() {
 		if(this.xLocation > 1920||this.xLocation < -10||this.yLocation >720||this.yLocation < -10) {
@@ -60,5 +89,5 @@ public class Badguy extends Entity{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	
 }

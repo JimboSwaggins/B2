@@ -18,6 +18,7 @@ import javax.swing.WindowConstants;
 import gameWindow.Entities.Badguy;
 import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
+import gameWindow.Entities.BadGuy.Eye;
 import render.VRR;
 
 public class GameWindow extends Thread implements Runnable, KeyListener {
@@ -123,7 +124,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		character = new Player(400, 400);
 		
 		for(int i = 0; i < 10; i ++) {
-			new Badguy(Math.random() * 1280 , Math.random() * 720, 50);
+			new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
 		}
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	
