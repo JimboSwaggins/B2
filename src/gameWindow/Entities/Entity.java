@@ -298,10 +298,6 @@ public abstract class Entity implements Runnable{
 		return Math.sqrt(xTest + yTest);
 	}
 
-	protected long lastHit = 0;
-	public long getLastHit() {return this.lastHit;}
-	public void setLastHit(long lastHit) {this.lastHit = lastHit;}
-
 	//Damage related variables
 	/**
 	 * Amount of time in milliseconds between shots fired by this entity
@@ -345,7 +341,22 @@ public abstract class Entity implements Runnable{
 	 * @param newDamage Don't use this.
 	 */
 	public void setDamage(int newDamage) {this.damage = newDamage;}
-
+	/**
+	 * The last time that the entity took damage
+	 */
+	protected long lastHit = 0;
+	
+	/**
+	 * Get the last time in milliseconds that the entity was damaged
+	 * @return The last time in milliseconds that the entity was damaged
+	 */
+	public long getLastHit() {return this.lastHit;}
+	
+	/**
+	 * Changes the last time that the entity was damaged. Measured in milliseconds.
+	 * @param lastHit The time that will repoace the previous entry for last hit.
+	 */
+	public void setLastHit(long lastHit) {this.lastHit = lastHit;}
 	//Mechanical methods
 	/**
 	 * Updates the current entity. Completely abstract.
@@ -442,7 +453,12 @@ public abstract class Entity implements Runnable{
 		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6);
 	}
 
-	
+	/**
+	 * Fires a bullet at a predetermined point
+	 * @param p the point to fire a bullet at
+	 * @param speed the speed of the bullet
+	 * @param size the size of the bullet
+	 */ 
 	public void TargetedBulletToPoint(Point p, double speed, int size) {
 		double tempX = this.xLocation - p.getX();
 		double tempY = this.yLocation - p.getY();
@@ -450,17 +466,30 @@ public abstract class Entity implements Runnable{
 		float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
 		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6);
 	}
+	
+	/**
+	 * Fires a bullet at an angle from the entity. Can be used for bombs or for spiral patterns.
+	 * @param angle The angle at which the bullet should be fired
+	 * @param speed The speed at which the bullet should move
+	 * @param size The size of the bullet
+	 */
 	public void angledBullet(int angle, double speed, int size) {
 		new targetedBullet(this.xLocation, this.yLocation, angle, speed, size, true, Color.RED, 6);
 	}
 	
-	
+	/**
+	 * Gets the position of another entity as a point
+	 * @param e the Entity that is being checked
+	 * @return The location of e as a point
+	 */
 	public Point getPoint(Entity e) {
 		return new Point(e.xLocation, e.yLocation);
 	}
 
 
-
+	/**
+	 * The hit-detection method of all entities
+	 */
 	@Override
 	public void run() {
 		for(int b = 0; b < GameWindow.bullets.size(); b++) {
@@ -470,7 +499,10 @@ public abstract class Entity implements Runnable{
 			hitCheck(GameWindow.notBullets.get(j));
 		}
 	}
-
+	/**
+	 * Checks if the entity calling the method is touching another entity's hit-radius
+	 * @param b The entity being check against
+	 */
 	private void hitCheck(Entity b) {
 		if(this.geteTYPE() == b.geteTYPE()) {
 			return;
