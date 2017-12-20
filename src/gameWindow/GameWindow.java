@@ -122,7 +122,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		ini_Systems();
 		character = new Player(400, 400);
 		
-		for(int i = 0; i < 1; i ++) {
+		for(int i = 0; i < 10; i ++) {
 			new Badguy(Math.random() * 1280 , Math.random() * 720, 50);
 		}
 	
@@ -218,19 +218,20 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		g2.fillRect(0, 0, 1280, 720);
 
 
+		
+
+		
+		for(Entity e:notBullets) {
+			e.draw(g2);
+		}
+		for(Entity e:bullets) {
+			e.draw(g2);
+		}
+		
 		g2.setColor(Color.RED);
 		g2.drawString(VRR.deltaX.toString(), 50, 50);
 		g2.drawString("Lives :" + lives, 60, 60);
 		//g2.drawString("Score : " + score, 60, 70);
-
-		for(Entity e:bullets) {
-			e.draw(g2);
-		}
-		for(Entity e:notBullets) {
-			e.draw(g2);
-		}
-		
-		
 		g2 = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
 		//DRAW IMAGES OF STUFF HERE

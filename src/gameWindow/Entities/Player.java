@@ -18,11 +18,14 @@ public class Player extends Entity{
 	 * @param y
 	 * Starting yLocation of the player
 	 */
+	
+	
 	public Player(int x, int y) {
+		
 		super(x, y, 100, 3, 30.0, 30.0, 5, 5);
 
 		GameWindow.notBullets.add(this);
-
+		this.lastHit = System.currentTimeMillis();
 		GameWindow.lives = 3;
 		this.entityType = eTYPE.CRTL;
 		this.setFocus(false);
@@ -49,51 +52,32 @@ public class Player extends Entity{
 					this.xLocation -= 4;
 				}
 
-
-				if(this.xLocation > 1280) {
-					this.xLocation = 1280;
-				}
-				if(this.yLocation > 720) {
-					this.yLocation = 720;
-	
-				}
-				if(this.xLocation < 0) {
-					this.xLocation = 0;
-				
-				}
-				if(this.yLocation < 0) {
-					this.yLocation = 0;
-
-				}
-
 			}
 		if(isFocus) {
 			if(isUp) {
-				this.yLocation -= 0.5;
+				this.yLocation -= 2;
 			}
 			if(isDown) {
-				this.yLocation += 0.5;
+				this.yLocation += 2;
 			}
 			if(isRight) {
-				this.xLocation += 0.5;
+				this.xLocation += 2;
 			}
 			if(isLeft) {
-				this.xLocation -= 0.5;
+				this.xLocation -= 2;
 			}
-			if(this.xLocation > 1280) {
-				this.xLocation = 1280;
-			}
-			if(this.yLocation > 720) {
-				this.yLocation = 720;
-			}
-			if(this.xLocation < 0) {
-				this.xLocation = 0;
-			}
-			if(this.yLocation < 0) {
-				this.yLocation = 0;
-			}
-
-			
+		}
+		if(this.xLocation > 1280) {
+			this.xLocation = 1280;
+		}
+		if(this.yLocation > 720) {
+			this.yLocation = 720;
+		}
+		if(this.xLocation < 0) {
+			this.xLocation = 0;
+		}
+		if(this.yLocation < 0) {
+			this.yLocation = 0;
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
