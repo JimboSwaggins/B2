@@ -27,6 +27,8 @@ public class Bullet extends Entity{
 		this.hitR = size;
 		this.damage = damage;
 		this.speed = speed;
+		this.xV = 0;
+		this.yV = speed;
 		if(hostile) {
 			this.entityType = eTYPE.HOSTILE;
 		}else {
@@ -53,6 +55,7 @@ public class Bullet extends Entity{
 		this.xLocation += 0;
 		this.yLocation -= speed;
 		this.speed += .333;
+		this.yV = this.speed;
 	}
 	
 	/**
