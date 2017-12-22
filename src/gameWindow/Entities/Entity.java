@@ -496,7 +496,7 @@ public abstract class Entity implements Runnable{
 	public Point getPoint(Entity e) {
 		return new Point(e.xLocation, e.yLocation);
 	}
-
+	
 
 	/**
 	 * The hit-detection method of all entities
@@ -521,7 +521,10 @@ public abstract class Entity implements Runnable{
 		if(Math.abs(this.getX() - b.getX()) > 500||Math.abs(this.getY() - b.getY()) > 500){
 			return;
 		}
-		else if(this.getDistance(b) < this.getR() + b.getR()) {
+		
+		//if player position is on a line between current position and previous location based on xV and yV
+		//if(Player.x + Player.y) <= (this.x - this.xv
+		else if((this.getDistance(b) < this.getR() + b.getR())	){
 			if(this.CtrlCheck()&&/**(System.currentTimeMillis() - this.getLastHit()) <= 3000&&*/!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
 				b.setX(8000);
 				GameWindow.lives--;
