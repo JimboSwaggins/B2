@@ -18,7 +18,9 @@ import javax.swing.WindowConstants;
 import gameWindow.Entities.Badguy;
 import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
+import gameWindow.Entities.BadGuy.Circle;
 import gameWindow.Entities.BadGuy.Eye;
+import gameWindow.Entities.BadGuy.Orbit;
 import render.VRR;
 
 public class GameWindow extends Thread implements Runnable, KeyListener {
@@ -110,7 +112,6 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		}
 		
 	}
-	public Badguy memer;
 	
 	private ExecutorService executor;
 	
@@ -125,6 +126,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		
 		for(int i = 0; i < 10; i ++) {
 			new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
+			new Orbit(new Circle(10.0 * i ,10.0 * i,10,1,1,30), 10, 20, Math.PI / 45, 0.0 , 10);
 		}
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	
