@@ -28,7 +28,7 @@ public class Orbit extends Badguy{
 		this.parent = Parent;
 		this.Health = Health;
 		this.size = size;
-		this.hitR = size;
+		this.hitR = size / 2;
 		this.radius = Radius;
 		this.radPerSecond = RPS;
 		this.sRad = SRad;

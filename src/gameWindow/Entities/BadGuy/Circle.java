@@ -24,6 +24,7 @@ public class Circle extends Badguy{
 		this.size = Size;
 		this.xVel = xVel;
 		this.yVel = yVel;
+		this.hitR = size /2;
 	}
 
 	public void update(){
