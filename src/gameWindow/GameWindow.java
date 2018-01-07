@@ -20,6 +20,7 @@ import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
 import gameWindow.Entities.BadGuy.Circle;
 import gameWindow.Entities.BadGuy.Eye;
+import gameWindow.Entities.BadGuy.Glitch;
 import gameWindow.Entities.BadGuy.Orbit;
 import render.VRR;
 
@@ -127,6 +128,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		for(int i = 0; i < 10; i ++) {
 			new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
 			new Orbit(new Circle(10.0 * i ,10.0 * i,10,1,1,30), 100, 20, Math.PI / 45, 0.0 , 10);
+			new Glitch(Math.random() * 1280 , Math.random() * 720,10,0,0,20,5);
 		}
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	

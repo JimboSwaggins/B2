@@ -21,7 +21,7 @@ public class Orbit extends Badguy{
 	 * @param Radius int for distance away from entity
 	 * @param RPS (double in rads) How much to rotate every tick (60Hz)
 	 * @param SRad (double in rads) Starring rotation
-	 * @param size 
+	 * @param size diameter of object
 	 */
 	public Orbit(Circle Parent, int Health, int Radius, double RPS, double SRad, int size) {
 		super(Parent.getX(), Parent.getY(), Health, 0);

@@ -77,7 +77,7 @@ public class Eye extends Badguy{
 
 	@Override
 	public boolean sudoku() {
-		if(this.xLocation > 1920||this.xLocation < -10||this.yLocation >720||this.yLocation < -10) {
+		if(this.xLocation > 1290||this.xLocation < -10||this.yLocation >730||this.yLocation < -10) {
 			return true;
 		}if(this.Health <= 0) {
 			return true;
