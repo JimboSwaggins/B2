@@ -77,7 +77,7 @@ public class Glitch extends Badguy{
 			cT --;
 		}
 		else{
-			g.setColor(Color.YELLOW);
+			g.setColor(Color.RED);
 			if(Math.random() > .995){
 				cT = (int) (Math.random() * 30);
 			}
