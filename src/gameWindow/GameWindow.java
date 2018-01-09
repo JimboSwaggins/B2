@@ -129,10 +129,10 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		ini_Systems();
 		character = new Player(400, 400);
 		
-	for(int i = 0; i < 10; i ++) {
+	for(int i = 0; i < 30; i ++) {
 			new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
-			new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,10,0.0,1.0,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
-			new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
+			//new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,10,0.0,1.0,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
+			//new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
 
 		}
 	
@@ -148,7 +148,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			nextFrame += 16666667;
 
 
-			for(Entity e: notBullets) {
+			for(Entity e: bullets) {
 				executor.execute(e);
 			}
 
@@ -231,7 +231,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 
 		g2.setColor(Color.RED);
 		g2.drawString(VRR.deltaX.toString(), 50, 50);
-		g2.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+		//g2.setFont(new Font("TimesRoman", Font.PLAIN, 20));
 		g2.drawString("Lives :" + lives, 60, 60);
 		g2.drawString("Score : " + score, 60, 70);
 
