@@ -7,8 +7,6 @@ import gameWindow.Entities.Badguy;
 
 public class Circle extends Badguy{
 
-	public double xVel;
-	public double yVel;
 	
 	/**
 	 * @param xLocation
@@ -19,17 +17,17 @@ public class Circle extends Badguy{
 	 * @param Size
 	 */
 	
-	public Circle(double xLocation, double yLocation, int Health, int xVel, int yVel, int Size) {
+	public Circle(double xLocation, double yLocation, int Health, double xVel, double yVel, int Size) {
 		super(xLocation, yLocation, Health, 0);
 		this.size = Size;
-		this.xVel = xVel;
-		this.yVel = yVel;
+		this.xV = xVel;
+		this.yV = yVel;
 		this.hitR = size /2;
 	}
 
 	public void update(){
-		this.xLocation += xVel;
-		this.yLocation += yVel;
+		this.xLocation += xV;
+		this.yLocation += yV;
 	}
 	
 	public void draw(Graphics g) {

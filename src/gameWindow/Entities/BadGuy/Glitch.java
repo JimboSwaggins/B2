@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import gameWindow.Entities.Badguy;
 
 public class Glitch extends Badguy{
-	private double xVel;
-	private double yVel;
 	private double amplitude;
 	private int line;
 	private int LWidth;
@@ -29,8 +27,8 @@ public class Glitch extends Badguy{
 	public Glitch(double xLocation, double yLocation, int Health, double xVel, double yVel, int Size, double Amplitude) {
 		super(xLocation, yLocation, Health, 0);
 		this.size = Size;
-		this.xVel = xVel;
-		this.yVel = yVel;
+		this.xV = xVel;
+		this.yV = yVel;
 		this.hitR = size /2;
 		this.amplitude = Amplitude;
 		this.line = 0;
@@ -41,8 +39,8 @@ public class Glitch extends Badguy{
 	public void update(){
 		double roll = Math.random();
 		if(roll < .8){
-			this.xLocation += xVel;
-			this.yLocation += yVel;
+			this.xLocation += xV;
+			this.yLocation += yV;
 		}
 		else if(roll < .9){
 			this.xLocation += (Math.random() -.5) * this.amplitude;

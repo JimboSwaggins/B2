@@ -126,9 +126,9 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		character = new Player(400, 400);
 		
 		for(int i = 0; i < 10; i ++) {
-			//new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
-			new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,10,0,1,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
-			new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,.25,20,5);
+			new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
+			new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,10,0.0,1.0,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
+			new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
 		}
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	
