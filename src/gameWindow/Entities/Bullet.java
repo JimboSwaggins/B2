@@ -24,7 +24,7 @@ public class Bullet extends Entity{
 		super(xLocation, yLocation, 1, 3, 5, 5, size, 5);
 		this.size = size;
 		this.color = color;
-		this.hitR = size;
+		this.hitR = size / 2;
 		this.damage = damage;
 		this.speed = speed;
 		this.xV = 0;
@@ -44,7 +44,7 @@ public class Bullet extends Entity{
 	 */
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval((int)xLocation - this.size/2 + 1, (int)yLocation - 1, this.size, this.size);
+		g.fillOval((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
 	}
 	
 	
