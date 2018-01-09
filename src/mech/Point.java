@@ -1,6 +1,6 @@
 package mech;
 
-public class Point{
+public class Point {
 	private double Xloc;
 	private double Yloc;
 	
