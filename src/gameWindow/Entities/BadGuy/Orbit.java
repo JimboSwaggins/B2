@@ -46,4 +46,8 @@ public class Orbit extends Badguy{
 		g.fillOval((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
 	}
 	
+	public boolean isBullet() {
+		return false;
+	}
+	
 }

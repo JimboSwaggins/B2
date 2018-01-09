@@ -108,4 +108,8 @@ public class Glitch extends Badguy{
 		}
 		return false;
 	}
+	
+	public boolean isBullet() {
+		return false;
+	}
 }

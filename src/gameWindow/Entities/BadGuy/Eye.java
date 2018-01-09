@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 
 import gameWindow.GameWindow;
 import gameWindow.Entities.Badguy;
-import gameWindow.Entities.Entity.eTYPE;
 import mech.Point;
 
 public class Eye extends Badguy{
