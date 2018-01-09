@@ -12,6 +12,8 @@ import mech.Point;
 
 public class Badguy extends Entity{
 
+	
+	protected int value;
 	/**
 	 * 
 	 * @param xLocation
@@ -48,9 +50,11 @@ public class Badguy extends Entity{
 	
 	@Override
 	public boolean sudoku() {
-		if(this.xLocation > 1920||this.xLocation < -10||this.yLocation >720||this.yLocation < -10) {
+		if(this.xLocation > GameWindow.Height||this.xLocation < -10||this.yLocation >720||this.yLocation < -10) {
 			return true;
 		}if(this.Health <= 0) {
+			GameWindow.score += this.value;
+			this.value = 0;
 			return true;
 		}
 		return false;

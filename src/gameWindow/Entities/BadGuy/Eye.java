@@ -46,6 +46,7 @@ public class Eye extends Badguy{
 	 */
 	public Eye(double xLocation, double yLocation, int Health, int speed) {
 		super(xLocation, yLocation, speed, Health);
+		this.value = 100;
 		this.entityType = eTYPE.HOSTILE;
 		this.reloadTime = 2000;
 		this.lastShot = System.currentTimeMillis();
@@ -77,9 +78,11 @@ public class Eye extends Badguy{
 
 	@Override
 	public boolean sudoku() {
-		if(this.xLocation > 1920||this.xLocation < -10||this.yLocation >720||this.yLocation < -10) {
+		if(this.xLocation > GameWindow.Width||this.xLocation < 0||this.yLocation >GameWindow.Height||this.yLocation < 0) {
 			return true;
 		}if(this.Health <= 0) {
+			GameWindow.score += this.value;
+			this.value = 0;
 			return true;
 		}
 		return false;

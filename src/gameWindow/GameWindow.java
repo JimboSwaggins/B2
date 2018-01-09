@@ -1,6 +1,7 @@
 package gameWindow;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -30,6 +31,9 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	public static Graphics2D g;
 	public static Player character;
 	
+	
+	public final static int Width = 1280;
+	public final static int Height = 720;
 	public static ArrayList<Entity> notBullets;
 	public static ArrayList<Entity> bullets;
 	
@@ -38,11 +42,11 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 */
 	private void createAndShowGUI() {
 		mainWindow = new JFrame();
-		mainWindow.setSize(1280, 720);
+		mainWindow.setSize(Width, Height);
 		mainWindow.setVisible(true);
 		
 		drawBoard = new JPanel();
-		drawBoard.setSize(1280, 720);
+		drawBoard.setSize(Width, Height);
 		mainWindow.add(drawBoard);
 		drawBoard.setVisible(true);
 		
@@ -189,6 +193,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	}
 	
 	public static int lives;
+	public static int score;
 	
 	/**
 	 * Overwrites the number of lives that the player has. 
@@ -221,8 +226,9 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 
 		g2.setColor(Color.RED);
 		g2.drawString(VRR.deltaX.toString(), 50, 50);
+		g2.setFont(new Font("TimesRoman", Font.PLAIN, 20));
 		g2.drawString("Lives :" + lives, 60, 60);
-		//g2.drawString("Score : " + score, 60, 70);
+		g2.drawString("Score : " + score, 60, 70);
 
 		
 		for(Entity e:notBullets) {

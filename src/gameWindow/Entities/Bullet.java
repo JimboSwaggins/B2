@@ -64,7 +64,12 @@ public class Bullet extends Entity{
 	public boolean isBullet() {
 		return true;
 	}
-
+	
+	
+	@Override
+	public void run() {
+		
+	}
 
 
 }

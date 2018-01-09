@@ -524,8 +524,8 @@ public abstract class Entity implements Runnable{
 		
 		//if player position is on a line between current position and previous location based on xV and yV
 		//if(Player.x + Player.y) <= (this.x - this.xv
-		else if((this.getDistance(b) < this.getR() + b.getR())	){
-			if(this.CtrlCheck()&&/**(System.currentTimeMillis() - this.getLastHit()) <= 3000&&*/!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
+		else if((this.getDistance(b) < this.getR() + b.getR())){
+			if(this.CtrlCheck()&&!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
 				b.setX(8000);
 				GameWindow.lives--;
 				this.setLastHit(System.currentTimeMillis());
