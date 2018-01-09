@@ -8,9 +8,6 @@ import mech.Point;
 
 public abstract class Entity implements Runnable{
 
-	
-	protected double xV;
-	protected double yV;
 	//Classification values
 	/**
 	 * 
@@ -26,7 +23,7 @@ public abstract class Entity implements Runnable{
 	public enum eTYPE{
 		CRTL, HOSTILE, HARMLESS
 	}
-	
+
 	/**
 	 * Gives the eTYPE of the entity that calls the function
 	 * @return The eTYPE of the entity that calls the function
