@@ -8,6 +8,9 @@ import gameWindow.Entities.Badguy;
 public class Circle extends Badguy{
 
 	
+	private double xV;
+	private double yV;
+
 	/**
 	 * @param xLocation
 	 * @param yLocation

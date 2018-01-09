@@ -12,6 +12,8 @@ public class Glitch extends Badguy{
 	private int LY;
 	private int cT;
 	private int sT;
+	private double xV;
+	private double yV;
 
 	/**
 	 * 
