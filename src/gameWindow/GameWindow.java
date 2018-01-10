@@ -7,11 +7,14 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -135,6 +138,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			//new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
 
 		}
+
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	
 		while(running) {
@@ -148,7 +152,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			nextFrame += 16666667;
 
 
-			for(Entity e: bullets) {
+			for(Entity e: notBullets) {
 				executor.execute(e);
 			}
 
