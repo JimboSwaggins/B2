@@ -95,7 +95,11 @@ public class Glitch extends Badguy{
 >>>>>>> parent of 0cd34a0... asdf
 			}
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> parent of 2cb7464... poop
 		if(sT > 0){
 			g.fillRect((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
 			sT --;
