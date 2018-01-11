@@ -19,6 +19,10 @@ public class Player extends Entity{
 	 * Starting yLocation of the player
 	 */
 	
+	private static BufferedImage pUp;
+	private static BufferedImage pDown;
+	private static BufferedImage pLeft;
+	private static BufferedImage pRight;
 	
 	public Player(int x, int y) {
 		
@@ -32,6 +36,16 @@ public class Player extends Entity{
 		this.setFiring(false);
 		this.hitR = 10;
 		this.reloadTime = 1;
+		
+		try {
+			pUp= ImageIO.read(new File("../B2/img/p_up.png"));
+			pDown = ImageIO.read(new File("../B2/img/p_down.png"));
+			pLeft = ImageIO.read(new File("../B2/img/p_left.png"));
+			pRight= ImageIO.read(new File("../B2/img/p_right.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		};
 
 	}
 
