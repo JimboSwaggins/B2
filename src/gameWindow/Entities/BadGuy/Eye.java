@@ -1,5 +1,6 @@
 package gameWindow.Entities.BadGuy;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,9 +13,15 @@ import gameWindow.Entities.Badguy;
 import mech.Point;
 
 public class Eye extends Badguy{
+	
+	int angle = 0;
+	int firing = 0;
+	Point target;
+	
 	public void update() {
 		this.xLocation += 0.1;
 		this.yLocation += 0.1;
+		
 		if(firing <= 0) {
 			target = this.getPoint(GameWindow.character);
 		}
@@ -28,12 +35,7 @@ public class Eye extends Badguy{
 			}
 		}
 	}
-	public double angleTarget() {
-		double i = 0;
-		return i;
-		//get angle to player and stuff here.
-		
-	}
+	
 	/**
 	 * 
 	 * @param xLocation
@@ -54,7 +56,8 @@ public class Eye extends Badguy{
 		GameWindow.notBullets.add(this);
 		this.lastFiring = System.currentTimeMillis();
 	}
-	@Override
+	
+	
 	public void draw(Graphics g) {
 		BufferedImage img = null;
 		try {
@@ -69,11 +72,9 @@ public class Eye extends Badguy{
 		}
 		g.drawImage(img, (int)(this.xLocation - (img.getWidth()/2)+1), (int)(this.yLocation - (img.getHeight()/2)+1), null);
 
-		//TODO add a size constructor
+		
 	}
-	int angle = 0;
-	int firing = 0;
-	Point target;
+	
 
 	@Override
 	public boolean sudoku() {
