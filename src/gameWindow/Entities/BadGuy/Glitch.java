@@ -96,7 +96,7 @@ public class Glitch extends Badguy{
 				cT = (int) (Math.random() * 30);
 			}
 		}
-		
+		//
 		if(sT > 0){
 			g.drawImage(bugSprite2, (int)(this.xLocation - (bugSprite2.getWidth()/2)+1), (int)(this.yLocation - (bugSprite2.getHeight()/2)+1), null);
 			sT--;
