@@ -70,6 +70,7 @@ public class Glitch extends Badguy{
 					cT = (int) (Math.random() * 30);
 				}
 			}
+<<<<<<< HEAD
 			
 			if(sT > 0){
 				g.fillRect((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
@@ -80,15 +81,27 @@ public class Glitch extends Badguy{
 				if(Math.random() > .995){
 					sT = (int) (Math.random() * 120);
 				}
+=======
+		}
+		
+		if(cT > 0){
+			g.setColor(Color.CYAN);
+			cT --;
+		}
+		else{
+			g.setColor(Color.RED);
+			if(Math.random() > .995){
+				cT = (int) (Math.random() * 30);
+>>>>>>> parent of 0cd34a0... asdf
 			}
 		}
 
 		if(sT > 0){
-			g.drawImage(bugSprite2, (int)(this.xLocation - (bugSprite2.getWidth()/2)+1), (int)(this.yLocation - (bugSprite2.getHeight()/2)+1), null);
-			sT--;
+			g.fillRect((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
+			sT --;
 		}
 		else{
-			g.drawImage(bugSprite, (int)(this.xLocation - (bugSprite.getWidth()/2)+1), (int)(this.yLocation - (bugSprite.getHeight()/2)+1), null);
+			g.fillOval((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
 			if(Math.random() > .995){
 				sT = (int) (Math.random() * 120);
 
