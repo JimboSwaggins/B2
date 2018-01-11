@@ -59,40 +59,48 @@ public class Glitch extends Badguy{
 	}
 	
 	public void draw(Graphics g) {
-		if(line > 0){
-			line --;
-			g.setColor(Color.WHITE);
-			g.fillRect(0,LY,1920,LWidth);
-		}
-		else{
-			if(Math.random() > .99){
-				LWidth = (int)(Math.random() * 10);
-				LY = (int)(Math.random() * 720);
-				line = (int)(Math.random() * 120);
+		if(Math.random() < .99) {
+			if(cT > 0){
+				g.setColor(Color.CYAN);
+				cT --;
+			}
+			else{
+				g.setColor(Color.RED);
+				if(Math.random() > .995){
+					cT = (int) (Math.random() * 30);
+				}
+			}
+			
+			if(sT > 0){
+				g.fillRect((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
+				sT --;
+			}
+			else{
+				g.fillOval((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
+				if(Math.random() > .995){
+					sT = (int) (Math.random() * 120);
+				}
 			}
 		}
 		
-		if(cT > 0){
-			g.setColor(Color.CYAN);
-			cT --;
-		}
-		else{
-			g.setColor(Color.RED);
-			if(Math.random() > .995){
-				cT = (int) (Math.random() * 30);
+		if(Math.random() > .1) {
+			if(line > 0){
+				line --;
+				g.setColor(Color.WHITE);
+				g.fillRect(0,LY,1920,LWidth);
+			}
+			else{
+				if(Math.random() > .99){
+					LWidth = (int)(Math.random() * 6);
+					LY = (int)(Math.random() * 720);
+					line = (int)(Math.random() * 120);
+				}
 			}
 		}
 		
-		if(sT > 0){
-			g.fillRect((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
-			sT --;
-		}
-		else{
-			g.fillOval((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
-			if(Math.random() > .995){
-				sT = (int) (Math.random() * 120);
-			}
-		}
+		
+		
+		
 		
 		
 	}
