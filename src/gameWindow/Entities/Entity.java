@@ -246,6 +246,10 @@ public abstract class Entity implements Runnable{
 
 
 	//MATHEMATICAL FUNCTIONS
+	
+	public Point toPoint() {
+		return new Point(this.xLocation, this.yLocation);
+	}
 	/**
 	 * Calculates the speed that an object is moving on the x-axis if it is moving at an angle
 	 * 
@@ -475,6 +479,14 @@ public abstract class Entity implements Runnable{
 		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6);
 	}
 	
+	public void TargetedBulletToPoint(Point p, double speed, int size, double e) {
+		double tempX = this.xLocation - p.getX();
+		double tempY = this.yLocation - p.getY();
+
+		float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
+		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6, e);
+	}
+	
 	/**
 	 * Fires a bullet at an angle from the entity. Can be used for bombs or for spiral patterns.
 	 * @param angle The angle at which the bullet should be fired
@@ -484,6 +496,8 @@ public abstract class Entity implements Runnable{
 	public void angledBullet(int angle, double speed, int size) {
 		new targetedBullet(this.xLocation, this.yLocation, angle, speed, size, true, Color.RED, 6);
 	}
+	
+	
 	
 	/**
 	 * Gets the position of another entity as a point

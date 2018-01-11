@@ -25,6 +25,14 @@ class targetedBullet extends Bullet{
 		super(xLocation, yLocation, speed, size, hostile, color, damage);
 		this.angle = angle;
 	}
+	
+	private double e;
+	public targetedBullet(double xLocation, double yLocation, double angle, double speed, int size,
+			boolean hostile, Color color, int damage, double e) {
+			super(xLocation, yLocation, speed, size, hostile, color, damage);
+			this.angle = angle;
+			this.e = e;
+	}
 	 
 	/**
 	 * Moves the bullet based on the angle that it needs to take to get to target location at the instant that it was fired.
@@ -34,6 +42,8 @@ class targetedBullet extends Bullet{
 		double rad = Math.toRadians(this.angle);
 		this.xLocation -= .5 * Math.cos(rad) * this.getSpeed();
 		this.yLocation -= .5 * Math.sin(rad)  * this.getSpeed();
-		
+		if(this.e != 0){
+			this.speed += e;
+		}
 	}
 }

@@ -1,27 +1,26 @@
 package gameWindow;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
+import gameWindow.Entities.BadGuy.Circle;
 import gameWindow.Entities.BadGuy.Eye;
+import gameWindow.Entities.BadGuy.Glitch;
+import gameWindow.Entities.BadGuy.Orbit;
 import render.VRR;
 
 public class GameWindow extends Thread implements Runnable, KeyListener {
@@ -128,10 +127,10 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		ini_Systems();
 		character = new Player(400, 400);
 		
-	for(int i = 0; i < 40; i ++) {
+	for(int i = 0; i < 20; i ++) {
 			new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
-			//new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,10,0.0,1.0,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
-			//new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
+			new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,10,0.0,1.0,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
+			new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
 
 		}
 

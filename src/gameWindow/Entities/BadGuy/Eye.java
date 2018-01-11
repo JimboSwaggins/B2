@@ -1,6 +1,5 @@
 package gameWindow.Entities.BadGuy;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,6 +13,9 @@ import mech.Point;
 
 public class Eye extends Badguy{
 	
+	
+	public static BufferedImage img1 = null;
+	public static BufferedImage img2 = null;
 	int angle = 0;
 	int firing = 0;
 	Point target;
@@ -27,7 +29,7 @@ public class Eye extends Badguy{
 		}
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
 			firing++;
-			TargetedBullet(GameWindow.character,-30, 8);
+			TargetedBulletToPoint(GameWindow.character.toPoint(),-30, 8, 0.2);
 			
 			if(firing >= 100) {
 				this.lastFiring = System.currentTimeMillis();
@@ -55,20 +57,28 @@ public class Eye extends Badguy{
 		this.Health = Health;
 		GameWindow.notBullets.add(this);
 		this.lastFiring = System.currentTimeMillis();
+		try {
+			img1 = ImageIO.read(new File("../B2/img/enemy1a.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		};
+		try {
+			img2 = ImageIO.read(new File("../B2/img/enemy1.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
 	public void draw(Graphics g) {
 		BufferedImage img = null;
-		try {
-			if(firing <= 0){
-				img = ImageIO.read(new File("../B2/img/enemy1a.png"));
-			}
-			else{
-				img = ImageIO.read(new File("../B2/img/enemy1.png"));
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(firing <= 0){
+			img = img1;
+		}
+		else{
+			img = img2;
 		}
 		g.drawImage(img, (int)(this.xLocation - (img.getWidth()/2)+1), (int)(this.yLocation - (img.getHeight()/2)+1), null);
 
