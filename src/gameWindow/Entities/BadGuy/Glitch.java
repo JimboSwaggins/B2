@@ -2,10 +2,18 @@ package gameWindow.Entities.BadGuy;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import gameWindow.Entities.Badguy;
 
 public class Glitch extends Badguy{
+	private static BufferedImage bugSprite;
+	private static BufferedImage bugSprite2;
+	
 	private double amplitude;
 	private int line;
 	private int LWidth;
@@ -36,6 +44,13 @@ public class Glitch extends Badguy{
 		this.line = 0;
 		this.cT = 0;
 		this.sT = 0;
+		try {
+			bugSprite = ImageIO.read(new File("../B2/img/Bug1.png"));
+			bugSprite2 = ImageIO.read(new File("../B2/img/Bug2.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void update(){
@@ -73,8 +88,7 @@ public class Glitch extends Badguy{
 		}
 		
 		if(cT > 0){
-			g.setColor(Color.CYAN);
-			cT --;
+			
 		}
 		else{
 			g.setColor(Color.RED);
@@ -84,11 +98,11 @@ public class Glitch extends Badguy{
 		}
 		
 		if(sT > 0){
-			g.fillRect((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
-			sT --;
+			g.drawImage(bugSprite2, (int)(this.xLocation - (bugSprite2.getWidth()/2)+1), (int)(this.yLocation - (bugSprite2.getHeight()/2)+1), null);
+			sT--;
 		}
 		else{
-			g.fillOval((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
+			g.drawImage(bugSprite, (int)(this.xLocation - (bugSprite.getWidth()/2)+1), (int)(this.yLocation - (bugSprite.getHeight()/2)+1), null);
 			if(Math.random() > .995){
 				sT = (int) (Math.random() * 120);
 			}
