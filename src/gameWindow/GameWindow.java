@@ -16,13 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import gameWindow.Entities.Badguy;
 import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
-import gameWindow.Entities.BadGuy.Circle;
 import gameWindow.Entities.BadGuy.Eye;
-import gameWindow.Entities.BadGuy.Glitch;
-import gameWindow.Entities.BadGuy.Orbit;
 import render.VRR;
 
 public class GameWindow extends Thread implements Runnable, KeyListener {
@@ -118,7 +114,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		
 	}
 	
-	private ExecutorService executor;
+	public ExecutorService executor;
 	
 	/**
 	 * The main engine of the game
@@ -129,10 +125,10 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		ini_Systems();
 		character = new Player(400, 400);
 		
-	for(int i = 0; i < 10; i ++) {
+	for(int i = 0; i < 40; i ++) {
 			new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
-			new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,10,0.0,1.0,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
-			new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
+			//new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,10,0.0,1.0,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
+			//new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
 
 		}
 	

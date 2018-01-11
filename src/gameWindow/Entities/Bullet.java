@@ -32,9 +32,9 @@ public class Bullet extends Entity{
 		}else {
 			this.entityType = eTYPE.HARMLESS;
 		}
-
+		
 		GameWindow.bullets.add(this);
-			
+		this.run();
 	}
 	
 	/**
@@ -65,7 +65,6 @@ public class Bullet extends Entity{
 	
 	@Override
 	public void run() {
-		
 	}
 
 

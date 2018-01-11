@@ -33,6 +33,7 @@ public class Orbit extends Badguy{
 		this.radPerSecond = RPS;
 		this.sRad = SRad;
 		this.cRad = SRad;
+
 	}
 
 	public void update(){
