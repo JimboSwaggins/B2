@@ -28,7 +28,7 @@ public class Bullet extends Entity{
 	private static BufferedImage[] bSprite = null;
 	static {
 		try {
-			 bSprite = new BufferedImage[] {ImageIO.read(new File("../B2/img/bullet1.png")), ImageIO.read(new File("../B2/img/bullet2.png"))};
+			 bSprite = new BufferedImage[] {ImageIO.read(new File("../B2/img/bullet1.png")), ImageIO.read(new File("../B2/img/bullet2.png")),  ImageIO.read(new File("../B2/img/bullet3.png"))};
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

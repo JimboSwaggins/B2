@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import gameWindow.GameWindow;
 import gameWindow.Entities.Badguy;
 import gameWindow.Entities.Entity;
-import gameWindow.Entities.Entity.eTYPE;
 
 public class Orbit extends Badguy{
 

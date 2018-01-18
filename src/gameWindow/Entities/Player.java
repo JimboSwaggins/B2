@@ -81,31 +81,16 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
-			Bullet(false, 5, 5, 5, 1);
+			Bullet(false, 5, 5, 5, 2);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}
 
 	public void draw(Graphics g) {
 		BufferedImage img = null;
+		
 		try {
-			switch(direction){
-			case 1:
-				img = ImageIO.read(new File("../B2/img/p_up.png"));
-				break;
-			case 2:
-				img = ImageIO.read(new File("../B2/img/p_right.png"));
-				break;
-			case 3:
-				img = ImageIO.read(new File("../B2/img/p_down.png"));
-				break;
-			case 4:
-				img = ImageIO.read(new File("../B2/img/p_left.png"));
-				break;
-			default:
-				img = ImageIO.read(new File("../B2/img/p.png"));
-				break;
-			}
+			img = ImageIO.read(new File("../B2/img/p.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
