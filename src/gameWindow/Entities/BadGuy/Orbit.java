@@ -3,8 +3,10 @@ package gameWindow.Entities.BadGuy;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gameWindow.GameWindow;
 import gameWindow.Entities.Badguy;
 import gameWindow.Entities.Entity;
+import gameWindow.Entities.Entity.eTYPE;
 
 public class Orbit extends Badguy{
 
@@ -33,13 +35,30 @@ public class Orbit extends Badguy{
 		this.radPerSecond = RPS;
 		this.sRad = SRad;
 		this.cRad = SRad;
-
+		
+		
+		this.value = 100;
+		this.entityType = eTYPE.HOSTILE;
+		this.reloadTime = 2000;
+		this.lastShot = System.currentTimeMillis();
+		this.lastShot = System.currentTimeMillis();
+		this.hitR = 5;
+		this.Health = Health;
+		GameWindow.notBullets.add(this);
+		this.lastFiring = System.currentTimeMillis();
 	}
 
 	public void update(){
 		this.xLocation = parent.getX() + this.radius * Math.cos(cRad);
 		this.yLocation = parent.getY() + this.radius * Math.sin(cRad);
 		this.cRad += this.radPerSecond;
+		
+		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
+			for(int i = 0; i < 24; i++) {
+				this.angledBullet(0+(15*i), 4, 4, 0);
+			}
+			this.lastFiring = System.currentTimeMillis();
+		}
 	}
 	
 	public void draw(Graphics g) {

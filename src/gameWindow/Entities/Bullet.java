@@ -2,6 +2,11 @@ package gameWindow.Entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import gameWindow.GameWindow;
 
@@ -20,13 +25,23 @@ public class Bullet extends Entity{
  * @param color The Color of the bullet
  */
 	
-	public Bullet(double xLocation, double yLocation, double speed, int size, boolean hostile, Color color, int damage) {
+	private static BufferedImage[] bSprite = null;
+	static {
+		try {
+			 bSprite = new BufferedImage[] {ImageIO.read(new File("../B2/img/bullet1.png")), ImageIO.read(new File("../B2/img/bullet2.png"))};
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public BufferedImage img;
+	public Bullet(double xLocation, double yLocation, double speed, int size, boolean hostile, Color color, int damage, int bNum) {
 		super(xLocation, yLocation, 1, 3, 5, 5, size, 5);
 		this.size = size;
 		this.color = color;
 		this.hitR = size / 2;
 		this.damage = damage;
 		this.speed = speed;
+		this.img = bSprite[bNum];
 		if(hostile) {
 			this.entityType = eTYPE.HOSTILE;
 		}else {
@@ -42,7 +57,7 @@ public class Bullet extends Entity{
 	 */
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillOval((int)xLocation - this.size/2, (int)yLocation - this.size/2, this.size, this.size);
+		g.drawImage(img, (int)(this.xLocation - (img.getWidth()/2)+1), (int)(this.yLocation - (img.getHeight()/2)+1), null);
 	}
 	
 	

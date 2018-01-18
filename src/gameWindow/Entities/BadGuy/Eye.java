@@ -29,7 +29,7 @@ public class Eye extends Badguy{
 		}
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
 			firing++;
-			TargetedBulletToPoint(GameWindow.character.toPoint(),-30, 8, 0.2);
+			TargetedBulletToPoint(GameWindow.character.toPoint(),-30, 8, 0.2, 0);
 			
 			if(firing >= 100) {
 				this.lastFiring = System.currentTimeMillis();

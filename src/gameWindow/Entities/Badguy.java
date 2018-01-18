@@ -44,8 +44,8 @@ public class Badguy extends Entity{
 		g.drawImage(img, (int)(this.xLocation - (img.getWidth()/2)+1), (int)(this.yLocation - (img.getHeight()/2)+1), null);
 	}
 	int angle = 0;
-	int firing = 0;
-	Point target;
+	protected int firing = 0;
+	protected Point target;
 	public void update() {}
 	
 	@Override

@@ -435,8 +435,8 @@ public abstract class Entity implements Runnable{
 	 * 
 	 * 
 	 */
-	protected void Bullet(int damage) {
-		new Bullet(this.xLocation, this.yLocation, 1, 5, false, Color.RED, damage);
+	protected void Bullet(int damage, int bNum) {
+		new Bullet(this.xLocation, this.yLocation, 1, 5, false, Color.RED, damage, bNum);
 	}
 
 	/**
@@ -447,8 +447,8 @@ public abstract class Entity implements Runnable{
 	 * 
 	 * .
 	 */
-	protected void Bullet(boolean hostile, int damage, double speed, int size) {
-		new Bullet(this.xLocation, this.yLocation, speed, size, hostile, Color.RED, damage);
+	protected void Bullet(boolean hostile, int damage, double speed, int size, int bNum) {
+		new Bullet(this.xLocation, this.yLocation, speed, size, hostile, Color.RED, damage, bNum);
 	}
 
 	/**
@@ -457,12 +457,12 @@ public abstract class Entity implements Runnable{
 	 * 
 	 * Fires a bullet targeted at another entity. All calculations are handled internally.
 	 */
-	public void TargetedBullet(Entity target, double speed, int size) {
+	public void TargetedBullet(Entity target, double speed, int size, int bNum) {
 		double tempX = this.xLocation - target.xLocation;
 		double tempY = this.yLocation - target.yLocation;
 
 		float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6);
+		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6, bNum);
 	}
 
 	/**
@@ -471,30 +471,30 @@ public abstract class Entity implements Runnable{
 	 * @param speed the speed of the bullet
 	 * @param size the size of the bullet
 	 */ 
-	public void TargetedBulletToPoint(Point p, double speed, int size) {
+	public void TargetedBulletToPoint(Point p, double speed, int size, int bNum) {
 		double tempX = this.xLocation - p.getX();
 		double tempY = this.yLocation - p.getY();
 
 		float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6);
+		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6, bNum);
 	}
 	
-	public void TargetedBulletToPoint(Point p, double speed, int size, double e) {
+	public void TargetedBulletToPoint(Point p, double speed, int size, double e, int bNum) {
 		double tempX = this.xLocation - p.getX();
 		double tempY = this.yLocation - p.getY();
 
 		float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
-		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6, e);
+		new targetedBullet(this.xLocation, this.yLocation, angleTo, speed, size, true, Color.RED, 6, e, bNum);
 	}
 	
 	/**
 	 * Fires a bullet at an angle from the entity. Can be used for bombs or for spiral patterns.
-	 * @param angle The angle at which the bullet should be fired
+	 * @param d The angle at which the bullet should be fired
 	 * @param speed The speed at which the bullet should move
 	 * @param size The size of the bullet
 	 */
-	public void angledBullet(int angle, double speed, int size) {
-		new targetedBullet(this.xLocation, this.yLocation, angle, speed, size, true, Color.RED, 6);
+	public void angledBullet(double d, double speed, int size, int bNum) {
+		new targetedBullet(this.xLocation, this.yLocation, d, speed, size, true, Color.RED, 6, bNum);
 	}
 	
 	
@@ -509,6 +509,15 @@ public abstract class Entity implements Runnable{
 	}
 
 
+	
+	public double getAngle(Entity e) {
+		double tempX = this.xLocation - e.toPoint().getX();
+		double tempY = this.yLocation - e.toPoint().getY();
+
+		float angleTo = (float) Math.toDegrees(Math.atan2(tempY,tempX));
+		
+		return (double)angleTo;
+	}
 	/**
 	 * The hit-detection method of all entities
 	 */

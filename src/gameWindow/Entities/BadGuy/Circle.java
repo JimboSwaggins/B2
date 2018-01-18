@@ -3,7 +3,9 @@ package gameWindow.Entities.BadGuy;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import gameWindow.GameWindow;
 import gameWindow.Entities.Badguy;
+import gameWindow.Entities.Entity.eTYPE;
 
 public class Circle extends Badguy{
 
@@ -25,12 +27,29 @@ public class Circle extends Badguy{
 		this.size = Size;
 		this.xV = xVel;
 		this.yV = yVel;
-		this.hitR = size /2;
+		this.hitR = size/2;
+		
+		
+		this.value = 100;
+		this.entityType = eTYPE.HOSTILE;
+		this.reloadTime = 1000;
+		this.lastShot = System.currentTimeMillis();
+		this.hitR = 5;
+		this.Health = Health;
+		GameWindow.notBullets.add(this);
+		this.lastFiring = System.currentTimeMillis();
 	}
 
 	public void update(){
 		this.xLocation += xV;
 		this.yLocation += yV;
+		
+		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
+			for(int i = 0; i < 3; i++) {
+				this.angledBullet((this.getAngle(GameWindow.character) - 15) + (15*i), 4, 4, 1);
+			}
+			this.lastFiring = System.currentTimeMillis();
+		}
 	}
 	
 	public void draw(Graphics g) {
