@@ -369,6 +369,28 @@ public abstract class Entity implements Runnable{
 	 * @param lastHit The time that will repoace the previous entry for last hit.
 	 */
 	public void setLastHit(long lastHit) {this.lastHit = lastHit;}
+	
+	
+	protected long hitTime = 0;
+	
+	public void setHitTime() {
+		this.hitTime = System.currentTimeMillis() + 3000;
+	}
+	
+	public long getHitTime() {
+		return this.hitTime;
+	}
+	
+	public boolean hitCooldown() {
+		if(this.hitTime > System.currentTimeMillis()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+	
 	//Mechanical methods
 	/**
 	 * Updates the current entity. Completely abstract.
@@ -534,6 +556,7 @@ public abstract class Entity implements Runnable{
 	 * Checks if the entity calling the method is touching another entity's hit-radius
 	 * @param b The entity being check against
 	 */
+	
 	private void hitCheck(Entity b) {
 		if(this.geteTYPE() == b.geteTYPE()) {
 			return;
@@ -544,10 +567,15 @@ public abstract class Entity implements Runnable{
 
 		else if(this.getDistance(b) < this.getR() + b.getR()) {
 			if(this.CtrlCheck()&&!b.geteTYPE().equals(Entity.eTYPE.HARMLESS)) {
-				b.setX(8000);
-				GameWindow.lives--;
-				this.setLastHit(System.currentTimeMillis());
-				return;	
+				if(this.hitCooldown()) {
+					b.setX(8000);
+					return;
+				}else {
+					b.setX(8000);
+					GameWindow.lives--;
+					this.setHitTime();
+					return;
+				}
 			}if(this.geteTYPE().equals(Entity.eTYPE.HOSTILE)&&!b.geteTYPE().equals(Entity.eTYPE.HOSTILE)) {
 				b.setX(8000);
 				this.hMath(b.getDamage());

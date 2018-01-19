@@ -20,10 +20,12 @@ public class Player extends Entity{
 	 */
 	
 	
+	
+	
 	public Player(int x, int y) {
 		
 		super(x, y, 100, 3, 30.0, 30.0, 5, 2);
-
+		this.setHitTime();
 		GameWindow.notBullets.add(this);
 		this.lastHit = System.currentTimeMillis();
 		GameWindow.lives = 3;
@@ -32,6 +34,7 @@ public class Player extends Entity{
 		this.setFiring(false);
 		this.hitR = 10;
 		this.reloadTime = 1;
+		
 
 	}
 
@@ -90,7 +93,11 @@ public class Player extends Entity{
 		BufferedImage img = null;
 		
 		try {
-			img = ImageIO.read(new File("../B2/img/p.png"));
+			if(this.hitTime > System.currentTimeMillis()) {
+				img = ImageIO.read(new File("../B2/img/pHit.png"));
+			}else {
+				img = ImageIO.read(new File("../B2/img/p.png"));
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
