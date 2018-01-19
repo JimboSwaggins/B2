@@ -336,6 +336,10 @@ public abstract class Entity implements Runnable{
 	 */
 	public void hMath(int damageTaken) {this.Health -= damageTaken;}
 
+	
+	public int getHealth() {
+		return this.Health;
+	}
 	/**
 	 * The damage dealt by the entity on contact with another. Note that the player only has lives, not a health system.
 	 */

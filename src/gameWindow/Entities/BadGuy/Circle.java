@@ -31,7 +31,7 @@ public class Circle extends Badguy{
 		
 		this.value = 100;
 		this.entityType = eTYPE.HOSTILE;
-		this.reloadTime = 1000;
+		this.reloadTime = 2500;
 		this.lastShot = System.currentTimeMillis();
 		this.hitR = 5;
 		this.Health = Health;
@@ -45,7 +45,7 @@ public class Circle extends Badguy{
 		
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
 			for(int i = 0; i < 3; i++) {
-				this.angledBullet((this.getAngle(GameWindow.character) - 15) + (15*i), 4, 4, 1);
+				this.angledBullet((this.getAngle(GameWindow.character) - 15) + (15*i), 6, 4, 1);
 			}
 			this.lastFiring = System.currentTimeMillis();
 		}

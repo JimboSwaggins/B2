@@ -38,7 +38,7 @@ public class Orbit extends Badguy{
 		
 		this.value = 100;
 		this.entityType = eTYPE.HOSTILE;
-		this.reloadTime = 2000;
+		this.reloadTime = 5000;
 		this.lastShot = System.currentTimeMillis();
 		this.lastShot = System.currentTimeMillis();
 		this.hitR = 5;
@@ -48,9 +48,15 @@ public class Orbit extends Badguy{
 	}
 
 	public void update(){
-		this.xLocation = parent.getX() + this.radius * Math.cos(cRad);
-		this.yLocation = parent.getY() + this.radius * Math.sin(cRad);
-		this.cRad += this.radPerSecond;
+		
+		if(this.parent.getHealth() > 0) {
+			this.xLocation = parent.getX() + this.radius * Math.cos(cRad);
+			this.yLocation = parent.getY() + this.radius * Math.sin(cRad);
+			this.cRad += this.radPerSecond;
+		}else {
+			this.xLocation += 1;
+			this.yLocation += 1;
+		}
 		
 		if(System.currentTimeMillis() - this.lastFiring >= this.reloadTime) {
 			for(int i = 0; i < 24; i++) {
