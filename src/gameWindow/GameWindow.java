@@ -18,6 +18,8 @@ import javax.swing.WindowConstants;
 import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
 import gameWindow.Entities.BadGuy.Circle;
+import gameWindow.Entities.BadGuy.Eye;
+import gameWindow.Entities.BadGuy.Glitch;
 import gameWindow.Entities.BadGuy.Orbit;
 import render.VRR;
 
@@ -128,11 +130,22 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		character = new Player(400, 400);
 		
 	for(int i = 0; i < 20; i ++) {
-			//new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
-			new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,400,0.0,0.2,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
-			//new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
-
+		int b = 0;
+		switch(b) {
+			case 0:
+				new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
+				break;
+			case 1:
+				new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,400,0.0,0.2,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
+				break;
+			case 2:
+				new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
+				break;
+			default:
+				break;
+			
 		}
+	}
 
 	
 		long nextFrame =  (System.nanoTime() + 16666667);	

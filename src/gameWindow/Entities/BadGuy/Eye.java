@@ -53,7 +53,7 @@ public class Eye extends Badguy{
 		this.entityType = eTYPE.HOSTILE;
 		this.reloadTime = 2000;
 		this.lastShot = System.currentTimeMillis();
-		this.hitR = 5;
+		
 		this.Health = Health;
 		GameWindow.notBullets.add(this);
 		this.lastFiring = System.currentTimeMillis();
@@ -69,6 +69,7 @@ public class Eye extends Badguy{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.hitR = img1.getWidth()/2;
 	}
 	
 	

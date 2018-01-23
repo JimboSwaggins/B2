@@ -33,7 +33,7 @@ public class Circle extends Badguy{
 		this.entityType = eTYPE.HOSTILE;
 		this.reloadTime = 2500;
 		this.lastShot = System.currentTimeMillis();
-		this.hitR = 5;
+
 		this.Health = Health;
 		GameWindow.notBullets.add(this);
 		this.lastFiring = System.currentTimeMillis();

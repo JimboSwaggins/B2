@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -33,7 +34,7 @@ public class Glitch extends Badguy{
 	 * @param Size
 	 * @param Amplitude How fat the Shaking goes
 	 */
-	
+	public static Random rand = new Random();
 	public Glitch(double xLocation, double yLocation, int Health, double xVel, double yVel, int Size, double Amplitude) {
 		super(xLocation, yLocation, Health, 0);
 		this.size = Size;
@@ -73,10 +74,17 @@ public class Glitch extends Badguy{
 		}
 	}
 	
+	private float red;
+	private float green;
+	private float blue;
+	
 	public void draw(Graphics g) {
 		if(line > 0){
 			line --;
-			g.setColor(Color.WHITE);
+			red = rand.nextFloat();
+			green = rand.nextFloat();
+			blue = rand.nextFloat();	
+			g.setColor(new Color(red, green, blue));
 			g.fillRect(0,LY,1920,LWidth);
 		}
 		else{
