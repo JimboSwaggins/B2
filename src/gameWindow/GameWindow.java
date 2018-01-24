@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,6 +22,7 @@ import gameWindow.Entities.BadGuy.Circle;
 import gameWindow.Entities.BadGuy.Eye;
 import gameWindow.Entities.BadGuy.Glitch;
 import gameWindow.Entities.BadGuy.Orbit;
+import mech.StageEvent;
 import render.VRR;
 
 public class GameWindow extends Thread implements Runnable, KeyListener {
@@ -129,42 +131,48 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		ini_Systems();
 		character = new Player(400, 400);
 		
-	for(int i = 0; i < 20; i ++) {
-		int b = 0;
-		switch(b) {
-			case 0:
-				new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
-				break;
-			case 1:
-				new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,400,0.0,0.2,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
-				break;
-			case 2:
-				new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
-				break;
-			default:
-				break;
+//	for(int i = 0; i < 20; i ++) {
+//		int b = 0;
+//		switch(b) {
+//			case 0:
+//				
+//				//new Eye(Math.random() * 1280 , Math.random() * 720, 50, 8);
+//				break;
+//			case 1:
+//				new Orbit(new Circle(Math.random() * 1280 , Math.random() * 720,400,0.0,0.2,30), 100, 30, Math.PI / 45, Math.random() * Math.PI * 2 , 10);
+//				break;
+//			case 2:
+//				new Glitch(Math.random() * 1280 , Math.random() * 720,10,0.0,0.0,20,5);
+//				break;
+//			default:
+//				break;
+//			
+//		}
+	//}
+		
 			
-		}
-	}
-
-	
+		StageEvent e2= new StageEvent("eye", 8, 1000, 40, 40);
 		long nextFrame =  (System.nanoTime() + 16666667);	
+		boolean apple = false;
 		while(running) {
-			
-			
+			if(!apple) {
+				e2.start();
+				apple = true;
+			}
 			while(System.nanoTime() <= nextFrame) {
 					
 			}
+			renderUpdate();
 			calcUpdate();
 			
 			nextFrame += 16666667;
 
-
+			
 			for(Entity e: notBullets) {
 				executor.execute(e);
 			}
 
-			renderUpdate();
+			
 			
 		}
 	}
@@ -190,15 +198,15 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		for(Entity e: bullets) {
 			e.update();
 		}
-		for(Entity e: notBullets) {
-			e.update();
-		}
 		Iterator<Entity> itr = notBullets.iterator();
-
+	
 		while (itr.hasNext()){
-		    if(itr.next().sudoku()){
-		    	itr.remove();
-		    }
+			itr.next().update();
+			if(itr.hasNext()){
+		    	if(itr.next().sudoku()){
+		    		itr.remove();
+		    	}	
+			}
 		}
 		
 		itr = bullets.iterator();
@@ -229,11 +237,12 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 * @return number of lives the player has.
 	 */
 	public int getLives() {return lives;}
-	
+	public static boolean rendering = true;
 	/**
 	 * Renders the entities in the game to the main JFrame.
 	 */
 	public static void renderUpdate() {	
+		rendering = true;
 		image  = new BufferedImage(1280, 720, BufferedImage.TYPE_INT_RGB);
 		Graphics g2  = image.getGraphics();
 		//g2.drawImage(image, 0, 0, null);
@@ -248,17 +257,18 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		g2.drawString("Score : " + score, 60, 70);
 
 		
-		for(Entity e:notBullets) {
-			e.draw(g2);
-		}
 		for(Entity e:bullets) {
 			e.draw(g2);
+		}
+		for(int i = notBullets.size() - 1; i >= 0; i--) {
+			notBullets.get(i).draw(g2);
 		}
 		
 		
 		g2 = drawBoard.getGraphics();
 		g2.drawImage(image, 0, 0, null);
 		//DRAW IMAGES OF STUFF HERE
+		rendering = false;
 	}
 	
 	@Override

@@ -84,7 +84,7 @@ public class Player extends Entity{
 		}
 
 		if(this.isFiring()&&(System.currentTimeMillis() - this.lastFiring >= this.reloadTime)) {
-			Bullet(false, 5, 5, 5, 2);
+			Bullet(false, 50, 5, 5, 1);
 			this.lastFiring = System.currentTimeMillis();
 		}
 	}

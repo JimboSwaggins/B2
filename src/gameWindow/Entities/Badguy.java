@@ -8,9 +8,10 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import gameWindow.GameWindow;
+import gameWindow.Entities.BadGuy.Eye;
 import mech.Point;
 
-public class Badguy extends Entity{
+public class Badguy extends Entity implements Cloneable{
 
 	
 	protected int value;

@@ -6,8 +6,10 @@ import java.awt.Graphics;
 import gameWindow.GameWindow;
 import mech.Point;
 
-public abstract class Entity implements Runnable{
+public abstract class Entity implements Runnable, Cloneable{
 
+	
+	
 	//Classification values
 	/**
 	 * 

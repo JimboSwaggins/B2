@@ -11,7 +11,7 @@ import gameWindow.GameWindow;
 import gameWindow.Entities.Badguy;
 import mech.Point;
 
-public class Eye extends Badguy{
+public class Eye extends Badguy implements Cloneable{
 	
 	
 	public static BufferedImage img1 = null;
@@ -21,8 +21,8 @@ public class Eye extends Badguy{
 	Point target;
 	
 	public void update() {
-		this.xLocation += 0.1;
-		this.yLocation += 0.1;
+		this.xLocation += 1;
+		this.yLocation += 1;
 		
 		if(firing <= 0) {
 			target = this.getPoint(GameWindow.character);
@@ -47,14 +47,14 @@ public class Eye extends Badguy{
 	 * @param Health
 	 * The Current Health of the badGuy
 	 */
-	public Eye(double xLocation, double yLocation, int Health, int speed) {
-		super(xLocation, yLocation, speed, Health);
+	public Eye(double xLocation, double yLocation) {
+		super(xLocation, yLocation, 10, 150);
 		this.value = 100;
 		this.entityType = eTYPE.HOSTILE;
 		this.reloadTime = 2000;
 		this.lastShot = System.currentTimeMillis();
 		
-		this.Health = Health;
+
 		GameWindow.notBullets.add(this);
 		this.lastFiring = System.currentTimeMillis();
 		try {
@@ -98,6 +98,8 @@ public class Eye extends Badguy{
 		}
 		return false;
 	}
+	
+	
 	@Override
 	public boolean isBullet() {
 		// TODO Auto-generated method stub
