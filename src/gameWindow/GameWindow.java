@@ -160,7 +160,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 				apple = true;
 			}
 			while(System.nanoTime() <= nextFrame) {
-					
+				
 			}
 			renderUpdate();
 			calcUpdate();
@@ -168,8 +168,8 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			nextFrame += 16666667;
 
 			
-			for(Entity e: notBullets) {
-				executor.execute(e);
+			for(int i = notBullets.size() - 1; i > 0; i--) {
+				executor.execute(notBullets.get(i));
 			}
 
 			

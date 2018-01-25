@@ -33,7 +33,7 @@ public class Player extends Entity{
 		this.setFocus(false);
 		this.setFiring(false);
 		this.hitR = 10;
-		this.reloadTime = 1;
+		this.reloadTime = 1000;
 		
 
 	}

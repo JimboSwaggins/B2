@@ -21,8 +21,8 @@ public class Eye extends Badguy implements Cloneable{
 	Point target;
 	
 	public void update() {
-		this.xLocation += 1;
-		this.yLocation += 1;
+		this.xLocation += yLocation/30;
+		this.yLocation += 2;
 		
 		if(firing <= 0) {
 			target = this.getPoint(GameWindow.character);
@@ -47,16 +47,8 @@ public class Eye extends Badguy implements Cloneable{
 	 * @param Health
 	 * The Current Health of the badGuy
 	 */
-	public Eye(double xLocation, double yLocation) {
-		super(xLocation, yLocation, 10, 150);
-		this.value = 100;
-		this.entityType = eTYPE.HOSTILE;
-		this.reloadTime = 2000;
-		this.lastShot = System.currentTimeMillis();
-		
-
-		GameWindow.notBullets.add(this);
-		this.lastFiring = System.currentTimeMillis();
+	
+	static {
 		try {
 			img1 = ImageIO.read(new File("../B2/img/enemy1a.png"));
 		} catch (IOException e1) {
@@ -69,6 +61,18 @@ public class Eye extends Badguy implements Cloneable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public Eye(double xLocation, double yLocation) {
+		super(xLocation, yLocation, 10, 150);
+		this.value = 100;
+		this.entityType = eTYPE.HOSTILE;
+		this.reloadTime = 2000;
+		this.lastShot = System.currentTimeMillis();
+		
+
+		GameWindow.notBullets.add(this);
+		this.lastFiring = System.currentTimeMillis();
+		
 		this.hitR = img1.getWidth()/2;
 	}
 	
@@ -80,6 +84,7 @@ public class Eye extends Badguy implements Cloneable{
 		}
 		else{
 			img = img2;
+		
 		}
 		g.drawImage(img, (int)(this.xLocation - (img.getWidth()/2)+1), (int)(this.yLocation - (img.getHeight()/2)+1), null);
 
