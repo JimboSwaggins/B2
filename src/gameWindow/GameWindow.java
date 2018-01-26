@@ -3,10 +3,12 @@ package gameWindow;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,8 +33,8 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	
 	public final static int Width = 1280;
 	public final static int Height = 720;
-	public static ArrayList<Entity> notBullets;
-	public static ArrayList<Entity> bullets;
+	public static java.util.List<Entity> notBullets;
+	public static java.util.List<Entity> bullets;
 	
 	/**
 	 * Creates the main game window.
@@ -60,9 +62,9 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	 */
 	private void ini_Systems() {
 		executor = Executors.newCachedThreadPool();
-
-		bullets = new ArrayList<Entity>();
-		notBullets = new ArrayList<Entity>();
+		
+		bullets = Collections.synchronizedList(new ArrayList<Entity>());
+		notBullets = Collections.synchronizedList(new ArrayList<Entity>());
 		
 	
 		
