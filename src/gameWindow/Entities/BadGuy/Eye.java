@@ -22,7 +22,7 @@ public class Eye extends Badguy implements Cloneable{
 	
 	public void update() {
 		this.xLocation += yLocation/30;
-		this.yLocation += 2;
+		this.yLocation += 0.1;
 		
 		if(firing <= 0) {
 			target = this.getPoint(GameWindow.character);

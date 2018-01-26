@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,10 +17,6 @@ import javax.swing.WindowConstants;
 
 import gameWindow.Entities.Entity;
 import gameWindow.Entities.Player;
-import gameWindow.Entities.BadGuy.Circle;
-import gameWindow.Entities.BadGuy.Eye;
-import gameWindow.Entities.BadGuy.Glitch;
-import gameWindow.Entities.BadGuy.Orbit;
 import mech.StageEvent;
 import render.VRR;
 
@@ -168,7 +163,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 			nextFrame += 16666667;
 
 			
-			for(int i = notBullets.size() - 1; i > 0; i--) {
+			for(int i = notBullets.size() - 1; i >= 0; i--) {
 				executor.execute(notBullets.get(i));
 			}
 
@@ -198,18 +193,14 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		for(Entity e: bullets) {
 			e.update();
 		}
-		Iterator<Entity> itr = notBullets.iterator();
-	
-		while (itr.hasNext()){
-			itr.next().update();
-			if(itr.hasNext()){
-		    	if(itr.next().sudoku()){
-		    		itr.remove();
-		    	}	
+		for(int i = notBullets.size() - 1; i >= 0; i--) {
+			notBullets.get(i).update();
+			if((i != 0)&&notBullets.get(i - 1).sudoku()) {
+				notBullets.remove(i-1);
 			}
 		}
-		
-		itr = bullets.iterator();
+
+		Iterator<Entity> itr = bullets.iterator();
 		while (itr.hasNext()){
 		    if(itr.next().sudoku()){
 		    	itr.remove();

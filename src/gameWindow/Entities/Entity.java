@@ -236,7 +236,7 @@ public abstract class Entity implements Runnable, Cloneable{
 	 * @return true if the entity is far enough off-screen, false otherwise.
 	 */
 	public boolean sudoku() {
-		if(this.xLocation > 8000||this.xLocation < -1000||this.yLocation >8000||this.yLocation < -1000) {
+		if(this.xLocation > 8000||this.xLocation < -4000||this.yLocation >8000||this.yLocation < -4000) {
 			return true;
 		}if(this.Health <= 0) {
 			return true;
