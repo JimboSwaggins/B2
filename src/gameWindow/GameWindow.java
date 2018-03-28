@@ -3,7 +3,6 @@ package gameWindow;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -148,7 +147,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 	//}
 		
 			
-		StageEvent e2= new StageEvent("eye", 8, 1000, 40, 40);
+		StageEvent e2= new StageEvent("glitch", 8, 1000, 40, 40);
 		long nextFrame =  (System.nanoTime() + 16666667);	
 		boolean apple = false;
 		while(running) {
@@ -157,7 +156,6 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 				apple = true;
 			}
 			while(System.nanoTime() <= nextFrame) {
-				
 			}
 			renderUpdate();
 			calcUpdate();
@@ -241,7 +239,7 @@ public class GameWindow extends Thread implements Runnable, KeyListener {
 		//g2.drawImage(image, 0, 0, null);
 		g2.setColor(Color.BLACK);
 		g2.fillRect(0, 0, 1280, 720);
-
+		
 
 		g2.setColor(Color.RED);
 		g2.drawString(VRR.deltaX.toString(), 50, 50);

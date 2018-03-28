@@ -2,11 +2,9 @@ package mech;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
-import gameWindow.GameWindow;
 import gameWindow.Entities.BadGuy.Eye;
+import gameWindow.Entities.BadGuy.Glitch;
 
 public class StageEvent	{
 	
@@ -66,6 +64,10 @@ public class StageEvent	{
             				new Eye(xLoc, yLoc);
             				i++;
             				break;
+            			case "glitch":
+                			new Glitch(xLoc, yLoc, 100, 1.2, 1.4, 0, 0);
+                			i++;	
+                			break;
             			default:
             				break;
             		}
